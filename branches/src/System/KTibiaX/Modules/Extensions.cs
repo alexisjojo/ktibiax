@@ -114,24 +114,6 @@ namespace KTibiaX.Modules {
         }
 
         /// <summary>
-        /// Gets the point.
-        /// </summary>
-        /// <param name="textpoint">The textpoint.</param>
-        /// <returns></returns>
-        public static Point GetPoint(this Alsing.SourceCode.TextPoint textpoint) {
-            return new Point(textpoint.X, textpoint.Y);
-        }
-
-        /// <summary>
-        /// Gets the text point.
-        /// </summary>
-        /// <param name="point">The point.</param>
-        /// <returns></returns>
-        public static Alsing.SourceCode.TextPoint GetTextPoint(this Point point) {
-            return new Alsing.SourceCode.TextPoint(point.X, point.Y);
-        }
-
-        /// <summary>
         /// Adds the specified point.
         /// </summary>
         /// <param name="point">The point.</param>

@@ -7,7 +7,6 @@ using KTibiaX.UI.Components;
 using KTibiaX.Windows;
 using Keyrox.Infra.Repository;
 using Keyrox.Shared.Controls;
-using Keyrox.Shared.Parser;
 
 namespace KTibiaX {
     static class Program {
@@ -29,8 +28,7 @@ namespace KTibiaX {
             Keyrox.Infra.Domain.InitializeDbContext(conn, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             Keyrox.Infra.Domain.RegisterComponents(Assembly.GetAssembly(typeof(KTibiaX.Core.Model.FeatureData)), typeof(IRepositoryBase));
 
-            //Application.Run(new frm_RibbonMenu());
-            Application.Run(new KTibiaX.Windows.Features.Scripts.frm_Builder());
+            Application.Run(new frm_RibbonMenu());
         }
 
         /// <summary>
