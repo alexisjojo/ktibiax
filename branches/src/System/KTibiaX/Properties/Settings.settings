@@ -5,8 +5,5 @@
     <Setting Name="OutputFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">output.log</Value>
     </Setting>
-    <Setting Name="ScriptItems" Type="KTibiaX.Modules.ScriptItemKeywordCollection" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>
