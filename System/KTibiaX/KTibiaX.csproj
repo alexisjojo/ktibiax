@@ -462,6 +462,14 @@
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\SyntaxIDE\src\Keyrox.Builder\Keyrox.Builder.csproj">
+      <Project>{22E337E2-1734-484E-8CB8-AEA1E41F135D}</Project>
+      <Name>Keyrox.Builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\SyntaxIDE\src\Keyrox.Scripting\Keyrox.Scripting.csproj">
+      <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
+      <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>
       <Name>KTibiaX.Core</Name>
