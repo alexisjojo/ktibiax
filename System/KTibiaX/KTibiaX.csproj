@@ -101,8 +101,6 @@
     <Compile Include="Modules\PointOperator.cs" />
     <Compile Include="Modules\PointType.cs" />
     <Compile Include="Modules\Program.cs" />
-    <Compile Include="Modules\ScriptItemKeyword.cs" />
-    <Compile Include="Modules\ScriptKeyword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ImgButtons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,9 +137,6 @@
     <EmbeddedResource Include="Windows\Features\Development\frm_DataTest.resx">
       <DependentUpon>frm_DataTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\Features\Development\frm_Syntax.resx">
-      <DependentUpon>frm_Syntax.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\Features\Hunt\frm_Drinker.resx">
       <DependentUpon>frm_Drinker.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,15 +172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Features\Player\frm_TradeHelper.resx">
       <DependentUpon>frm_TradeHelper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\Features\Scripts\Controls\ctrl_AutoList.resx">
-      <DependentUpon>ctrl_AutoList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.resx">
-      <DependentUpon>ctrl_SyntaxBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\Features\Scripts\frm_Builder.resx">
-      <DependentUpon>frm_Builder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Features\Selectors\ctrl_FoodList.resx">
       <DependentUpon>ctrl_FoodList.cs</DependentUpon>
@@ -290,12 +276,6 @@
     <Compile Include="Windows\Features\Development\frm_DataTest.Designer.cs">
       <DependentUpon>frm_DataTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Features\Development\frm_Syntax.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\Features\Development\frm_Syntax.Designer.cs">
-      <DependentUpon>frm_Syntax.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Features\Hunt\frm_Drinker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,24 +347,6 @@
     </Compile>
     <Compile Include="Windows\Features\Player\frm_TradeHelper.Designer.cs">
       <DependentUpon>frm_TradeHelper.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\Controls\ctrl_AutoList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\Controls\ctrl_AutoList.Designer.cs">
-      <DependentUpon>ctrl_AutoList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.Designer.cs">
-      <DependentUpon>ctrl_SyntaxBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\frm_Builder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\Features\Scripts\frm_Builder.Designer.cs">
-      <DependentUpon>frm_Builder.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Features\Selectors\ctrl_FoodList.cs">
       <SubType>UserControl</SubType>
@@ -484,25 +446,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\external\SyntaxBox\SyntaxBox\Alsing.SyntaxBox\Alsing.SyntaxBox.NET.csproj">
-      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
-      <Name>Alsing.SyntaxBox.NET</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Support\Keyrox.Infra\Keyrox.Infra.csproj">
-      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
-      <Name>Keyrox.Infra</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
+    <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
       <Project>{F33F16FF-9CD4-4906-AD7C-615C29DD2C31}</Project>
       <Name>KTibiaX.IPChanger.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Launcher\KTibiaX.IPChanger\KTibiaX.IPChanger.csproj">
+    <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger\KTibiaX.IPChanger.csproj">
       <Project>{FBEC6020-E656-4542-B84A-82697DBA712C}</Project>
       <Name>KTibiaX.IPChanger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Infra\Keyrox.Infra.csproj">
+      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
+      <Name>Keyrox.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>
@@ -531,9 +489,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ScriptConfig\CSharp.syn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="MemoryAddress.dmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -722,12 +677,6 @@
     <None Include="Resources\tibia_dark_small.png" />
     <None Include="Resources\tibia_dark_small2.png" />
     <Content Include="Resources\warning.png" />
-    <Content Include="ScriptConfig\template.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ScriptConfig\keywords.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\Write Document.png" />
     <None Include="Resources\window_icon16-2.PNG" />
     <None Include="Resources\window_icon15.PNG" />

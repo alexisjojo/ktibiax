@@ -123,11 +123,11 @@
     <Compile Include="Util\State.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Support\Keyrox.Infra\Keyrox.Infra.csproj">
+    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Infra\Keyrox.Infra.csproj">
       <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
       <Name>Keyrox.Infra</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Shared\Keyrox.Shared.csproj">
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>

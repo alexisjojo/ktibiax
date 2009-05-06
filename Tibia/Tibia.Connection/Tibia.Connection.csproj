@@ -89,7 +89,7 @@
     <Compile Include="Providers\PacketFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Shared\Keyrox.Shared.csproj">
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
