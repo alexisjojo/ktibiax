@@ -39,6 +39,20 @@ namespace Tibia.Features.Model.Items {
             }
             return null;
         }
+
+        /// <summary>
+        /// Searches all.
+        /// </summary>
+        /// <param name="itemID">The item ID.</param>
+        /// <returns></returns>
+        public IList<ISlot> SearchAll(uint itemID) {
+            var res = new List<ISlot>();
+            for (int i = 0; i < Count; i++) {
+                if (this[i].Item.Id == itemID) { res.Add(this[i]); }
+            }
+            return res;
+        }
+
         /// <summary>
         /// Get the first empty slot of this Collection.
         /// </summary>

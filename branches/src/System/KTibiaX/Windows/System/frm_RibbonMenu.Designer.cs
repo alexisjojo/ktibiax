@@ -15,10 +15,10 @@ namespace KTibiaX.Windows
         private DevExpress.XtraBars.BarButtonItem btnAntiMove;
         private DevExpress.XtraBars.BarButtonItem btnTrainer;
         private DevExpress.XtraBars.BarButtonItem btnSpellCaster;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem18;
+        private DevExpress.XtraBars.BarButtonItem btnCavebot;
         private DevExpress.XtraBars.BarButtonItem barButtonItem19;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem20;
+        private DevExpress.XtraBars.BarButtonItem btnScript;
         private DevExpress.XtraBars.BarButtonItem btnHuntTools;
         private DevExpress.XtraBars.BarButtonItem btnStatistics;
         private DevExpress.XtraBars.BarButtonItem btnAutoLooter;
@@ -166,9 +166,9 @@ namespace KTibiaX.Windows
             this.btnAntiMove = new DevExpress.XtraBars.BarButtonItem();
             this.btnTrainer = new DevExpress.XtraBars.BarButtonItem();
             this.btnSpellCaster = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCavebot = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnScript = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuntTools = new DevExpress.XtraBars.BarButtonItem();
             this.btnStatistics = new DevExpress.XtraBars.BarButtonItem();
             this.btnAutoLooter = new DevExpress.XtraBars.BarButtonItem();
@@ -296,9 +296,9 @@ namespace KTibiaX.Windows
             this.btnAntiMove,
             this.btnTrainer,
             this.btnSpellCaster,
-            this.barButtonItem18,
+            this.btnCavebot,
             this.barButtonItem19,
-            this.barButtonItem20,
+            this.btnScript,
             this.btnHuntTools,
             this.btnStatistics,
             this.btnAutoLooter,
@@ -364,7 +364,7 @@ namespace KTibiaX.Windows
             this.repositoryItemHyperLinkEdit1,
             this.repositoryItemZoomTrackBar1,
             this.repositoryItemHyperLinkEdit2});
-            this.ribbon.SelectedPage = this.ribbonPage1;
+            this.ribbon.SelectedPage = this.ribbonPage3;
             this.ribbon.ShowCategoryInCaption = false;
             this.ribbon.Size = new System.Drawing.Size(816, 148);
             this.ribbon.StatusBar = this.ribbonStatusBar1;
@@ -622,12 +622,13 @@ namespace KTibiaX.Windows
             this.btnSpellCaster.LargeImageIndex = 18;
             this.btnSpellCaster.Name = "btnSpellCaster";
             // 
-            // barButtonItem18
+            // btnCavebot
             // 
-            this.barButtonItem18.Caption = "  Cave Bot  ";
-            this.barButtonItem18.Id = 18;
-            this.barButtonItem18.LargeImageIndex = 35;
-            this.barButtonItem18.Name = "barButtonItem18";
+            this.btnCavebot.Caption = "  Cave Bot  ";
+            this.btnCavebot.Id = 18;
+            this.btnCavebot.LargeImageIndex = 35;
+            this.btnCavebot.Name = "btnCavebot";
+            this.btnCavebot.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCavebot_ItemClick);
             // 
             // barButtonItem19
             // 
@@ -636,12 +637,13 @@ namespace KTibiaX.Windows
             this.barButtonItem19.LargeImageIndex = 93;
             this.barButtonItem19.Name = "barButtonItem19";
             // 
-            // barButtonItem20
+            // btnScript
             // 
-            this.barButtonItem20.Caption = " Script Builder ";
-            this.barButtonItem20.Id = 21;
-            this.barButtonItem20.LargeImageIndex = 96;
-            this.barButtonItem20.Name = "barButtonItem20";
+            this.btnScript.Caption = " Script Editor ";
+            this.btnScript.Id = 21;
+            this.btnScript.LargeImageIndex = 96;
+            this.btnScript.Name = "btnScript";
+            this.btnScript.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnScript_ItemClick);
             // 
             // btnHuntTools
             // 
@@ -1087,7 +1089,7 @@ namespace KTibiaX.Windows
             // 
             // ribbonPageGroup11
             // 
-            this.ribbonPageGroup11.ItemLinks.Add(this.barButtonItem18);
+            this.ribbonPageGroup11.ItemLinks.Add(this.btnCavebot);
             this.ribbonPageGroup11.ItemLinks.Add(this.barButtonItem19, true);
             this.ribbonPageGroup11.KeyTip = "";
             this.ribbonPageGroup11.Name = "ribbonPageGroup11";
@@ -1095,7 +1097,7 @@ namespace KTibiaX.Windows
             // 
             // ribbonPageGroup12
             // 
-            this.ribbonPageGroup12.ItemLinks.Add(this.barButtonItem20);
+            this.ribbonPageGroup12.ItemLinks.Add(this.btnScript);
             this.ribbonPageGroup12.KeyTip = "";
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "Scripts";
