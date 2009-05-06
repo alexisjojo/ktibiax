@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KTibiaX.Core</RootNamespace>
+    <AssemblyName>KTibiaX.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2.Linq, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data.cs" />
+    <Compile Include="FormStorage\AutoStartFeatures.cs" />
+    <Compile Include="FormStorage\Contracts\IStorable.cs" />
+    <Compile Include="FormStorage\Contracts\IStorageField.cs" />
+    <Compile Include="FormStorage\StorageField.cs" />
+    <Compile Include="FormStorage\StorageFieldCollection.cs" />
+    <Compile Include="FormStorage\StorageGrid.cs" />
+    <Compile Include="FormStorage\StorageList.cs" />
+    <Compile Include="FormStorage\StorageManager.cs" />
+    <Compile Include="Model\DTO\CustomListItem.cs" />
+    <Compile Include="Model\FeatureData.cs" />
+    <Compile Include="Model\PlayerFeature.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\Contracts\IFeatureDataRepository.cs" />
+    <Compile Include="Repositories\Contracts\IPlayerFeatureRepository.cs" />
+    <Compile Include="Repositories\FeatureDataRepository.cs" />
+    <Compile Include="Repositories\PlayerFeatureRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Support\Keyrox.Infra\Keyrox.Infra.csproj">
+      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
+      <Name>Keyrox.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Client\Tibia.Client.csproj">
+      <Project>{1956C40B-A021-4DB3-B645-5EE0971D84CD}</Project>
+      <Name>Tibia.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Connection\Tibia.Connection.csproj">
+      <Project>{D01AFD8E-BD6F-4950-9290-B060735003E1}</Project>
+      <Name>Tibia.Connection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Features\Tibia.Features.csproj">
+      <Project>{A277971D-C183-4974-9404-10A9FE018292}</Project>
+      <Name>Tibia.Features</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Memory\Tibia.Memory.csproj">
+      <Project>{5BE7410D-4837-4592-AFC0-95568EDFDA69}</Project>
+      <Name>Tibia.Memory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DataBase\ktibiax.s3db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfScriptKeyword xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<ScriptKeyword>
+<Title>Kill Priority</Title>
+<Text>killpriority</Text>
+<Description>Sets the priority of a creature attack.</Description>
+<Parameters>[Monster Name],[Priority]</Parameters>
+<Examples>Ex.
+killpriority("Hydra", +5)
+killpriority("Snake", -1)
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>2</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Kill Spell</Title>
+<Text>killspell</Text>
+<Description>Sets the spell to kill some creature.</Description>
+<Parameters>[Monster Name], [Spell Name], [Delay in seconds]</Parameters>
+<Examples>Ex.
+killspell("Scorpion", "exori vis", 2)
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>2</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Kill Rune</Title>
+<Text>killrune</Text>
+<Description>Sets the rune used to kill some creature.</Description>
+<Parameters>[Monster Name], [Rune ID], [Delay in seconds], [Creature Min HP]</Parameters>
+<Examples>Ex.
+killrune("Hydra", 3155, 2, 100)
+killrune("Hydra", {SD}, 2, 100)
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>2</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Kill Only My Creatures</Title>
+<Text>killonlymycreatures</Text>
+<Description>Will attack only creatures that are attacking you.</Description>
+<Parameters>[True or False]</Parameters>
+<Examples>Ex.
+killonlymycreatures(true)
+</Examples>
+<ImageIndex>2</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Ignore Creature</Title>
+<Text>ignore</Text>
+<Description>Sets that some creature will not be attacked.</Description>
+<Parameters>[Creature Name]</Parameters>
+<Examples>Ex.
+ignore("Rabbit")
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>7</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Avoid Front</Title>
+<Text>avoidfront</Text>
+<Description>Sets that some creature should not be attacked by front.</Description>
+<Parameters>[Creature Name]</Parameters>
+<Examples>Ex.
+avoidfront("Dragon")
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>7</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Set Loot</Title>
+<Text>setloot</Text>
+<Description>Add some item to loot list.</Description>
+<Parameters>[Item ID]</Parameters>
+<Examples>Ex.
+setloot({GP})
+setloot(3031)
+</Examples>
+<ItemParam>true</ItemParam>
+<ImageIndex>7</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Log</Title>
+<Text>log</Text>
+<Description>Send a message to tibia client as system message.</Description>
+<Parameters>[Message]</Parameters>
+<Examples>Ex.
+log("Starting the hunt")
+log("Depositing countitem(3031) gold coins.")
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>7</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Goto</Title>
+<Text>goto</Text>
+<Description>Move the player to some location.</Description>
+<Parameters>[Location X], [Location Y], [Floor Z], [Direction D]</Parameters>
+<Examples>Ex.
+goto(12345,12345,7)
+goto(12345,12345,7, 3)
+</Examples>
+<ImageIndex>10</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Goto Section</Title>
+<Text>gotosection</Text>
+<Description>Move the execution to some script section.</Description>
+<Parameters>[Section Name]</Parameters>
+<Examples>Ex.
+gotosection(HuntToDepot)
+</Examples>
+<ImageIndex>10</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Goto Line</Title>
+<Text>gotoline</Text>
+<Description>Move the execution to some script line.</Description>
+<Parameters>[Line Number]</Parameters>
+<Examples>Ex.
+gotoline(35)
+</Examples>
+<ImageIndex>10</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Set Parameter</Title>
+<Text>setparam</Text>
+<Description>Sets the value to some script parameter.</Description>
+<Parameters>[Parameter Name], [Parameter Value]</Parameters>
+<Examples>Ex.
+setparam("SpearCost", 10)
+setparam("SpearWeigth", 20)
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>11</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Get Parameter</Title>
+<Text>getparam</Text>
+<Description>Gets the value from some script parameter.</Description>
+<Parameters>[Parameter Name]</Parameters>
+<Examples>Ex.
+getparam("SpearCost")
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>11</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Check Value</Title>
+<Text>checkvalue</Text>
+<Description>Execute some action if the expression is true.</Description>
+<Parameters>[Evaluable Expression]</Parameters>
+<Examples>Ex.
+checkvalue(countitem({Spear}) &lt; 5 = gotosection(HuntToDepot))
+checkvalue([CAP] &lt; getparam("MinCap") = gotosection(HuntToDepot))
+checkvalue(countitem(3031) &gt; 3000 = gotoline(53))
+</Examples>
+<ImageIndex>4</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Get Value</Title>
+<Text>getvalue</Text>
+<Description>Parse the expression and returns the value.</Description>
+<Parameters>[Evaluable Expression]</Parameters>
+<Examples>Ex.
+setparam("SpearToBuy", getvalue([CAP] / getparam("SpearWeigth")))
+setparam("MoneyToSpears", getvalue(getparam("SpearToBuy") * getparam("SpearCost")))
+setparam("CustomValue", getvalue((30 * 10) / 129 + 5))
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>4</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Count Item</Title>
+<Text>countitem</Text>
+<Description>Gets the total count of some item in opened containers.</Description>
+<Parameters>[Item ID]</Parameters>
+<Examples>Ex.
+countitem(3031)
+countitem({Spear})
+</Examples>
+<ItemParam>true</ItemParam>
+<ImageIndex>4</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Find Empty Depot</Title>
+<Text>findemptydp</Text>
+<Description>Finds and go to some empty depot storage.</Description>
+<Parameters>[]</Parameters>
+<Examples>Ex.
+findemptydp()
+</Examples>
+<ImageIndex>8</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Deposit Loot</Title>
+<Text>depositloot</Text>
+<Description>Open the storage and deposit all items contained in loot list.</Description>
+<Parameters>[]</Parameters>
+<Examples>Ex.
+depositloot()
+</Examples>
+<ImageIndex>8</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Say</Title>
+<Text>say</Text>
+<Description>Makes the player say the message.</Description>
+<Parameters>[Message], [Delay]</Parameters>
+<Examples>Ex.
+say("hi", 1000)
+say("deposit all", 1000)
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>8</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Buy</Title>
+<Text>buy</Text>
+<Description>Makes the player buy some item after the npc conversation has been started.</Description>
+<Parameters>[Item ID], [Quantity]</Parameters>
+<Examples>Ex.
+buy({Spear}, 20)
+buy(3277, getparam("SpearToBuy"))
+</Examples>
+<ItemParam>true</ItemParam>
+<ImageIndex>8</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Error</Title>
+<Text>error</Text>
+<Description>Stop the script and log the error.</Description>
+<Parameters>[Message]</Parameters>
+<Examples>Ex.
+error("You have no balance to buy spears!")
+</Examples>
+<AddQuotes>true</AddQuotes>
+<ImageIndex>12</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Name</Title>
+<Text>[NAME]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the NAME of the player.</Description>    
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Cap</Title>
+<Text>[CAP]</Text>
+<Description>Returns the CAP of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>HP</Title>
+<Text>[HP]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Hit points of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Level</Title>
+<Text>[LEVEL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Level of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>MLevel</Title>
+<Text>[MLEVEL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Magic Level of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Mana</Title>
+<Text>[MANA]</Text>
+<Description>Returns the Mana points of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Soul</Title>
+<Text>[SOUL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Soul points of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Stamina</Title>
+<Text>[STANIMA]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Stamina of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Fist Skill</Title>
+<Text>[FISTSKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Fist Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Club Skill</Title>
+<Text>[CLUBSKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Club Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Distance Skill</Title>
+<Text>[DISTANCESKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Distance Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Axe Skill</Title>
+<Text>[AXESKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Axe Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Shield Skill</Title>
+<Text>[SHIELDSKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Shield Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Fish Skill</Title>
+<Text>[FISHSKILL]</Text>
+<PlayerAttribute>true</PlayerAttribute>
+<Description>Returns the Fish Skill of the player.</Description>
+<ImageIndex>5</ImageIndex>
+</ScriptKeyword>
+<ScriptKeyword>
+<Title>Item</Title>
+<Text>{}</Text>
+<Description>Returns the ID of some stored item.</Description>
+<Parameters>{ItemName}</Parameters>
+<Examples>Ex.
+{Spear}
+{GoldCoin}
+(Non case sensitive)
+</Examples>
+<ImageIndex>3</ImageIndex>
+</ScriptKeyword>
+</ArrayOfScriptKeyword>
