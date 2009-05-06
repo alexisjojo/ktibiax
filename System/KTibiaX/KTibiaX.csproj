@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68BF64D3-2916-4125-8834-83B46CDE7C88}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KTibiaX</RootNamespace>
+    <AssemblyName>KTibiaX</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>firefox.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.OfficeSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2.Linq, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2.Providers, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichTextEdit.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\SQLite\bin\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=2.0.38.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\SQLite\bin\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ImgButtons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgButtons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ImgIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgIcons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ImgTitles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgTitles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BattleType.cs" />
+    <Compile Include="Modules\Extensions.cs" />
+    <Compile Include="Modules\KTibiaXState.cs" />
+    <Compile Include="Modules\PointOperator.cs" />
+    <Compile Include="Modules\PointType.cs" />
+    <Compile Include="Modules\Program.cs" />
+    <Compile Include="Modules\ScriptItemKeyword.cs" />
+    <Compile Include="Modules\ScriptKeyword.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ImgButtons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgButtons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImgIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgIcons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImgTitles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgTitles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Configuration\frm_Address.resx">
+      <DependentUpon>frm_Address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Dialogs\frm_VersionName.resx">
+      <DependentUpon>frm_VersionName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Controls\OutputView.resx">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_BPReader.resx">
+      <DependentUpon>frm_BPReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_Cripto.resx">
+      <DependentUpon>frm_Cripto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_DataTest.resx">
+      <DependentUpon>frm_DataTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_Syntax.resx">
+      <DependentUpon>frm_Syntax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Drinker.resx">
+      <DependentUpon>frm_Drinker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Healer.resx">
+      <DependentUpon>frm_Healer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Looter.resx">
+      <DependentUpon>frm_Looter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Restaker.resx">
+      <DependentUpon>frm_Restaker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Spellbot.resx">
+      <DependentUpon>frm_Spellbot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Hunt\frm_Statistics.resx">
+      <DependentUpon>frm_Statistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_Alerts.resx">
+      <DependentUpon>frm_Alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_Light.resx">
+      <DependentUpon>frm_Light.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_Outfit.resx">
+      <DependentUpon>frm_Outfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_Speed.resx">
+      <DependentUpon>frm_Speed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_SpyBattleList.resx">
+      <DependentUpon>frm_SpyBattleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Player\frm_TradeHelper.resx">
+      <DependentUpon>frm_TradeHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Scripts\Controls\ctrl_AutoList.resx">
+      <DependentUpon>ctrl_AutoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.resx">
+      <DependentUpon>ctrl_SyntaxBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Scripts\frm_Builder.resx">
+      <DependentUpon>frm_Builder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\ctrl_FoodList.resx">
+      <DependentUpon>ctrl_FoodList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\ctrl_SpellList.resx">
+      <DependentUpon>ctrl_SpellList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\frm_Items.resx">
+      <DependentUpon>frm_Items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\frm_Location.resx">
+      <DependentUpon>frm_Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\frm_NameList.resx">
+      <DependentUpon>frm_NameList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Selectors\frm_NewItem.resx">
+      <DependentUpon>frm_NewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_AmmoMaker.resx">
+      <DependentUpon>frm_AmmoMaker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_AntiMove.resx">
+      <DependentUpon>frm_AntiMove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_AutoReply.resx">
+      <DependentUpon>frm_AutoReply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_Caster.resx">
+      <DependentUpon>frm_Caster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_Eater.resx">
+      <DependentUpon>frm_Eater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_Fishing.resx">
+      <DependentUpon>frm_Fishing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_RuneMaker.resx">
+      <DependentUpon>frm_RuneMaker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Trainer\frm_Trainer.resx">
+      <DependentUpon>frm_Trainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\System\frm_Main.resx">
+      <DependentUpon>frm_Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\System\frm_RibbonMenu.resx">
+      <DependentUpon>frm_RibbonMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Files\MemoryAddress.dmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Cursors\busy.ani" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Windows\Configuration\frm_Address.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Configuration\frm_Address.Designer.cs">
+      <DependentUpon>frm_Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Dialogs\frm_VersionName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Dialogs\frm_VersionName.Designer.cs">
+      <DependentUpon>frm_VersionName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Controls\OutputView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Controls\OutputView.Designer.cs">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_BPReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_BPReader.Designer.cs">
+      <DependentUpon>frm_BPReader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Cripto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Cripto.Designer.cs">
+      <DependentUpon>frm_Cripto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_DataTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_DataTest.Designer.cs">
+      <DependentUpon>frm_DataTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Syntax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Syntax.Designer.cs">
+      <DependentUpon>frm_Syntax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Drinker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Drinker.Designer.cs">
+      <DependentUpon>frm_Drinker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Healer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Healer.Designer.cs">
+      <DependentUpon>frm_Healer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Looter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Looter.Designer.cs">
+      <DependentUpon>frm_Looter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Restaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Restaker.Designer.cs">
+      <DependentUpon>frm_Restaker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Spellbot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Spellbot.Designer.cs">
+      <DependentUpon>frm_Spellbot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Statistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Hunt\frm_Statistics.Designer.cs">
+      <DependentUpon>frm_Statistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Alerts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Alerts.Designer.cs">
+      <DependentUpon>frm_Alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Light.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Light.Designer.cs">
+      <DependentUpon>frm_Light.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Outfit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Outfit.Designer.cs">
+      <DependentUpon>frm_Outfit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Speed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_Speed.Designer.cs">
+      <DependentUpon>frm_Speed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_SpyBattleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_SpyBattleList.Designer.cs">
+      <DependentUpon>frm_SpyBattleList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_TradeHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Player\frm_TradeHelper.Designer.cs">
+      <DependentUpon>frm_TradeHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\Controls\ctrl_AutoList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\Controls\ctrl_AutoList.Designer.cs">
+      <DependentUpon>ctrl_AutoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\Controls\ctrl_SyntaxBox.Designer.cs">
+      <DependentUpon>ctrl_SyntaxBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\frm_Builder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Scripts\frm_Builder.Designer.cs">
+      <DependentUpon>frm_Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\ctrl_FoodList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\ctrl_FoodList.Designer.cs">
+      <DependentUpon>ctrl_FoodList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\ctrl_SpellList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\ctrl_SpellList.Designer.cs">
+      <DependentUpon>ctrl_SpellList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_Items.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_Items.Designer.cs">
+      <DependentUpon>frm_Items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_Location.Designer.cs">
+      <DependentUpon>frm_Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_NameList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_NameList.Designer.cs">
+      <DependentUpon>frm_NameList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_NewItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Selectors\frm_NewItem.Designer.cs">
+      <DependentUpon>frm_NewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AmmoMaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AmmoMaker.Designer.cs">
+      <DependentUpon>frm_AmmoMaker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AntiMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AntiMove.Designer.cs">
+      <DependentUpon>frm_AntiMove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AutoReply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_AutoReply.Designer.cs">
+      <DependentUpon>frm_AutoReply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Caster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Caster.Designer.cs">
+      <DependentUpon>frm_Caster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Eater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Eater.Designer.cs">
+      <DependentUpon>frm_Eater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Fishing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Fishing.Designer.cs">
+      <DependentUpon>frm_Fishing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_RuneMaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_RuneMaker.Designer.cs">
+      <DependentUpon>frm_RuneMaker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Trainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Trainer\frm_Trainer.Designer.cs">
+      <DependentUpon>frm_Trainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\System\frm_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\System\frm_Main.Designer.cs">
+      <DependentUpon>frm_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\System\frm_RibbonMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\System\frm_RibbonMenu.Designer.cs">
+      <DependentUpon>frm_RibbonMenu.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\external\SyntaxBox\SyntaxBox\Alsing.SyntaxBox\Alsing.SyntaxBox.NET.csproj">
+      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
+      <Name>Alsing.SyntaxBox.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Infra\Keyrox.Infra.csproj">
+      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
+      <Name>Keyrox.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
+      <Project>{F33F16FF-9CD4-4906-AD7C-615C29DD2C31}</Project>
+      <Name>KTibiaX.IPChanger.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Launcher\KTibiaX.IPChanger\KTibiaX.IPChanger.csproj">
+      <Project>{FBEC6020-E656-4542-B84A-82697DBA712C}</Project>
+      <Name>KTibiaX.IPChanger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
+      <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>
+      <Name>KTibiaX.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTibiaX.UI\KTibiaX.UI.csproj">
+      <Project>{880C12EA-58AB-4CDF-906E-61951F94CDCC}</Project>
+      <Name>KTibiaX.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Client\Tibia.Client.csproj">
+      <Project>{1956C40B-A021-4DB3-B645-5EE0971D84CD}</Project>
+      <Name>Tibia.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Connection\Tibia.Connection.csproj">
+      <Project>{D01AFD8E-BD6F-4950-9290-B060735003E1}</Project>
+      <Name>Tibia.Connection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Features\Tibia.Features.csproj">
+      <Project>{A277971D-C183-4974-9404-10A9FE018292}</Project>
+      <Name>Tibia.Features</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia.Memory\Tibia.Memory.csproj">
+      <Project>{5BE7410D-4837-4592-AFC0-95568EDFDA69}</Project>
+      <Name>Tibia.Memory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ScriptConfig\CSharp.syn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MemoryAddress.dmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\add1.png" />
+    <None Include="Resources\addbk2_32.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\beta_tester.png" />
+    <None Include="Resources\chart.png" />
+    <None Include="Resources\chart_accept.png" />
+    <None Include="Resources\chart_remove.png" />
+    <None Include="Resources\add_16x16.gif" />
+    <None Include="Resources\administrator1_%28add%29_16x16.gif" />
+    <None Include="Resources\attention.gif" />
+    <None Include="Resources\char.png" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\afk.png" />
+    <None Include="Resources\alerts.png" />
+    <None Include="Resources\alerts_new.png" />
+    <None Include="Resources\ammo_maker.png" />
+    <None Include="Resources\auto_looter.png" />
+    <None Include="Resources\bag_kicker.png" />
+    <None Include="Resources\bird.png" />
+    <None Include="Resources\blist.png" />
+    <None Include="Resources\chooser_logo.png" />
+    <None Include="Resources\anyfood.png" />
+    <None Include="Resources\Bag.gif" />
+    <None Include="Resources\btnchecked.png" />
+    <Content Include="firefox.ico" />
+    <Content Include="Resources\close_32.png" />
+    <None Include="Resources\close_321.png" />
+    <None Include="Resources\coffee.png" />
+    <None Include="Resources\comments.png" />
+    <None Include="Resources\Coherence.png" />
+    <None Include="Resources\comment1_%28add%29_16x16.gif" />
+    <None Include="Resources\comment1_%28add%29_16x161.gif" />
+    <None Include="Resources\comment1_%28delete%29_16x16.gif" />
+    <None Include="Resources\comment1_%28edit%29_16x16.gif" />
+    <None Include="Resources\comment2_%28add%29_16x16.gif" />
+    <None Include="Resources\comment2_%28add%29_16x161.gif" />
+    <None Include="Resources\comment2_%28delete%29_16x16.gif" />
+    <None Include="Resources\comments1.png" />
+    <None Include="Resources\cripto.png" />
+    <Content Include="Resources\Cursors\hand.cur" />
+    <Content Include="Resources\Cursors\help.cur" />
+    <Content Include="Resources\Cursors\move.cur" />
+    <Content Include="Resources\Cursors\normal.cur" />
+    <Content Include="Resources\Cursors\select.cur" />
+    <Content Include="Resources\Cursors\text.cur" />
+    <Content Include="Resources\Cursors\unavailable.cur" />
+    <Content Include="Resources\Cursors\working.cur" />
+    <None Include="Resources\Devdown.png" />
+    <None Include="Resources\Devup.png" />
+    <None Include="Resources\dialog_no.png" />
+    <None Include="Resources\dialog_ok.png" />
+    <None Include="Resources\dialog_pop_no.png" />
+    <None Include="Resources\dialog_pop_ok.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\eject.png" />
+    <None Include="Resources\fast_forward.png" />
+    <None Include="Resources\group.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\icq26.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\database_field_%28edit%29_16x16.gif" />
+    <None Include="Resources\delete_16x16.gif" />
+    <None Include="Resources\delete_16x161.gif" />
+    <None Include="Resources\Desktop.png" />
+    <None Include="Resources\down_alt.png" />
+    <None Include="Resources\down1.png" />
+    <None Include="Resources\exclamation.png" />
+    <None Include="Resources\filter_%28add%29_16x16.gif" />
+    <None Include="Resources\Fullscreen.png" />
+    <None Include="Resources\help1.png" />
+    <None Include="Resources\info1.png" />
+    <None Include="Resources\info2.png" />
+    <None Include="Resources\eater.png" />
+    <None Include="Resources\eater_new.png" />
+    <None Include="Resources\fisher.png" />
+    <None Include="Resources\fishers.png" />
+    <None Include="Resources\fishing.png" />
+    <None Include="Resources\fluid.png" />
+    <None Include="Resources\heal_form.png" />
+    <None Include="Resources\holmes.png" />
+    <None Include="Resources\item.png" />
+    <None Include="Resources\items.png" />
+    <None Include="Resources\Depot.gif" />
+    <None Include="Resources\cyclop-alien.png" />
+    <None Include="Resources\eye-alien.png" />
+    <None Include="Resources\hunt_tools.png" />
+    <None Include="Resources\gtk-media-stop_red.png" />
+    <None Include="Resources\gtk-media-play-ltr_green.png" />
+    <Content Include="Resources\items\Arbalest.gif" />
+    <Content Include="Resources\items\Backpack_of_Holding.gif" />
+    <Content Include="Resources\items\Bed_Modification_Kit.gif" />
+    <Content Include="Resources\items\Blacksteel_Sword.gif" />
+    <Content Include="Resources\items\Chest.gif" />
+    <Content Include="Resources\items\Composite_Hornbow.gif" />
+    <Content Include="Resources\items\Corncob.gif" />
+    <Content Include="Resources\items\Document.gif" />
+    <Content Include="Resources\items\Dragon_Slayer.gif" />
+    <Content Include="Resources\items\Golden_Armor.gif" />
+    <Content Include="Resources\items\Hailstorm_Rod.gif" />
+    <Content Include="Resources\items\Icy_Dragon_Slayer.gif" />
+    <Content Include="Resources\items\Letter.gif" />
+    <Content Include="Resources\items\Parchment.gif" />
+    <Content Include="Resources\items\Spellwand.gif" />
+    <None Include="Resources\newscript.png" />
+    <None Include="Resources\lupe.png" />
+    <None Include="Resources\newscript1.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\note_accept.png" />
+    <None Include="Resources\note_add.png" />
+    <None Include="Resources\noaccess-32.png" />
+    <None Include="Resources\on26.png" />
+    <None Include="Resources\page_accept.png" />
+    <None Include="Resources\page_add.png" />
+    <None Include="Resources\pause.png" />
+    <None Include="Resources\Pause1.png" />
+    <None Include="Resources\PauseAll.png" />
+    <None Include="Resources\k16_icon.png" />
+    <None Include="Resources\k32_icon.png" />
+    <None Include="Resources\Menu.png" />
+    <None Include="Resources\Menu Item.png" />
+    <None Include="Resources\Mr. Bomb.png" />
+    <None Include="Resources\msn_emoticon_ver.png" />
+    <None Include="Resources\network.png" />
+    <None Include="Resources\Notes.png" />
+    <None Include="Resources\items_form.png" />
+    <None Include="Resources\light_form.png" />
+    <None Include="Resources\location_form.png" />
+    <None Include="Resources\mapinfo.png" />
+    <None Include="Resources\mapreader.gif" />
+    <None Include="Resources\outfit.png" />
+    <None Include="Resources\jockey.png" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\login.png" />
+    <Content Include="Resources\pile.png" />
+    <None Include="Resources\Remove.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\Play1.png" />
+    <None Include="Resources\PlayAll.png" />
+    <None Include="Resources\record.png" />
+    <None Include="Resources\ref_32.png" />
+    <None Include="Resources\remove1.png" />
+    <None Include="Resources\repeat.png" />
+    <None Include="Resources\rewind.png" />
+    <None Include="Resources\sinfo_32.png" />
+    <None Include="Resources\skip_backward.png" />
+    <None Include="Resources\skip_forward.png" />
+    <None Include="Resources\sound.png" />
+    <None Include="Resources\sound_off.png" />
+    <None Include="Resources\sound_on.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\stop1.png" />
+    <None Include="Resources\Stop2.png" />
+    <None Include="Resources\stop26.png" />
+    <None Include="Resources\StopAll.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\user_add.png" />
+    <None Include="Resources\Remove11.png" />
+    <None Include="Resources\repeat1.png" />
+    <None Include="Resources\report1_%28add%29_16x16.gif" />
+    <None Include="Resources\report1_%28delete%29_16x16.gif" />
+    <None Include="Resources\shopping_cart_%28add%29_16x16.gif" />
+    <None Include="Resources\shopping_cart_%28delete%29_16x16.gif" />
+    <None Include="Resources\transp16.png" />
+    <None Include="Resources\potion.png" />
+    <None Include="Resources\reply.png" />
+    <None Include="Resources\rune_shooter.png" />
+    <None Include="Resources\runmaker_form.png" />
+    <None Include="Resources\runmaker_form_new.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\speed.png" />
+    <None Include="Resources\spell_caster.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\trade_watcher.png" />
+    <None Include="Resources\trainer.png" />
+    <None Include="Resources\ref_321.png" />
+    <None Include="Resources\transp161.png" />
+    <None Include="Resources\security.png" />
+    <None Include="Resources\trainer1.png" />
+    <None Include="Resources\tibia_dark.png" />
+    <None Include="Resources\tibia_dark_small.png" />
+    <None Include="Resources\tibia_dark_small2.png" />
+    <Content Include="Resources\warning.png" />
+    <Content Include="ScriptConfig\template.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScriptConfig\keywords.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Write Document.png" />
+    <None Include="Resources\window_icon16-2.PNG" />
+    <None Include="Resources\window_icon15.PNG" />
+    <None Include="Resources\window_icon14.PNG" />
+    <None Include="Resources\window_icon.PNG" />
+    <None Include="Resources\wok.png" />
+    <None Include="Resources\wno.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
