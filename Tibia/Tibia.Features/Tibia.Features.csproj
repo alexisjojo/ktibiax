@@ -102,6 +102,7 @@
     <Compile Include="Events\LocationChanged.cs" />
     <Compile Include="Model\Creatures\Skills.cs" />
     <Compile Include="Model\Creatures\Inventory.cs" />
+    <Compile Include="Model\Graphics\PathFinder.cs" />
     <Compile Include="Model\Graphics\Sqm.cs" />
     <Compile Include="Model\Graphics\SqmCollection.cs" />
     <Compile Include="Model\Graphics\Tile.cs" />

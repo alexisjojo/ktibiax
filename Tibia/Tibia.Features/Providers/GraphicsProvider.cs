@@ -132,7 +132,7 @@ namespace Tibia.Features.Providers {
         }
         
         /// <summary>
-        /// Gets the SQ ms.
+        /// Gets the SQms.
         /// </summary>
         /// <param name="range">The range.</param>
         /// <param name="location">The location.</param>
@@ -153,6 +153,17 @@ namespace Tibia.Features.Providers {
                 }
             }
             return sqms;
+        }
+
+        /// <summary>
+        /// Gets the SQms.
+        /// </summary>
+        /// <param name="screens">The screens.</param>
+        /// <param name="allflorrs">if set to <c>true</c> [allflorrs].</param>
+        /// <returns></returns>
+        public SqmCollection GetSQMs(int screens, bool allflorrs) {
+            var sqms = GetSQMs(screens * 7, Player.Location);
+            return allflorrs ? sqms : new SqmCollection(sqms.Where(s => s.WorldLocation.Z == Player.Location.Z).ToList());
         }
 
         /// <summary>

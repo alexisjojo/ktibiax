@@ -11,6 +11,7 @@ using KTibiaX.Modules;
 using KTibiaX.Windows.Features.Player;
 using KTibiaX.UI.Components;
 using KTibiaX.Windows.Configuration;
+using KTibiaX.Windows.Features.Hunt;
 
 namespace KTibiaX.Windows {
     public partial class frm_RibbonMenu : RibbonForm {
@@ -172,7 +173,6 @@ namespace KTibiaX.Windows {
                 }
             }
         }
-
         private void ribbon_MinimizedChanged(object sender, EventArgs e) {
             ReorganizeHostControls();
         }
@@ -251,6 +251,13 @@ namespace KTibiaX.Windows {
         }
         private void btnTrade_ItemClick(object sender, ItemClickEventArgs e) {
             FormManager.Show<frm_TradeHelper>(TibiaClient);
+        }
+        private void btnScript_ItemClick(object sender, ItemClickEventArgs e) {
+            var frmEditor = new Keyrox.Builder.Features.frm_Editor();
+            frmEditor.Show();
+        }
+        private void btnCavebot_ItemClick(object sender, ItemClickEventArgs e) {
+            FormManager.Show<frm_Cavebot>(TibiaClient);
         }
         #endregion
 
