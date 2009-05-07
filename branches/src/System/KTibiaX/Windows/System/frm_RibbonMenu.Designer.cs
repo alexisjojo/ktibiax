@@ -364,7 +364,7 @@ namespace KTibiaX.Windows
             this.repositoryItemHyperLinkEdit1,
             this.repositoryItemZoomTrackBar1,
             this.repositoryItemHyperLinkEdit2});
-            this.ribbon.SelectedPage = this.ribbonPage3;
+            this.ribbon.SelectedPage = this.rbDev;
             this.ribbon.ShowCategoryInCaption = false;
             this.ribbon.Size = new System.Drawing.Size(816, 148);
             this.ribbon.StatusBar = this.ribbonStatusBar1;
@@ -908,6 +908,7 @@ namespace KTibiaX.Windows
             this.btnPacketListener.Id = 65;
             this.btnPacketListener.LargeImageIndex = 86;
             this.btnPacketListener.Name = "btnPacketListener";
+            this.btnPacketListener.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPacketListener_ItemClick);
             // 
             // btnTestes
             // 

@@ -32,6 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Castle\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Castle\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.BonusSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.OfficeSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
@@ -136,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Features\Development\frm_DataTest.resx">
       <DependentUpon>frm_DataTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_Packets.resx">
+      <DependentUpon>frm_Packets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Features\Development\frm_PackView.resx">
+      <DependentUpon>frm_PackView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Features\Hunt\frm_Cavebot.resx">
       <DependentUpon>frm_Cavebot.cs</DependentUpon>
@@ -274,6 +296,18 @@
     </Compile>
     <Compile Include="Windows\Features\Development\frm_DataTest.Designer.cs">
       <DependentUpon>frm_DataTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Packets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_Packets.Designer.cs">
+      <DependentUpon>frm_Packets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_PackView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Features\Development\frm_PackView.Designer.cs">
+      <DependentUpon>frm_PackView.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Features\Hunt\frm_Cavebot.cs">
       <SubType>Form</SubType>
