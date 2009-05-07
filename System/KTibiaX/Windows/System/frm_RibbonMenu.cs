@@ -12,6 +12,7 @@ using KTibiaX.Windows.Features.Player;
 using KTibiaX.UI.Components;
 using KTibiaX.Windows.Configuration;
 using KTibiaX.Windows.Features.Hunt;
+using KTibiaX.Windows.Features.Development;
 
 namespace KTibiaX.Windows {
     public partial class frm_RibbonMenu : RibbonForm {
@@ -258,6 +259,9 @@ namespace KTibiaX.Windows {
         }
         private void btnCavebot_ItemClick(object sender, ItemClickEventArgs e) {
             FormManager.Show<frm_Cavebot>(TibiaClient);
+        }
+        private void btnPacketListener_ItemClick(object sender, ItemClickEventArgs e) {
+            FormManager.Show<frm_Packets>(TibiaClient);
         }
         #endregion
 

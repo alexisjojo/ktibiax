@@ -182,6 +182,7 @@ namespace Tibia.Connection.Core {
             //Read Response of The Server "If Login = OK".
             len = StreamRemote.Read(Data, 0, Data.Length);
             byte[] charList = Xtea.DeCryptograph(Data.Redim(len));
+            PacketChangedCall(Data.Redim(len), PacketSource.Server);
 
             //Check the type of the returned packet.
             RaiseSwichCharacter(charList, reconnection);
