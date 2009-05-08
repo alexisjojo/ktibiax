@@ -131,7 +131,7 @@
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia\Keyrox.Tibia.csproj">
+    <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
       <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
       <Name>Keyrox.Tibia</Name>
     </ProjectReference>
