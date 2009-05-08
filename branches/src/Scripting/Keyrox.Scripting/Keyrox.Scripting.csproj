@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BE8ED4A2-7019-4283-9649-6A355B184010}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Keyrox.Scripting</RootNamespace>
+    <AssemblyName>Keyrox.Scripting</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.OfficeSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="Keyrox.Shared, Version=1.2.3414.32029, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Keyrox\Keyrox.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Keyrox.Tibia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Keyrox\Keyrox.Tibia.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\Components\ActionBaseComponent.cs" />
+    <Compile Include="Actions\Components\Model\KillRune.cs" />
+    <Compile Include="Actions\Components\Model\KillSpell.cs" />
+    <Compile Include="Actions\Components\Player\BuyAction.cs" />
+    <Compile Include="Actions\Components\Player\GotoAction.cs" />
+    <Compile Include="Actions\Components\Player\ItemActions.cs" />
+    <Compile Include="Actions\ITibiaAction.cs" />
+    <Compile Include="AutoList\AutoListFunction.cs" />
+    <Compile Include="AutoList\AutoListType.cs" />
+    <Compile Include="Controls\ScriptBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScriptBox.Designer.cs">
+      <DependentUpon>ScriptBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScriptEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ScriptInfoProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Events\AutoListTypeEventArgs.cs" />
+    <Compile Include="Events\LineErrorEventArgs.cs" />
+    <Compile Include="Events\NumberEventArgs.cs" />
+    <Compile Include="Events\ScriptLineEventArgs.cs" />
+    <Compile Include="Events\SelectedKeyChanged.cs" />
+    <Compile Include="Events\TextEventArgs.cs" />
+    <Compile Include="Keywords\ItemKeyword.cs" />
+    <Compile Include="Keywords\ItemKeywordCollection.cs" />
+    <Compile Include="Keywords\Keyword.cs" />
+    <Compile Include="Keywords\KeywordCollection.cs" />
+    <Compile Include="Keywords\LocationKeyword.cs" />
+    <Compile Include="Parser\ScriptAction.cs" />
+    <Compile Include="Parser\ScriptActionResult.cs" />
+    <Compile Include="Parser\ScriptFile.cs" />
+    <Compile Include="Parser\ScriptInfo.cs" />
+    <Compile Include="Parser\ScriptLine.cs" />
+    <Compile Include="Parser\ScriptLineError.cs" />
+    <Compile Include="Parser\ScriptLineErrorType.cs" />
+    <Compile Include="Parser\ScriptParser.cs" />
+    <Compile Include="Parser\ScriptSection.cs" />
+    <Compile Include="Parser\ScriptState.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScriptDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\EvalActions.cs" />
+    <Compile Include="Actions\HuntActions.cs" />
+    <Compile Include="Actions\KillActions.cs" />
+    <Compile Include="Actions\PlayerActions.cs" />
+    <Compile Include="Actions\SystemActions.cs" />
+    <Compile Include="Actions\ParamActions.cs" />
+    <Compile Include="Attributes\ActionClass.cs" />
+    <Compile Include="Attributes\ActionConfig.cs" />
+    <Compile Include="Attributes\ActionExamples.cs" />
+    <Compile Include="Attributes\ActionParameter.cs" />
+    <Compile Include="Attributes\ActionTitle.cs" />
+    <Compile Include="Attributes\PropClass.cs" />
+    <Compile Include="Attributes\PropItem.cs" />
+    <Compile Include="Player\Properties.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Keywords\ScriptKeywords.cs" />
+    <Compile Include="Controls\ScriptToolTipProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\Extensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ScriptBox.resx">
+      <DependentUpon>ScriptBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScriptEditor.resx">
+      <DependentUpon>ScriptEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Keyrox.SyntaxBox\Keyrox.SyntaxBox.csproj">
+      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
+      <Name>Keyrox.SyntaxBox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

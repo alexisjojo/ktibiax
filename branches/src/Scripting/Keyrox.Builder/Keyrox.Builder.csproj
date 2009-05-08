@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{22E337E2-1734-484E-8CB8-AEA1E41F135D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Keyrox.Builder</RootNamespace>
+    <AssemblyName>Keyrox.Builder</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Crystal_Inf.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.OfficeSkins.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="Keyrox.Shared, Version=1.2.3414.32029, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Keyrox\Keyrox.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Keyrox.Tibia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Keyrox\Keyrox.Tibia.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Events\TextEventArgs.cs" />
+    <Compile Include="Features\AutoList\AutoListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\AutoList\AutoListBox.Designer.cs">
+      <DependentUpon>AutoListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Controls\BuilderEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Controls\BuilderEditor.Designer.cs">
+      <DependentUpon>BuilderEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Controls\ErrorList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Controls\ErrorList.Designer.cs">
+      <DependentUpon>ErrorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Controls\OutputView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Controls\OutputView.Designer.cs">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Dialogs\frm_NewItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Dialogs\frm_NewItem.Designer.cs">
+      <DependentUpon>frm_NewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\frm_Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\frm_Editor.Designer.cs">
+      <DependentUpon>frm_Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\frm_Items.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\frm_Items.Designer.cs">
+      <DependentUpon>frm_Items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\frm_Agent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\frm_Agent.Designer.cs">
+      <DependentUpon>frm_Agent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Extensions.cs" />
+    <Compile Include="Features\Controls\CustomRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Features\AutoList\AutoListBox.resx">
+      <DependentUpon>AutoListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Controls\ErrorList.resx">
+      <DependentUpon>ErrorList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Controls\OutputView.resx">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Dialogs\frm_NewItem.resx">
+      <DependentUpon>frm_NewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\frm_Editor.resx">
+      <DependentUpon>frm_Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\frm_Items.resx">
+      <DependentUpon>frm_Items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Keyrox.Scripting\Keyrox.Scripting.csproj">
+      <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
+      <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keyrox.SyntaxBox\Keyrox.SyntaxBox.csproj">
+      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
+      <Name>Keyrox.SyntaxBox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="app.config" />
+    <EmbeddedResource Include="Features\Controls\BuilderEditor.resx">
+      <DependentUpon>BuilderEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\frm_Agent.resx">
+      <DependentUpon>frm_Agent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptConfig\Script.syn" />
+    <Content Include="MyScripts\example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Devenv 001.png" />
+    <None Include="Resources\close_32.png" />
+    <None Include="Resources\caution_32.png" />
+    <Content Include="Crystal_Inf.ico" />
+    <Content Include="ScriptConfig\CustomItems.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScriptConfig\ScriptInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

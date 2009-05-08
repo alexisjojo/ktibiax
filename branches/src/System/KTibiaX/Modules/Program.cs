@@ -15,7 +15,7 @@ namespace KTibiaX {
         /// </summary>
         [STAThread]
         static void Main() {
-          
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
@@ -39,5 +39,6 @@ namespace KTibiaX {
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
             Output.Add(e.Exception);
         }
+
     }
 }
