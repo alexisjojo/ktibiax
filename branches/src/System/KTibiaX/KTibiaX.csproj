@@ -68,10 +68,6 @@
     <Reference Include="DevExpress.XtraScheduler.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
-    <Reference Include="KTibiaX.IPChanger.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\library\Tools\Launcher\KTibiaX.IPChanger.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -509,6 +505,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
+      <Project>{F33F16FF-9CD4-4906-AD7C-615C29DD2C31}</Project>
+      <Name>KTibiaX.IPChanger.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger\KTibiaX.IPChanger.csproj">
       <Project>{FBEC6020-E656-4542-B84A-82697DBA712C}</Project>
       <Name>KTibiaX.IPChanger</Name>
@@ -525,13 +525,13 @@
       <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
       <Name>Keyrox.Scripting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
+      <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
+      <Name>Keyrox.Tibia</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Scripting\Keyrox.Builder\Keyrox.Builder.csproj">
       <Project>{22E337E2-1734-484E-8CB8-AEA1E41F135D}</Project>
       <Name>Keyrox.Builder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia\Keyrox.Tibia.csproj">
-      <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
-      <Name>Keyrox.Tibia</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>
@@ -544,9 +544,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="MemoryAddress.dmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\accept.png" />
     <None Include="Resources\Add.png" />
     <None Include="Resources\add1.png" />
