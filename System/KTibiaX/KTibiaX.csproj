@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,7 +68,35 @@
     <Reference Include="DevExpress.XtraScheduler.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="KTibiaX.IPChanger.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\Tools\Launcher\KTibiaX.IPChanger.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.StaticFactory, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\UnitySource\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -117,6 +146,7 @@
     <Compile Include="Modules\PointOperator.cs" />
     <Compile Include="Modules\PointType.cs" />
     <Compile Include="Modules\Program.cs" />
+    <Compile Include="Modules\Temp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ImgButtons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -479,10 +509,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
-      <Project>{F33F16FF-9CD4-4906-AD7C-615C29DD2C31}</Project>
-      <Name>KTibiaX.IPChanger.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger\KTibiaX.IPChanger.csproj">
       <Project>{FBEC6020-E656-4542-B84A-82697DBA712C}</Project>
       <Name>KTibiaX.IPChanger</Name>
@@ -495,13 +521,17 @@
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\SyntaxIDE\src\Keyrox.Builder\Keyrox.Builder.csproj">
-      <Project>{22E337E2-1734-484E-8CB8-AEA1E41F135D}</Project>
-      <Name>Keyrox.Builder</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\SyntaxIDE\src\Keyrox.Scripting\Keyrox.Scripting.csproj">
       <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
       <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Scripting\Keyrox.Builder\Keyrox.Builder.csproj">
+      <Project>{22E337E2-1734-484E-8CB8-AEA1E41F135D}</Project>
+      <Name>Keyrox.Builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tibia\Tibia\Keyrox.Tibia.csproj">
+      <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
+      <Name>Keyrox.Tibia</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>
@@ -510,22 +540,6 @@
     <ProjectReference Include="..\KTibiaX.UI\KTibiaX.UI.csproj">
       <Project>{880C12EA-58AB-4CDF-906E-61951F94CDCC}</Project>
       <Name>KTibiaX.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Client\Tibia.Client.csproj">
-      <Project>{1956C40B-A021-4DB3-B645-5EE0971D84CD}</Project>
-      <Name>Tibia.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Connection\Tibia.Connection.csproj">
-      <Project>{D01AFD8E-BD6F-4950-9290-B060735003E1}</Project>
-      <Name>Tibia.Connection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Features\Tibia.Features.csproj">
-      <Project>{A277971D-C183-4974-9404-10A9FE018292}</Project>
-      <Name>Tibia.Features</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Memory\Tibia.Memory.csproj">
-      <Project>{5BE7410D-4837-4592-AFC0-95568EDFDA69}</Project>
-      <Name>Tibia.Memory</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

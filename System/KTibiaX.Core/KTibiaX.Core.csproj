@@ -86,22 +86,6 @@
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Client\Tibia.Client.csproj">
-      <Project>{1956C40B-A021-4DB3-B645-5EE0971D84CD}</Project>
-      <Name>Tibia.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Connection\Tibia.Connection.csproj">
-      <Project>{D01AFD8E-BD6F-4950-9290-B060735003E1}</Project>
-      <Name>Tibia.Connection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Features\Tibia.Features.csproj">
-      <Project>{A277971D-C183-4974-9404-10A9FE018292}</Project>
-      <Name>Tibia.Features</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tibia\Tibia.Memory\Tibia.Memory.csproj">
-      <Project>{5BE7410D-4837-4592-AFC0-95568EDFDA69}</Project>
-      <Name>Tibia.Memory</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

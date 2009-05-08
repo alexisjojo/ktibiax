@@ -1,0 +1,7 @@
+﻿///<Title>	Here comes the Title of this script file	</Title>
+///<Author>	Your NickName								</Author>
+///<About>	Your mail, instant messager or website url	</About>
+///<Tibia>	0.00										</Tibia>
+///<Date>	01/01/0001									</Date>
+///<Notes>	Here comes the description, notes, warnings or any other important information about this script.</Notes>
+
