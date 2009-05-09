@@ -44,9 +44,9 @@
     <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
-    <Reference Include="Keyrox.Shared, Version=1.2.3414.32029, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Keyrox.SyntaxBox, Version=1.0.0.41435, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\library\Keyrox\Keyrox.Shared.dll</HintPath>
+      <HintPath>..\..\..\library\Keyrox\Keyrox.SyntaxBox.dll</HintPath>
     </Reference>
     <Reference Include="Keyrox.Tibia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -164,16 +164,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Keyrox.Scripting\Keyrox.Scripting.csproj">
-      <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
-      <Name>Keyrox.Scripting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Keyrox.SyntaxBox\Keyrox.SyntaxBox.csproj">
-      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
-      <Name>Keyrox.SyntaxBox</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\warning.png" />
     <None Include="Resources\delete.png" />
     <None Include="app.config" />
@@ -199,6 +189,16 @@
     <Content Include="ScriptConfig\ScriptInfo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keyrox.Scripting\Keyrox.Scripting.csproj">
+      <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
+      <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
