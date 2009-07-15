@@ -23,6 +23,7 @@ namespace KTibiaX.Windows {
         public frm_RibbonMenu() {
             InitializeComponent();
             dockOutputPanel.Size = new Size(812, 261);
+            CenterStartupPanel();
         }
 
         #region "[rgn] Public Properties    "
@@ -101,10 +102,18 @@ namespace KTibiaX.Windows {
             ShowClientLauncher();
         }
         private void ShowClientLauncher() {
-            var frmIPChanger = new KTibiaX.IPChanger.frm_StartClient();
-            frmIPChanger.ClientOpenComplete += frmIPChanger_ClientOpenComplete;
-            frmIPChanger.TopMost = true;
-            frmIPChanger.Show();
+            this.BeginInvoke(new Callback(delegate() {
+                var frmIPChanger = new KTibiaX.IPChanger.frm_StartClient();
+                frmIPChanger.ClientOpenComplete += frmIPChanger_ClientOpenComplete;
+                frmIPChanger.FormClosed += new FormClosedEventHandler(frmIPChanger_FormClosed);
+                frmIPChanger.Show(this);
+                MethodCall.ExecuteSafeThreadIn(new Callback(delegate() { frmIPChanger.Focus(); }), 500);
+            }));
+        }
+        private void frmIPChanger_FormClosed(object sender, FormClosedEventArgs e) {
+            if (((KTibiaX.IPChanger.frm_StartClient)sender).TibiaClient == null) {
+                Application.ExitThread();
+            }
         }
         private void frmIPChanger_ClientOpenComplete(object sender, ProcessEventArgs e) {
             Output.Add("Client: ", e.ClientProcess.MainModule.FileName, " (version: ", e.ClientProcess.MainModule.FileVersionInfo.ProductVersion, ") was started!");
@@ -114,6 +123,8 @@ namespace KTibiaX.Windows {
 
             ClientProcess = e.ClientProcess;
             SelectedServer = e.Server;
+            this.pnHost.Visible = true;
+            ((KTibiaX.IPChanger.frm_StartClient)sender).Close();
 
             pnHost.CurrentProcess = e.ClientProcess;
             Callback host = pnHost.HostProcess;
@@ -254,11 +265,12 @@ namespace KTibiaX.Windows {
             FormManager.Show<frm_TradeHelper>(TibiaClient);
         }
         private void btnScript_ItemClick(object sender, ItemClickEventArgs e) {
-            var frmEditor = new Keyrox.Builder.Features.frm_Editor();
-            frmEditor.Show();
+            MessageBox.Show("TODO: Fazer um form que exiba informações detalhadas de cada script!");
         }
         private void btnCavebot_ItemClick(object sender, ItemClickEventArgs e) {
-            FormManager.Show<frm_Cavebot>(TibiaClient);
+            var frmEditor = new Keyrox.Builder.Features.frm_Editor();
+            frmEditor.TibiaClient = TibiaClient;
+            frmEditor.Show();
         }
         private void btnPacketListener_ItemClick(object sender, ItemClickEventArgs e) {
             FormManager.Show<frm_Packets>(TibiaClient);

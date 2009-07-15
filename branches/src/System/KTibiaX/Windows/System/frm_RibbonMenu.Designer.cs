@@ -364,7 +364,7 @@ namespace KTibiaX.Windows
             this.repositoryItemHyperLinkEdit1,
             this.repositoryItemZoomTrackBar1,
             this.repositoryItemHyperLinkEdit2});
-            this.ribbon.SelectedPage = this.rbDev;
+            this.ribbon.SelectedPage = this.ribbonPage3;
             this.ribbon.ShowCategoryInCaption = false;
             this.ribbon.Size = new System.Drawing.Size(816, 148);
             this.ribbon.StatusBar = this.ribbonStatusBar1;
@@ -639,7 +639,7 @@ namespace KTibiaX.Windows
             // 
             // btnScript
             // 
-            this.btnScript.Caption = " Script Editor ";
+            this.btnScript.Caption = "  My Scripts  ";
             this.btnScript.Id = 21;
             this.btnScript.LargeImageIndex = 96;
             this.btnScript.Name = "btnScript";
@@ -668,7 +668,7 @@ namespace KTibiaX.Windows
             // 
             // btnFluidDrinker
             // 
-            this.btnFluidDrinker.Caption = "  Fluid Drinker  ";
+            this.btnFluidDrinker.Caption = " Potion Drinker ";
             this.btnFluidDrinker.Id = 25;
             this.btnFluidDrinker.LargeImageIndex = 92;
             this.btnFluidDrinker.Name = "btnFluidDrinker";
@@ -1294,7 +1294,7 @@ namespace KTibiaX.Windows
             // pnLogo
             // 
             this.pnLogo.EditValue = global::KTibiaX.ImgTitles.tibia_dark_small2;
-            this.pnLogo.Location = new System.Drawing.Point(635, 331);
+            this.pnLogo.Location = new System.Drawing.Point(656, 390);
             this.pnLogo.Name = "pnLogo";
             this.pnLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pnLogo.Properties.Appearance.Options.UseBackColor = true;
@@ -1359,6 +1359,7 @@ namespace KTibiaX.Windows
             this.Controls.Add(this.ribbon);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.Name = "frm_RibbonMenu";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
