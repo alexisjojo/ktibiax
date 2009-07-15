@@ -18,13 +18,11 @@ using Keyrox.Drawing.GDI;
 using Keyrox.Globalization;
 using Keyrox.SourceCode;
 
-namespace Keyrox.Windows.Forms.SyntaxBox.Painter
-{
+namespace Keyrox.Windows.Forms.SyntaxBox.Painter {
     /// <summary>
     /// Painter class that uses GDI32 to render the content of a SyntaxBoxControl
     /// </summary>
-    public class NativePainter : IPainter
-    {
+    public class NativePainter : IPainter {
         private readonly EditViewControl Control;
         private Word BracketEnd;
         private Word BracketStart;
@@ -41,8 +39,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// NativePainter constructor.
         /// </summary>
         /// <param name="control">The control that will use the Painter</param>
-        public NativePainter(EditViewControl control)
-        {
+        public NativePainter(EditViewControl control) {
             Control = control;
             InitGraphics();
         }
@@ -52,8 +49,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// <summary>
         /// Implementation of the IPainter Resize method
         /// </summary>
-        public void Resize()
-        {
+        public void Resize() {
             ResizeCount++;
             InitGraphics();
             //	Console.WriteLine ("painterresize {0} {1}",ResizeCount,Control.Name);
@@ -64,15 +60,12 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// </summary>
         /// <param name="s">String to measure</param>
         /// <returns>Size of the string in pixels</returns>
-        public Size MeasureString(string s)
-        {
-            try
-            {
+        public Size MeasureString(string s) {
+            try {
                 GFX.StringBuffer.Font = GFX.FontNormal;
                 return GFX.StringBuffer.MeasureTabbedString(s, Control.TabSize);
             }
-            catch
-            {
+            catch {
                 return new Size(0, 0);
             }
         }
@@ -81,10 +74,8 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// Implementation of the IPainter InitGraphics method.
         /// Initializes GDI32 backbuffers and brushes.
         /// </summary>
-        public void InitGraphics()
-        {
-            try
-            {
+        public void InitGraphics() {
+            try {
                 if (GFX.BackgroundBrush != null)
                     GFX.BackgroundBrush.Dispose();
 
@@ -155,14 +146,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 InitIMEWindow();
             }
-            catch (Exception)
-            {
+            catch (Exception) {
             }
 
-            if (Control != null)
-            {
-                if (Control.IsHandleCreated)
-                {
+            if (Control != null) {
+                if (Control.IsHandleCreated) {
                     if (GFX.StringBuffer != null)
                         GFX.StringBuffer.Dispose();
 
@@ -172,11 +160,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                     if (GFX.BackBuffer != null)
                         GFX.BackBuffer.Dispose();
 
-                    GFX.StringBuffer = new GDISurface(1, 1, Control, true) {Font = GFX.FontNormal};
+                    GFX.StringBuffer = new GDISurface(1, 1, Control, true) { Font = GFX.FontNormal };
                     int h = GFX.StringBuffer.MeasureTabbedString("ABC", 0).Height + Control._SyntaxBox.RowPadding;
-                    GFX.BackBuffer = new GDISurface(Control.ClientWidth, h, Control, true) {Font = GFX.FontNormal};
+                    GFX.BackBuffer = new GDISurface(Control.ClientWidth, h, Control, true) { Font = GFX.FontNormal };
 
-                    GFX.SelectionBuffer = new GDISurface(Control.ClientWidth, h, Control, true) {Font = GFX.FontNormal};
+                    GFX.SelectionBuffer = new GDISurface(Control.ClientWidth, h, Control, true) { Font = GFX.FontNormal };
 
                     Control.View.RowHeight = GFX.BackBuffer.MeasureTabbedString("ABC", 0).Height +
                                              Control._SyntaxBox.RowPadding;
@@ -189,8 +177,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// <summary>
         /// Implementation of the IPainter RenderAll method.
         /// </summary>
-        public void RenderAll()
-        {
+        public void RenderAll() {
             //
             Control.View.RowHeight = GFX.BackBuffer.MeasureString("ABC").Height;
             Control.View.CharWidth = GFX.BackBuffer.MeasureString(" ").Width;
@@ -205,8 +192,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             g.Dispose();
         }
 
-        public void RenderCaret(Graphics g)
-        {
+        public void RenderCaret(Graphics g) {
             RenderCaretRowOnly = true;
             RenderAll(g);
             RenderCaretRowOnly = false;
@@ -216,10 +202,8 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// Implementation of the IPainter RenderAll method
         /// </summary>
         /// <param name="g">Target Graphics object</param>
-        public void RenderAll(Graphics g)
-        {
-            try
-            {
+        public void RenderAll(Graphics g) {
+            try {
                 Control.InitVars();
                 Control.InitScrollbars();
                 SetBrackets();
@@ -228,22 +212,17 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 int diff = j - LastRow;
                 LastRow = j;
-                if (Control.SmoothScroll)
-                {
-                    if (diff == 1)
-                    {
-                        for (int i = Control.View.RowHeight; i > 0; i -= Control.SmoothScrollSpeed)
-                        {
+                if (Control.SmoothScroll) {
+                    if (diff == 1) {
+                        for (int i = Control.View.RowHeight; i > 0; i -= Control.SmoothScrollSpeed) {
                             yOffset = i + Control.View.YOffset;
                             RenderAll2();
                             g.Flush();
                             Thread.Sleep(0);
                         }
                     }
-                    else if (diff == -1)
-                    {
-                        for (int i = -Control.View.RowHeight; i < 0; i += Control.SmoothScrollSpeed)
-                        {
+                    else if (diff == -1) {
+                        for (int i = -Control.View.RowHeight; i < 0; i += Control.SmoothScrollSpeed) {
                             yOffset = i + Control.View.YOffset;
                             RenderAll2();
                             g.Flush();
@@ -257,8 +236,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 //g.Flush ();
                 //System.Threading.Thread.Sleep (0);
             }
-            catch
-            {
+            catch {
             }
         }
 
@@ -266,8 +244,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// 
         /// </summary>
         /// <param name="RowIndex"></param>
-        public void RenderRow(int RowIndex)
-        {
+        public void RenderRow(int RowIndex) {
             RenderRow(RowIndex, 10);
         }
 
@@ -277,14 +254,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// <param name="X">Screen x position in pixels</param>
         /// <param name="Y">Screen y position in pixels</param>
         /// <returns>a Point where x is the column and y is the rowindex</returns>
-        public TextPoint CharFromPixel(int X, int Y)
-        {
-            try
-            {
-                int RowIndex = Y/Control.View.RowHeight + Control.View.FirstVisibleRow;
+        public TextPoint CharFromPixel(int X, int Y) {
+            try {
+                int RowIndex = Y / Control.View.RowHeight + Control.View.FirstVisibleRow;
                 RowIndex = Math.Min(RowIndex, Control.Document.VisibleRows.Count);
-                if (RowIndex == Control.Document.VisibleRows.Count)
-                {
+                if (RowIndex == Control.Document.VisibleRows.Count) {
                     RowIndex--;
                     Row r = Control.Document.VisibleRows[RowIndex];
                     if (r.IsCollapsed)
@@ -295,13 +269,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 RowIndex = Math.Max(RowIndex, 0);
                 Row row;
-                if (Control.Document.VisibleRows.Count != 0)
-                {
+                if (Control.Document.VisibleRows.Count != 0) {
                     row = Control.Document.VisibleRows[RowIndex];
                     RowIndex = Control.Document.IndexOf(row);
                 }
-                else
-                {
+                else {
                     return new TextPoint(0, 0);
                 }
                 if (RowIndex == -1)
@@ -314,16 +286,14 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 //this.RenderRow (xtr.Index,-200);
 
-                if (X < row.Expansion_PixelEnd - Control.View.FirstVisibleColumn*Control.View.CharWidth)
-                {
+                if (X < row.Expansion_PixelEnd - Control.View.FirstVisibleColumn * Control.View.CharWidth) {
                     //start of collapsed line
                     return ColumnFromPixel(RowIndex, X);
                 }
 
                 if (X >=
-                    row.Expansion_EndRow.Expansion_PixelStart - Control.View.FirstVisibleColumn*Control.View.CharWidth +
-                    Control.View.TextMargin)
-                {
+                    row.Expansion_EndRow.Expansion_PixelStart - Control.View.FirstVisibleColumn * Control.View.CharWidth +
+                    Control.View.TextMargin) {
                     //end of collapsed line
                     return ColumnFromPixel(row.Expansion_EndRow.Index,
                                            X - row.Expansion_EndRow.Expansion_PixelStart +
@@ -334,21 +304,18 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 //the collapsed text
                 return new TextPoint(row.Expansion_EndChar, row.Index);
             }
-            catch
-            {
+            catch {
                 Control._SyntaxBox.FontName = "Courier New";
                 Control._SyntaxBox.FontSize = 10;
                 return new TextPoint(0, 0);
             }
         }
 
-        public int GetMaxCharWidth()
-        {
+        public int GetMaxCharWidth() {
             const string s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             int max = 0;
-            foreach (char c in s)
-            {
+            foreach (char c in s) {
                 int tmp = MeasureString(c + "").Width;
                 if (tmp > max)
                     max = tmp;
@@ -356,8 +323,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             return max;
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             if (GFX.FontNormal != null)
                 GFX.FontNormal.Dispose();
 
@@ -419,32 +385,27 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         /// <param name="xtr">Row to measure</param>
         /// <param name="Count">Last char index</param>
         /// <returns>The size of the row in pixels</returns>
-        public Size MeasureRow(Row xtr, int Count)
-        {
+        public Size MeasureRow(Row xtr, int Count) {
             int width = 0;
-            int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+            int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
             int xpos = Control.View.TextMargin - Control.View.ClientAreaStart;
-            if (xtr.InQueue)
-            {
+            if (xtr.InQueue) {
                 SetStringFont(false, false, false);
                 int Padd = Math.Max(Count - xtr.Text.Length, 0);
                 var PaddStr = new String(' ', Padd);
                 string TotStr = xtr.Text + PaddStr;
                 width = GFX.StringBuffer.MeasureTabbedString(TotStr.Substring(0, Count), Control.PixelTabSize).Width;
             }
-            else
-            {
+            else {
                 int CharNo = 0;
                 int TotWidth = 0;
-                foreach (Word w in xtr.FormattedWords)
-                {
+                foreach (Word w in xtr.FormattedWords) {
                     if (w.Type == WordType.Word && w.Style != null)
                         SetStringFont(w.Style.Bold, w.Style.Italic, w.Style.Underline);
                     else
                         SetStringFont(false, false, false);
 
-                    if (w.Text.Length + CharNo >= Count || w == xtr.FormattedWords[xtr.FormattedWords.Count - 1])
-                    {
+                    if (w.Text.Length + CharNo >= Count || w == xtr.FormattedWords[xtr.FormattedWords.Count - 1]) {
                         int CharPos = Count - CharNo;
                         int MaxChars = Math.Min(CharPos, w.Text.Length);
                         TotWidth +=
@@ -475,47 +436,38 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
         #endregion
 
-        private void InitIMEWindow()
-        {
+        private void InitIMEWindow() {
             if (Control.IMEWindow != null)
                 Control.IMEWindow.SetFont(Control.FontName, Control.FontSize);
         }
 
-        private void SetBrackets()
-        {
+        private void SetBrackets() {
             Span currentSpan;
             BracketEnd = null;
             BracketStart = null;
 
             Word CurrWord = Control.Caret.CurrentWord;
-            if (CurrWord != null)
-            {
+            if (CurrWord != null) {
                 currentSpan = CurrWord.Span;
-                if (currentSpan != null)
-                {
-                    if (CurrWord == currentSpan.StartWord || CurrWord == currentSpan.EndWord)
-                    {
-                        if (currentSpan.EndWord != null)
-                        {
+                if (currentSpan != null) {
+                    if (CurrWord == currentSpan.StartWord || CurrWord == currentSpan.EndWord) {
+                        if (currentSpan.EndWord != null) {
                             BracketEnd = currentSpan.EndWord;
                             BracketStart = currentSpan.StartWord;
                         }
                     }
 
-                    try
-                    {
+                    try {
                         if (CurrWord.Pattern == null)
                             return;
 
-                        if (CurrWord.Pattern.BracketType == BracketType.EndBracket)
-                        {
+                        if (CurrWord.Pattern.BracketType == BracketType.EndBracket) {
                             Word w = Control.Document.GetStartBracketWord(CurrWord, CurrWord.Pattern.MatchingBracket,
                                                                           CurrWord.Span);
                             BracketEnd = CurrWord;
                             BracketStart = w;
                         }
-                        if (CurrWord.Pattern.BracketType == BracketType.StartBracket)
-                        {
+                        if (CurrWord.Pattern.BracketType == BracketType.StartBracket) {
                             Word w = Control.Document.GetEndBracketWord(CurrWord, CurrWord.Pattern.MatchingBracket,
                                                                         CurrWord.Span);
 
@@ -526,18 +478,15 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             //	}
                         }
                     }
-                    catch
-                    {
+                    catch {
                     }
                 }
             }
         }
 
-        private void SetSpanIndicators()
-        {
+        private void SetSpanIndicators() {
             SpanFound = false;
-            try
-            {
+            try {
                 Span s = Control.Caret.CurrentSegment();
 
                 if (s == null || s.StartWord == null || s.StartWord.Row == null || s.EndWord == null ||
@@ -548,44 +497,34 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 LastSpanRow = s.EndWord.Row.Index;
                 SpanFound = true;
             }
-            catch
-            {
+            catch {
             }
         }
 
-        private void RenderAll2()
-        {
-            try
-            {
+        private void RenderAll2() {
+            try {
                 int j = Control.View.FirstVisibleRow;
 
 
-                if (Control.AutoListStartPos != null)
-                {
-                    try
-                    {
-                        if (Control.AutoListVisible)
-                        {
+                if (Control.AutoListStartPos != null) {
+                    try {
+                        if (Control.AutoListVisible) {
                             Point alP = GetTextPointPixelPos(Control.AutoListStartPos);
-                            if (alP == new Point(-1, -1))
-                            {
+                            if (alP == new Point(-1, -1)) {
                                 Control.AutoList.Visible = false;
                             }
-                            else
-                            {
+                            else {
                                 alP.Y += Control.View.RowHeight + 2;
                                 alP.X += -20;
                                 alP = Control.PointToScreen(alP);
 
                                 Screen screen = Screen.FromPoint(new Point(Control.Right, alP.Y));
 
-                                if (alP.Y + Control.AutoList.Height > screen.WorkingArea.Height)
-                                {
+                                if (alP.Y + Control.AutoList.Height > screen.WorkingArea.Height) {
                                     alP.Y -= Control.View.RowHeight + 2 + Control.AutoList.Height;
                                 }
 
-                                if (alP.X + Control.AutoList.Width > screen.WorkingArea.Width)
-                                {
+                                if (alP.X + Control.AutoList.Width > screen.WorkingArea.Width) {
                                     alP.X -= alP.X + Control.AutoList.Width - screen.WorkingArea.Width;
                                 }
 
@@ -596,24 +535,18 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             }
                         }
                     }
-                    catch
-                    {
+                    catch {
                     }
                 }
 
-                if (Control.InfoTipStartPos != null)
-                {
-                    try
-                    {
-                        if (Control.InfoTipVisible)
-                        {
+                if (Control.InfoTipStartPos != null) {
+                    try {
+                        if (Control.InfoTipVisible) {
                             Point itP = GetTextPointPixelPos(Control.InfoTipStartPos);
-                            if (itP == new Point(-1, -1))
-                            {
+                            if (itP == new Point(-1, -1)) {
                                 Control.InfoTip.Visible = false;
                             }
-                            else
-                            {
+                            else {
                                 itP.Y += Control.View.RowHeight + 2;
                                 itP.X += -20;
 
@@ -621,13 +554,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                                 Screen screen = Screen.FromPoint(new Point(Control.Right, itP.Y));
 
-                                if (itP.Y + Control.InfoTip.Height > screen.WorkingArea.Height)
-                                {
+                                if (itP.Y + Control.InfoTip.Height > screen.WorkingArea.Height) {
                                     itP.Y -= Control.View.RowHeight + 2 + Control.InfoTip.Height;
                                 }
 
-                                if (itP.X + Control.InfoTip.Width > screen.WorkingArea.Width)
-                                {
+                                if (itP.X + Control.InfoTip.Width > screen.WorkingArea.Width) {
                                     itP.X -= itP.X + Control.InfoTip.Width - screen.WorkingArea.Width;
                                 }
 
@@ -637,105 +568,81 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                                 Debug.WriteLine("Infotip Made Visible");
                             }
                         }
-                        else
-                        {
+                        else {
                             Control.InfoTip.Visible = false;
                             Debug.WriteLine("Infotip Made Invisible");
                         }
                     }
-                    catch
-                    {
+                    catch {
                     }
                 }
 
-                for (int i = 0; i < Control.View.VisibleRowCount; i++)
-                {
-                    if (j >= 0 && j < Control.Document.VisibleRows.Count)
-                    {
+                for (int i = 0; i < Control.View.VisibleRowCount; i++) {
+                    if (j >= 0 && j < Control.Document.VisibleRows.Count) {
                         Row r = Control.Document.VisibleRows[j];
-                        if (RenderCaretRowOnly)
-                        {
-                            if (r == Control.Caret.CurrentRow)
-                            {
+                        if (RenderCaretRowOnly) {
+                            if (r == Control.Caret.CurrentRow) {
                                 RenderRow(Control.Document.IndexOf(r), i);
                             }
                             //Control.Caret.CurrentRow.expansion_EndSpan.StartRow.Index
                             if (Control.Caret.CurrentRow.expansion_EndSpan != null &&
                                 Control.Caret.CurrentRow.expansion_EndSpan.StartRow != null &&
-                                Control.Caret.CurrentRow.expansion_EndSpan.StartRow == r)
-                            {
+                                Control.Caret.CurrentRow.expansion_EndSpan.StartRow == r) {
                                 RenderRow(Control.Document.IndexOf(r), i);
                             }
                         }
-                        else
-                        {
+                        else {
                             RenderRow(Control.Document.IndexOf(r), i);
                         }
                     }
-                    else
-                    {
-                        if (RenderCaretRowOnly)
-                        {
+                    else {
+                        if (RenderCaretRowOnly) {
                         }
-                        else
-                        {
+                        else {
                             RenderRow(Control.Document.Count, i);
                         }
                     }
                     j++;
                 }
             }
-            catch
-            {
+            catch {
             }
         }
 
-        private void RenderRow(int RowIndex, int RowPos)
-        {
-            if (RowIndex >= 0 && RowIndex < Control.Document.Count)
-            {
+        private void RenderRow(int RowIndex, int RowPos) {
+            if (RowIndex >= 0 && RowIndex < Control.Document.Count) {
                 //do keyword parse before we render the line...
-                if (Control.Document[RowIndex].RowState == RowState.SpanParsed)
-                {
+                if (Control.Document[RowIndex].RowState == RowState.SpanParsed) {
                     Control.Document.Parser.ParseRow(RowIndex, true);
                     Control.Document[RowIndex].RowState = RowState.AllParsed;
                 }
             }
 
 
-            try
-            {
+            try {
                 GDISurface bbuff = GFX.BackBuffer;
                 bool found = false;
 
 
                 GDIBrush bg = GFX.BackgroundBrush;
 
-                try
-                {
-                    if (RowIndex < Control.Document.Count && RowIndex >= 0)
-                    {
+                try {
+                    if (RowIndex < Control.Document.Count && RowIndex >= 0) {
                         Row r = Control.Document[RowIndex];
                         if (SpanFound && RowIndex >= FirstSpanRow && RowIndex <= LastSpanRow &&
-                            Control._SyntaxBox.ScopeBackColor != Color.Transparent)
-                        {
+                            Control._SyntaxBox.ScopeBackColor != Color.Transparent) {
                             bg = new GDIBrush(Control._SyntaxBox.ScopeBackColor);
                             found = true;
                         }
-                        else if (r.BackColor != Color.Transparent)
-                        {
+                        else if (r.BackColor != Color.Transparent) {
                             bg = new GDIBrush(r.BackColor);
                             found = true;
                         }
-                        else
-                        {
-                            if (r.endSpan != null)
-                            {
+                        else {
+                            if (r.endSpan != null) {
                                 Span tmp = r.expansion_EndSpan;
-                                while (tmp != null)
-                                {
-                                    if (tmp.spanDefinition.Transparent == false)
-                                    {
+                                while (tmp != null) {
+                                    if (tmp.spanDefinition.Transparent == false) {
                                         bg = new GDIBrush(tmp.spanDefinition.BackColor);
                                         found = true;
                                         break;
@@ -744,13 +651,10 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                                 }
 
 
-                                if (!found)
-                                {
+                                if (!found) {
                                     tmp = r.endSpan;
-                                    while (tmp != null)
-                                    {
-                                        if (tmp.spanDefinition.Transparent == false)
-                                        {
+                                    while (tmp != null) {
+                                        if (tmp.spanDefinition.Transparent == false) {
                                             bg = new GDIBrush(tmp.spanDefinition.BackColor);
                                             found = true;
                                             break;
@@ -758,13 +662,10 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                                         tmp = tmp.Parent;
                                     }
                                 }
-                                if (!found)
-                                {
+                                if (!found) {
                                     tmp = r.expansion_EndSpan;
-                                    while (tmp != null)
-                                    {
-                                        if (tmp.spanDefinition.Transparent == false)
-                                        {
+                                    while (tmp != null) {
+                                        if (tmp.spanDefinition.Transparent == false) {
                                             bg = new GDIBrush(tmp.spanDefinition.BackColor);
                                             found = true;
                                             break;
@@ -776,17 +677,14 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                         }
                     }
                 }
-                catch
-                {
+                catch {
                 }
 
                 if (RowIndex == Control.Caret.Position.Y && Control.HighLightActiveLine)
                     bbuff.Clear(GFX.HighLightLineBrush);
 
-                else if (RowIndex >= 0 && RowIndex < Control.Document.Count)
-                {
-                    if (Control.Document[RowIndex].IsCollapsed)
-                    {
+                else if (RowIndex >= 0 && RowIndex < Control.Document.Count) {
+                    if (Control.Document[RowIndex].IsCollapsed) {
                         if (Control.Document[RowIndex].Expansion_EndRow.Index == Control.Caret.Position.Y &&
                             Control.HighLightActiveLine)
                             bbuff.Clear(GFX.HighLightLineBrush);
@@ -802,17 +700,14 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 //only render normal text if any part of the row is visible
                 if (RowIndex <= Control.Selection.LogicalBounds.FirstRow ||
-                    RowIndex >= Control.Selection.LogicalBounds.LastRow)
-                {
+                    RowIndex >= Control.Selection.LogicalBounds.LastRow) {
                     RenderText(RowIndex);
                 }
 
                 //only render selection text if the line is selected
-                if (Control.Selection.IsValid)
-                {
+                if (Control.Selection.IsValid) {
                     if (RowIndex >= Control.Selection.LogicalBounds.FirstRow &&
-                        RowIndex <= Control.Selection.LogicalBounds.LastRow)
-                    {
+                        RowIndex <= Control.Selection.LogicalBounds.LastRow) {
                         if (Control.ContainsFocus)
                             GFX.SelectionBuffer.Clear(Control.SelectionBackColor);
                         else
@@ -823,9 +718,8 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 }
 
 
-                if (Control.ContainsFocus || Control.View.Action == EditAction.DragText)
-                {
-                    RenderCaret(RowIndex, RowPos*Control.View.RowHeight + yOffset);
+                if (Control.ContainsFocus || Control.View.Action == EditAction.DragText) {
+                    RenderCaret(RowIndex, RowPos * Control.View.RowHeight + yOffset);
                 }
 
                 RenderSelection(RowIndex);
@@ -846,7 +740,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
 
                 bbuff.Flush();
-                bbuff.RenderToControl(0, RowPos*Control.View.RowHeight + yOffset);
+                bbuff.RenderToControl(0, RowPos * Control.View.RowHeight + yOffset);
 
                 //GFX.SelectionBuffer.RenderToControl (0,RowPos*Control.View.RowHeight+this.yOffset);
 
@@ -854,13 +748,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 if (found)
                     bg.Dispose();
             }
-            catch
-            {
+            catch {
             }
         }
 
-        private void SetFont(bool bold, bool italic, bool underline, GDISurface surface)
-        {
+        private void SetFont(bool bold, bool italic, bool underline, GDISurface surface) {
             if (bold && italic && underline)
                 surface.Font = GFX.FontBoldItalicUnderline;
 
@@ -886,13 +778,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 surface.Font = GFX.FontNormal;
         }
 
-        private void SetStringFont(bool bold, bool italic, bool underline)
-        {
+        private void SetStringFont(bool bold, bool italic, bool underline) {
             SetFont(bold, italic, underline, GFX.StringBuffer);
         }
 
-        private void RenderCollapsedSelectedText(int RowIndex, int xPos)
-        {
+        private void RenderCollapsedSelectedText(int RowIndex, int xPos) {
             GDISurface bbuff = GFX.SelectionBuffer;
             bbuff.Font = GFX.FontBold;
             bbuff.FontTransparent = true;
@@ -906,17 +796,15 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             string str = r.CollapsedText;
 
             xPos++;
-            int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+            int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
             GFX.StringBuffer.Font = GFX.FontBold;
             int wdh = GFX.StringBuffer.DrawTabbedString(str, xPos + 1, 0, taborig, Control.PixelTabSize).Width;
 
-            if (Control.ContainsFocus)
-            {
+            if (Control.ContainsFocus) {
                 bbuff.FillRect(Control.SelectionForeColor, xPos + 0, 0, wdh + 2, Control.View.RowHeight);
                 bbuff.FillRect(Control.SelectionBackColor, xPos + 1, 1, wdh, Control.View.RowHeight - 2);
             }
-            else
-            {
+            else {
                 bbuff.FillRect(Control.InactiveSelectionForeColor, xPos + 0, 0, wdh + 2, Control.View.RowHeight);
                 bbuff.FillRect(Control.InactiveSelectionBackColor, xPos + 1, 1, wdh, Control.View.RowHeight - 2);
             }
@@ -926,28 +814,24 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
 
             //this can crash if document not fully parsed , on error resume next
-            try
-            {
-                if (r.expansion_StartSpan.EndRow != null)
-                {
+            try {
+                if (r.expansion_StartSpan.EndRow != null) {
                     if (r.expansion_StartSpan.EndRow.RowState == RowState.SpanParsed)
                         Control.Document.Parser.ParseRow(r.expansion_StartSpan.EndRow.Index, true);
 
                     Word last = r.expansion_StartSpan.EndWord;
-                    xPos += Control.View.FirstVisibleColumn*Control.View.CharWidth;
+                    xPos += Control.View.FirstVisibleColumn * Control.View.CharWidth;
                     r.expansion_StartSpan.EndRow.Expansion_PixelStart = xPos + wdh - Control.View.TextMargin + 2;
                     r.Expansion_PixelEnd = xPos - 1;
                     RenderSelectedText(Control.Document.IndexOf(r.expansion_StartSpan.EndRow),
                                        r.expansion_StartSpan.EndRow.Expansion_PixelStart, last);
                 }
             }
-            catch
-            {
+            catch {
             }
         }
 
-        private void RenderCollapsedText(int RowIndex, int xPos)
-        {
+        private void RenderCollapsedText(int RowIndex, int xPos) {
             GDISurface bbuff = GFX.BackBuffer;
             bbuff.Font = GFX.FontBold;
             bbuff.FontTransparent = true;
@@ -958,7 +842,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             string str = r.CollapsedText;
 
             xPos++;
-            int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+            int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
             GFX.StringBuffer.Font = GFX.FontBold;
             int wdh = GFX.StringBuffer.DrawTabbedString(str, xPos + 1, 0, taborig, Control.PixelTabSize).Width;
             bbuff.FillRect(GFX.OutlineBrush, xPos + 0, 0, wdh + 2, Control.View.RowHeight);
@@ -967,39 +851,33 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
 
             //this can crash if document not fully parsed , on error resume next
-            try
-            {
-                if (r.expansion_StartSpan.EndRow != null)
-                {
+            try {
+                if (r.expansion_StartSpan.EndRow != null) {
                     if (r.expansion_StartSpan.EndRow.RowState == RowState.SpanParsed)
                         Control.Document.Parser.ParseRow(r.expansion_StartSpan.EndRow.Index, true);
 
                     Word last = r.expansion_StartSpan.EndWord;
-                    xPos += Control.View.FirstVisibleColumn*Control.View.CharWidth;
+                    xPos += Control.View.FirstVisibleColumn * Control.View.CharWidth;
                     r.expansion_StartSpan.EndRow.Expansion_PixelStart = xPos + wdh - Control.View.TextMargin + 2;
                     r.Expansion_PixelEnd = xPos - 1;
                     RenderText(Control.Document.IndexOf(r.expansion_StartSpan.EndRow),
                                r.expansion_StartSpan.EndRow.Expansion_PixelStart, last);
                 }
             }
-            catch
-            {
+            catch {
             }
         }
 
-        private void RenderText(int RowIndex)
-        {
+        private void RenderText(int RowIndex) {
             RenderText(RowIndex, 0, null);
         }
 
-        private void RenderText(int RowIndex, int XOffset, Word StartWord)
-        {
+        private void RenderText(int RowIndex, int XOffset, Word StartWord) {
             GDISurface bbuff = GFX.BackBuffer;
             bbuff.Font = GFX.FontNormal;
             bbuff.FontTransparent = true;
             bool DrawBreakpoint = false;
-            if (RowIndex <= Control.Document.Count - 1)
-            {
+            if (RowIndex <= Control.Document.Count - 1) {
                 bbuff.TextForeColor = Color.Black;
                 Row xtr = Control.Document[RowIndex];
 
@@ -1011,7 +889,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 int xpos = Control.View.TextMargin - Control.View.ClientAreaStart + XOffset;
                 int wdh = 0;
-                int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+                int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
 
 
                 bool ws = Control.ShowWhitespace;
@@ -1021,37 +899,30 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 xtr.Expansion_StartChar = 0;
                 xtr.Expansion_EndChar = 0;
                 bool HasExpansion = false;
-                foreach (Word w in xtr.FormattedWords)
-                {
-                    if (StartDraw)
-                    {
+                foreach (Word w in xtr.FormattedWords) {
+                    if (StartDraw) {
                         if (w.Span == xtr.expansion_StartSpan && xtr.expansion_StartSpan != null)
-                            if (xtr.expansion_StartSpan.Expanded == false)
-                            {
+                            if (xtr.expansion_StartSpan.Expanded == false) {
                                 RenderCollapsedText(RowIndex, xpos);
                                 HasExpansion = true;
                                 break;
                             }
 
                         if ((w.Type == WordType.Space || w.Type == WordType.Tab) && !DrawBreakpoint &&
-                            Control.ShowTabGuides)
-                        {
+                            Control.ShowTabGuides) {
                             int xtab = xpos - (Control.View.TextMargin - Control.View.ClientAreaStart + XOffset);
-                            if ((xtab/(double) Control.PixelTabSize) == (xtab/Control.PixelTabSize))
+                            if ((xtab / (double)Control.PixelTabSize) == (xtab / Control.PixelTabSize))
                                 bbuff.FillRect(Control.TabGuideColor, xpos, 0, 1, Control.View.RowHeight);
                         }
 
-                        if (w.Type == WordType.Word || ws == false)
-                        {
-                            if (w.Style != null)
-                            {
+                        if (w.Type == WordType.Word || ws == false) {
+                            if (w.Style != null) {
                                 SetFont(w.Style.Bold, w.Style.Italic, w.Style.Underline, bbuff);
                                 bbuff.TextBackColor = w.Style.BackColor;
                                 bbuff.TextForeColor = w.Style.ForeColor;
                                 bbuff.FontTransparent = w.Style.Transparent;
                             }
-                            else
-                            {
+                            else {
                                 bbuff.Font = GFX.FontNormal;
                                 bbuff.TextForeColor = Color.Black;
                                 bbuff.FontTransparent = true;
@@ -1061,58 +932,49 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             if (w.Type == WordType.Word)
                                 DrawBreakpoint = true;
 
-                            if (xtr.Breakpoint && DrawBreakpoint)
-                            {
+                            if (xtr.Breakpoint && DrawBreakpoint) {
                                 bbuff.TextForeColor = Control.BreakPointForeColor;
                                 bbuff.TextBackColor = Control.BreakPointBackColor;
                                 bbuff.FontTransparent = false;
                             }
 
 
-                            if (Control.BracketMatching && (w == BracketEnd || w == BracketStart))
-                            {
+                            if (Control.BracketMatching && (w == BracketEnd || w == BracketStart)) {
                                 bbuff.TextForeColor = Control.BracketForeColor;
 
-                                if (Control.BracketBackColor != Color.Transparent)
-                                {
+                                if (Control.BracketBackColor != Color.Transparent) {
                                     bbuff.TextBackColor = Control.BracketBackColor;
                                     bbuff.FontTransparent = false;
                                 }
 
                                 wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
-                                if (Control.BracketBorderColor != Color.Transparent)
-                                {
+                                if (Control.BracketBorderColor != Color.Transparent) {
                                     bbuff.DrawRect(Control.BracketBorderColor, xpos - 1, 0, wdh,
                                                    Control.View.RowHeight - 1);
                                 }
                             }
-                            else
-                            {
+                            else {
                                 wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
                             }
 
 
                             //render errors
-                            if (w.HasError)
-                            {
+                            if (w.HasError) {
                                 //bbuff.FillRect (Color.Red,xpos,Control.View.RowHeight-2,wdh,2);
                                 int ey = Control.View.RowHeight - 1;
                                 Color c = w.ErrorColor;
-                                for (int x = 0; x < wdh + 3; x += 4)
-                                {
+                                for (int x = 0; x < wdh + 3; x += 4) {
                                     bbuff.DrawLine(c, new Point(xpos + x, ey), new Point(xpos + x + 2, ey - 2));
                                     bbuff.DrawLine(c, new Point(xpos + x + 2, ey - 2), new Point(xpos + x + 4, ey));
                                 }
                             }
                         }
-                        else if (w.Type == WordType.Space)
-                        {
+                        else if (w.Type == WordType.Space) {
                             bbuff.Font = GFX.FontNormal;
                             bbuff.TextForeColor = Control.WhitespaceColor;
                             bbuff.FontTransparent = true;
 
-                            if (xtr.Breakpoint && DrawBreakpoint)
-                            {
+                            if (xtr.Breakpoint && DrawBreakpoint) {
                                 bbuff.TextForeColor = Control.BreakPointForeColor;
                                 bbuff.TextBackColor = Control.BreakPointBackColor;
                                 bbuff.FontTransparent = false;
@@ -1121,14 +983,12 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             bbuff.DrawTabbedString("·", xpos, 0, taborig, Control.PixelTabSize);
                             wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
                         }
-                        else if (w.Type == WordType.Tab)
-                        {
+                        else if (w.Type == WordType.Tab) {
                             bbuff.Font = GFX.FontNormal;
                             bbuff.TextForeColor = Control.WhitespaceColor;
                             bbuff.FontTransparent = true;
 
-                            if (xtr.Breakpoint && DrawBreakpoint)
-                            {
+                            if (xtr.Breakpoint && DrawBreakpoint) {
                                 bbuff.TextForeColor = Control.BreakPointForeColor;
                                 bbuff.TextBackColor = Control.BreakPointBackColor;
                                 bbuff.FontTransparent = false;
@@ -1138,8 +998,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
                         }
                         if (w.Pattern != null)
-                            if (w.Pattern.IsSeparator)
-                            {
+                            if (w.Pattern.IsSeparator) {
                                 bbuff.FillRect(Control.SeparatorColor, Control.View.TextMargin - 4,
                                                Control.View.RowHeight - 1, Control.View.ClientAreaWidth, 1);
                             }
@@ -1158,18 +1017,15 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 }
 
 
-                if (xtr.IsCollapsed)
-                {
+                if (xtr.IsCollapsed) {
                 }
                 else if (xtr.endSpan != null && xtr.endSpan.spanDefinition != null &&
-                         xtr.endSpan.spanDefinition.Style != null)
-                {
+                         xtr.endSpan.spanDefinition.Style != null) {
                     bbuff.FillRect(xtr.endSpan.spanDefinition.Style.BackColor, xpos, 0, Control.Width - xpos,
                                    Control.View.RowHeight);
                 }
 
-                if (Control._SyntaxBox.ShowEOLMarker && !HasExpansion)
-                {
+                if (Control._SyntaxBox.ShowEOLMarker && !HasExpansion) {
                     bbuff.Font = GFX.FontNormal;
                     bbuff.TextForeColor = Control._SyntaxBox.EOLMarkerColor;
                     bbuff.FontTransparent = true;
@@ -1179,18 +1035,15 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
         }
 
 
-        private void RenderSelectedText(int RowIndex)
-        {
+        private void RenderSelectedText(int RowIndex) {
             RenderSelectedText(RowIndex, 0, null);
         }
 
-        private void RenderSelectedText(int RowIndex, int XOffset, Word StartWord)
-        {
+        private void RenderSelectedText(int RowIndex, int XOffset, Word StartWord) {
             GDISurface bbuff = GFX.SelectionBuffer;
             bbuff.Font = GFX.FontNormal;
             bbuff.FontTransparent = true;
-            if (RowIndex <= Control.Document.Count - 1)
-            {
+            if (RowIndex <= Control.Document.Count - 1) {
                 bbuff.TextForeColor = Control.ContainsFocus
                                           ? Control.SelectionForeColor
                                           : Control.InactiveSelectionForeColor;
@@ -1205,7 +1058,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 int xpos = Control.View.TextMargin - Control.View.ClientAreaStart + XOffset;
                 int wdh = 0;
-                int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+                int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
 
 
                 bool ws = Control.ShowWhitespace;
@@ -1215,60 +1068,49 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 xtr.Expansion_StartChar = 0;
                 xtr.Expansion_EndChar = 0;
                 bool HasExpansion = false;
-                foreach (Word w in xtr.FormattedWords)
-                {
-                    if (StartDraw)
-                    {
+                foreach (Word w in xtr.FormattedWords) {
+                    if (StartDraw) {
                         if (w.Span == xtr.expansion_StartSpan && xtr.expansion_StartSpan != null)
-                            if (xtr.expansion_StartSpan.Expanded == false)
-                            {
+                            if (xtr.expansion_StartSpan.Expanded == false) {
                                 RenderCollapsedSelectedText(RowIndex, xpos);
                                 HasExpansion = true;
                                 break;
                             }
 
 
-                        if (w.Type == WordType.Word || ws == false)
-                        {
-                            if (w.Style != null)
-                            {
+                        if (w.Type == WordType.Word || ws == false) {
+                            if (w.Style != null) {
                                 SetFont(w.Style.Bold, w.Style.Italic, w.Style.Underline, bbuff);
                             }
-                            else
-                            {
+                            else {
                                 bbuff.Font = GFX.FontNormal;
                             }
 
                             wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
 
                             //render errors
-                            if (w.HasError)
-                            {
+                            if (w.HasError) {
                                 //bbuff.FillRect (Color.Red,xpos,Control.View.RowHeight-2,wdh,2);
                                 int ey = Control.View.RowHeight - 1;
                                 Color c = w.ErrorColor;
-                                for (int x = 0; x < wdh + 3; x += 4)
-                                {
+                                for (int x = 0; x < wdh + 3; x += 4) {
                                     bbuff.DrawLine(c, new Point(xpos + x, ey), new Point(xpos + x + 2, ey - 2));
                                     bbuff.DrawLine(c, new Point(xpos + x + 2, ey - 2), new Point(xpos + x + 4, ey));
                                 }
                             }
                         }
-                        else if (w.Type == WordType.Space)
-                        {
+                        else if (w.Type == WordType.Space) {
                             bbuff.Font = GFX.FontNormal;
                             bbuff.DrawTabbedString("·", xpos, 0, taborig, Control.PixelTabSize);
                             wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
                         }
-                        else if (w.Type == WordType.Tab)
-                        {
+                        else if (w.Type == WordType.Tab) {
                             bbuff.Font = GFX.FontNormal;
                             bbuff.DrawTabbedString("»", xpos, 0, taborig, Control.PixelTabSize);
                             wdh = bbuff.DrawTabbedString(w.Text, xpos, 0, taborig, Control.PixelTabSize).Width;
                         }
                         if (w.Pattern != null)
-                            if (w.Pattern.IsSeparator)
-                            {
+                            if (w.Pattern.IsSeparator) {
                                 bbuff.FillRect(Control.SeparatorColor, Control.View.TextMargin - 4,
                                                Control.View.RowHeight - 1, Control.View.ClientAreaWidth, 1);
                             }
@@ -1286,18 +1128,15 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                     xtr.Expansion_EndChar += w.Text.Length;
                 }
 
-                if (xtr.IsCollapsed)
-                {
+                if (xtr.IsCollapsed) {
                 }
                 else if (xtr.endSpan != null && xtr.endSpan.spanDefinition != null &&
-                         xtr.endSpan.spanDefinition.Style != null)
-                {
+                         xtr.endSpan.spanDefinition.Style != null) {
                     GFX.BackBuffer.FillRect(xtr.endSpan.spanDefinition.Style.BackColor, xpos, 0,
                                             Control.Width - xpos, Control.View.RowHeight);
                 }
 
-                if (Control._SyntaxBox.ShowEOLMarker && !HasExpansion)
-                {
+                if (Control._SyntaxBox.ShowEOLMarker && !HasExpansion) {
                     bbuff.Font = GFX.FontNormal;
                     bbuff.TextForeColor = Control.SelectionForeColor;
                     bbuff.FontTransparent = true;
@@ -1306,18 +1145,14 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             }
         }
 
-        private void RenderCaret(int RowIndex, int ypos)
-        {
+        private void RenderCaret(int RowIndex, int ypos) {
             int StartRow = -1;
             int cr = Control.Caret.Position.Y;
 
-            if (cr >= 0 && cr <= Control.Document.Count - 1)
-            {
+            if (cr >= 0 && cr <= Control.Document.Count - 1) {
                 Row r = Control.Document[cr];
-                if (r.expansion_EndSpan != null)
-                {
-                    if (r.expansion_EndSpan.Expanded == false)
-                    {
+                if (r.expansion_EndSpan != null) {
+                    if (r.expansion_EndSpan.Expanded == false) {
                         r = r.expansion_EndSpan.StartRow;
                         StartRow = r.Index;
                     }
@@ -1330,15 +1165,13 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             if (RowIndex != cr && RowIndex != StartRow)
                 return;
 
-            if (Control.View.Action == EditAction.DragText)
-            {
+            if (Control.View.Action == EditAction.DragText) {
                 //drop Control.Caret
                 Row xtr = Control.Document[cr];
 
                 int pos = MeasureRow(xtr, Control.Caret.Position.X).Width + 1;
 
-                if (Collapsed)
-                {
+                if (Collapsed) {
                     pos += xtr.Expansion_PixelStart;
                     pos -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
                 }
@@ -1348,51 +1181,43 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 GFX.BackBuffer.InvertRect(pos + Control.View.TextMargin - Control.View.ClientAreaStart, 1, 1,
                                           Control.View.RowHeight - 2);
             }
-            else
-            {
+            else {
                 //normal Control.Caret
 
                 Row xtr = Control.Document[cr];
-                if (!Control.OverWrite)
-                {
+                if (!Control.OverWrite) {
                     int pos = Control.View.TextMargin - Control.View.ClientAreaStart;
                     pos += MeasureRow(xtr, Control.Caret.Position.X).Width + 1;
-                    if (Collapsed)
-                    {
+                    if (Collapsed) {
                         pos += xtr.Expansion_PixelStart;
                         pos -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
                     }
 
-                    int wdh = Control.View.CharWidth/12 + 1;
+                    int wdh = Control.View.CharWidth / 12 + 1;
                     if (wdh < 2)
                         wdh = 2;
 
-                    if (Control.Caret.Blink)
-                    {
+                    if (Control.Caret.Blink) {
                         GFX.BackBuffer.InvertRect(pos, 0, wdh, Control.View.RowHeight);
                     }
 
-                    if (Control.IMEWindow == null)
-                    {
+                    if (Control.IMEWindow == null) {
                         Control.IMEWindow = new IMEWindow(Control.Handle, Control.FontName, Control.FontSize);
                         InitIMEWindow();
                     }
                     Control.IMEWindow.Loation = new Point(pos, ypos);
                 }
-                else
-                {
+                else {
                     int pos1 = MeasureRow(xtr, Control.Caret.Position.X).Width;
                     int pos2 = MeasureRow(xtr, Control.Caret.Position.X + 1).Width;
                     int wdh = pos2 - pos1;
-                    if (Collapsed)
-                    {
+                    if (Collapsed) {
                         pos1 += xtr.Expansion_PixelStart;
                         pos1 -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
                     }
 
                     int pos = pos1 + Control.View.TextMargin - Control.View.ClientAreaStart;
-                    if (Control.Caret.Blink)
-                    {
+                    if (Control.Caret.Blink) {
                         GFX.BackBuffer.InvertRect(pos, 0, wdh, Control.View.RowHeight);
                     }
                     Control.IMEWindow.Loation = new Point(pos, ypos);
@@ -1400,28 +1225,23 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             }
         }
 
-        private void RenderMargin(int RowIndex)
-        {
+        private void RenderMargin(int RowIndex) {
             GDISurface bbuff = GFX.BackBuffer;
 
-            if (Control.ShowGutterMargin)
-            {
+            if (Control.ShowGutterMargin) {
                 bbuff.FillRect(GFX.GutterMarginBrush, 0, 0, Control.View.GutterMarginWidth, Control.View.RowHeight);
                 bbuff.FillRect(GFX.GutterMarginBorderBrush, Control.View.GutterMarginWidth - 1, 0, 1,
                                Control.View.RowHeight);
-                if (RowIndex <= Control.Document.Count - 1)
-                {
+                if (RowIndex <= Control.Document.Count - 1) {
                     Row r = Control.Document[RowIndex];
 
-                    if (Control.View.RowHeight >= Control._SyntaxBox.GutterIcons.ImageSize.Height)
-                    {
+                    if (Control.View.RowHeight >= Control._SyntaxBox.GutterIcons.ImageSize.Height) {
                         if (r.Bookmarked)
                             Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, 1);
                         if (r.Breakpoint)
                             Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, 0);
                     }
-                    else
-                    {
+                    else {
                         int w = Control.View.RowHeight;
                         if (r.Bookmarked)
                             Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, w, w, 1);
@@ -1429,34 +1249,36 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, w, w, 0);
                     }
 
-                    if (r.Images != null)
-                    {
-                        foreach (int i in r.Images)
-                        {
-                            if (Control.View.RowHeight >= Control._SyntaxBox.GutterIcons.ImageSize.Height)
-                            {
-                                Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, i);
-                            }
-                            else
-                            {
-                                int w = Control.View.RowHeight;
-                                Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, w, w, i);
-                            }
+                    if (r.Images != null) {
+                        foreach (int i in r.Images) {
+                            //if (Control.View.RowHeight >= Control._SyntaxBox.GutterIcons.ImageSize.Height)
+                            //{
+
+                            var g = Graphics.FromHdc(bbuff.hDC);
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                            g.PageUnit = GraphicsUnit.Pixel;
+                            Control._SyntaxBox.GutterIcons.TransparentColor = Color.Fuchsia;
+                            Control._SyntaxBox.GutterIcons.Draw(g, 2, 0, 16, 16, i);
+                            //}
+                            //else
+                            //{
+                            //    int w = Control.View.RowHeight;
+                            //    Control._SyntaxBox.GutterIcons.Draw(Graphics.FromHdc(bbuff.hDC), 0, 0, w, w, i);
+                            //}
                         }
                     }
                 }
             }
 
 
-            if (Control.ShowLineNumbers)
-            {
+            if (Control.ShowLineNumbers) {
                 bbuff.FillRect(GFX.LineNumberMarginBrush, Control.View.GutterMarginWidth, 0,
                                Control.View.LineNumberMarginWidth + 1, Control.View.RowHeight);
 
                 //bbuff.FillRect (GFX.LineNumberMarginBrush  ,Control.View.GutterMarginWidth+Control.View.LineNumberMarginWidth,0,1,Control.View.RowHeight);
 
-                for (int j = 0; j < Control.View.RowHeight; j += 2)
-                {
+                for (int j = 0; j < Control.View.RowHeight; j += 2) {
                     bbuff.FillRect(GFX.LineNumberMarginBorderBrush,
                                    Control.View.GutterMarginWidth + Control.View.LineNumberMarginWidth, j, 1, 1);
                 }
@@ -1470,14 +1292,12 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 bbuff.FillRect(GFX.BackgroundBrush, Control.View.TotalMarginWidth + 1, 0,
                                Control.View.TextMargin - Control.View.TotalMarginWidth - 4, Control.View.RowHeight);
 
-            if (Control.ShowLineNumbers)
-            {
+            if (Control.ShowLineNumbers) {
                 bbuff.Font = GFX.FontNormal;
                 bbuff.FontTransparent = true;
 
                 bbuff.TextForeColor = Control.LineNumberForeColor;
-                if (RowIndex <= Control.Document.Count - 1)
-                {
+                if (RowIndex <= Control.Document.Count - 1) {
                     int nw = MeasureString((RowIndex + 1).ToString(CultureInfo.InvariantCulture)).Width;
 
                     bbuff.DrawTabbedString((RowIndex + 1).ToString(CultureInfo.InvariantCulture),
@@ -1487,35 +1307,28 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             }
         }
 
-        private void RenderExpansion(int RowIndex)
-        {
+        private void RenderExpansion(int RowIndex) {
             if (Control == null)
                 throw new NullReferenceException("Control may not be null");
 
             const int expansionOffset = 10;
-            if (RowIndex <= Control.Document.Count - 1)
-            {
+            if (RowIndex <= Control.Document.Count - 1) {
                 const int yo = 4;
                 Row xtr = Control.Document[RowIndex];
                 GDISurface bbuff = GFX.BackBuffer;
-                if (xtr.endSpan != null)
-                {
-                    if (xtr.expansion_StartSpan != null && xtr.startSpan.Parent == null)
-                    {
-                        if (!xtr.IsCollapsed)
-                        {
+                if (xtr.endSpan != null) {
+                    if (xtr.expansion_StartSpan != null && xtr.startSpan.Parent == null) {
+                        if (!xtr.IsCollapsed) {
                             bbuff.FillRect(GFX.OutlineBrush, Control.View.TotalMarginWidth + expansionOffset, yo, 1,
                                            Control.View.RowHeight - yo);
                         }
                     }
-                    else if ((xtr.endSpan.Parent != null || xtr.expansion_EndSpan != null))
-                    {
+                    else if ((xtr.endSpan.Parent != null || xtr.expansion_EndSpan != null)) {
                         bbuff.FillRect(GFX.OutlineBrush, Control.View.TotalMarginWidth + expansionOffset, 0, 1,
                                        Control.View.RowHeight);
                     }
 
-                    if (xtr.expansion_StartSpan != null)
-                    {
+                    if (xtr.expansion_StartSpan != null) {
                         bbuff.FillRect(GFX.OutlineBrush, Control.View.TotalMarginWidth + expansionOffset - 4, yo, 9, 9);
                         bbuff.FillRect(GFX.BackgroundBrush, Control.View.TotalMarginWidth + expansionOffset - 3, yo + 1,
                                        7, 7);
@@ -1526,8 +1339,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                             bbuff.FillRect(GFX.OutlineBrush, Control.View.TotalMarginWidth + expansionOffset, yo + 2, 1,
                                            5);
                     }
-                    if (xtr.expansion_EndSpan != null)
-                    {
+                    if (xtr.expansion_EndSpan != null) {
                         bbuff.FillRect(GFX.OutlineBrush, Control.View.TotalMarginWidth + expansionOffset + 1,
                                        Control.View.RowHeight - 1,
                                        5, 1);
@@ -1546,8 +1358,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 //RENDER SPAN MARGIN
                 if (SpanFound && Control._SyntaxBox.ScopeIndicatorColor != Color.Transparent &&
-                    Control._SyntaxBox.ShowScopeIndicator)
-                {
+                    Control._SyntaxBox.ShowScopeIndicator) {
                     if (RowIndex >= FirstSpanRow && RowIndex <= LastSpanRow)
                         bbuff.FillRect(Control._SyntaxBox.ScopeIndicatorColor, Control.View.TotalMarginWidth + 14, 0, 2,
                                        Control.View.RowHeight);
@@ -1561,15 +1372,12 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                                        Control.View.RowHeight - 2, 4, 2);
                 }
 
-                if (Control._SyntaxBox.ShowRevisionMarks)
-                {
-                    if (xtr.RevisionMark == RowRevisionMark.BeforeSave)
-                    {
+                if (Control._SyntaxBox.ShowRevisionMarks) {
+                    if (xtr.RevisionMark == RowRevisionMark.BeforeSave) {
                         bbuff.FillRect(Control._SyntaxBox.RevisionMarkBeforeSave,
                                        Control.View.TotalMarginWidth + 1, 0, 3, Control.View.RowHeight);
                     }
-                    else if (xtr.RevisionMark == RowRevisionMark.AfterSave)
-                    {
+                    else if (xtr.RevisionMark == RowRevisionMark.AfterSave) {
                         bbuff.FillRect(Control._SyntaxBox.RevisionMarkAfterSave,
                                        Control.View.TotalMarginWidth + 1, 0, 3, Control.View.RowHeight);
                     }
@@ -1579,23 +1387,18 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
 
         //draws aControl.Selection.LogicalBounds row in the backbuffer
-        private void RenderSelection(int RowIndex)
-        {
-            if (RowIndex <= Control.Document.Count - 1 && Control.Selection.IsValid)
-            {
+        private void RenderSelection(int RowIndex) {
+            if (RowIndex <= Control.Document.Count - 1 && Control.Selection.IsValid) {
                 Row xtr = Control.Document[RowIndex];
-                if (!xtr.IsCollapsed)
-                {
+                if (!xtr.IsCollapsed) {
                     if ((RowIndex > Control.Selection.LogicalBounds.FirstRow) &&
-                        (RowIndex < Control.Selection.LogicalBounds.LastRow))
-                    {
+                        (RowIndex < Control.Selection.LogicalBounds.LastRow)) {
                         int width = MeasureRow(xtr, xtr.Text.Length).Width + MeasureString("¶").Width + 3;
                         RenderBox(Control.View.TextMargin, 0, Math.Max(width - Control.View.ClientAreaStart, 0),
                                   Control.View.RowHeight);
                     }
                     else if ((RowIndex == Control.Selection.LogicalBounds.FirstRow) &&
-                             (RowIndex == Control.Selection.LogicalBounds.LastRow))
-                    {
+                             (RowIndex == Control.Selection.LogicalBounds.LastRow)) {
                         int start =
                             MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.FirstColumn)).
                                 Width;
@@ -1605,16 +1408,14 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                         RenderBox(Control.View.TextMargin + start - Control.View.ClientAreaStart, 0, width,
                                   Control.View.RowHeight);
                     }
-                    else if (RowIndex == Control.Selection.LogicalBounds.LastRow)
-                    {
+                    else if (RowIndex == Control.Selection.LogicalBounds.LastRow) {
                         int width =
                             MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.LastColumn)).
                                 Width;
                         RenderBox(Control.View.TextMargin, 0, Math.Max(width - Control.View.ClientAreaStart, 0),
                                   Control.View.RowHeight);
                     }
-                    else if (RowIndex == Control.Selection.LogicalBounds.FirstRow)
-                    {
+                    else if (RowIndex == Control.Selection.LogicalBounds.FirstRow) {
                         int start =
                             MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.FirstColumn)).
                                 Width;
@@ -1623,26 +1424,22 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                                   Control.View.RowHeight);
                     }
                 }
-                else
-                {
+                else {
                     RenderCollapsedSelection(RowIndex);
                 }
             }
         }
 
-        private void RenderCollapsedSelection(int RowIndex)
-        {
+        private void RenderCollapsedSelection(int RowIndex) {
             Row xtr = Control.Document[RowIndex];
             if ((RowIndex > Control.Selection.LogicalBounds.FirstRow) &&
-                (RowIndex < Control.Selection.LogicalBounds.LastRow))
-            {
+                (RowIndex < Control.Selection.LogicalBounds.LastRow)) {
                 int width = MeasureRow(xtr, xtr.Expansion_EndChar).Width;
                 RenderBox(Control.View.TextMargin, 0, Math.Max(width - Control.View.ClientAreaStart, 0),
                           Control.View.RowHeight);
             }
             else if ((RowIndex == Control.Selection.LogicalBounds.FirstRow) &&
-                     (RowIndex == Control.Selection.LogicalBounds.LastRow))
-            {
+                     (RowIndex == Control.Selection.LogicalBounds.LastRow)) {
                 int start =
                     MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.FirstColumn)).Width;
                 int min = Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.LastColumn);
@@ -1651,15 +1448,13 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 RenderBox(Control.View.TextMargin + start - Control.View.ClientAreaStart, 0, width,
                           Control.View.RowHeight);
             }
-            else if (RowIndex == Control.Selection.LogicalBounds.LastRow)
-            {
+            else if (RowIndex == Control.Selection.LogicalBounds.LastRow) {
                 int width =
                     MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.LastColumn)).Width;
                 RenderBox(Control.View.TextMargin, 0, Math.Max(width - Control.View.ClientAreaStart, 0),
                           Control.View.RowHeight);
             }
-            else if (RowIndex == Control.Selection.LogicalBounds.FirstRow)
-            {
+            else if (RowIndex == Control.Selection.LogicalBounds.FirstRow) {
                 int start =
                     MeasureRow(xtr, Math.Min(xtr.Text.Length, Control.Selection.LogicalBounds.FirstColumn)).Width;
                 int width = MeasureRow(xtr, Math.Min(xtr.Text.Length, xtr.Expansion_EndChar)).Width - start;
@@ -1668,8 +1463,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             }
 
             if (Control.Selection.LogicalBounds.LastRow > RowIndex &&
-                Control.Selection.LogicalBounds.FirstRow <= RowIndex)
-            {
+                Control.Selection.LogicalBounds.FirstRow <= RowIndex) {
                 int start = xtr.Expansion_PixelEnd;
                 int end = xtr.Expansion_EndRow.Expansion_PixelStart - start + Control.View.TextMargin;
                 //start+=100;
@@ -1681,8 +1475,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             xtr = xtr.Expansion_EndRow;
 
             if (Control.Selection.LogicalBounds.FirstRow <= RowIndex &&
-                Control.Selection.LogicalBounds.LastRow >= RowIndex)
-            {
+                Control.Selection.LogicalBounds.LastRow >= RowIndex) {
                 int endchar = Control.Selection.LogicalBounds.LastRow != RowIndex
                                   ? xtr.Text.Length
                                   : Math.Min(Control.Selection.LogicalBounds.LastColumn, xtr.Text.Length);
@@ -1693,15 +1486,13 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
                 int start;
 
-                if (Control.Selection.LogicalBounds.FirstRow == RowIndex)
-                {
+                if (Control.Selection.LogicalBounds.FirstRow == RowIndex) {
                     int startchar = Math.Max(Control.Selection.LogicalBounds.FirstColumn, xtr.Expansion_StartChar);
                     start = MeasureRow(xtr, startchar).Width;
                     start += xtr.Expansion_PixelStart;
                     start -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
                 }
-                else
-                {
+                else {
                     start = MeasureRow(xtr, xtr.Expansion_StartChar).Width;
                     start += xtr.Expansion_PixelStart;
                     start -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
@@ -1717,35 +1508,30 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             }
         }
 
-        private void RenderBox(int x, int y, int width, int height)
-        {
+        private void RenderBox(int x, int y, int width, int height) {
             GFX.SelectionBuffer.RenderTo(GFX.BackBuffer, x, y, width, height, x, y);
         }
 
-        private TextPoint ColumnFromPixel(int RowIndex, int X)
-        {
+        private TextPoint ColumnFromPixel(int RowIndex, int X) {
             Row xtr = Control.Document[RowIndex];
-            X -= Control.View.TextMargin - 2 - Control.View.FirstVisibleColumn*Control.View.CharWidth;
+            X -= Control.View.TextMargin - 2 - Control.View.FirstVisibleColumn * Control.View.CharWidth;
 
-            if (xtr.Count == 0)
-            {
-                if (Control.VirtualWhitespace && Control.View.CharWidth > 0)
-                {
-                    return new TextPoint(X/Control.View.CharWidth, RowIndex);
+            if (xtr.Count == 0) {
+                if (Control.VirtualWhitespace && Control.View.CharWidth > 0) {
+                    return new TextPoint(X / Control.View.CharWidth, RowIndex);
                 }
 
                 return new TextPoint(0, RowIndex);
             }
 
 
-            int taborig = -Control.View.FirstVisibleColumn*Control.View.CharWidth + Control.View.TextMargin;
+            int taborig = -Control.View.FirstVisibleColumn * Control.View.CharWidth + Control.View.TextMargin;
             int xpos = Control.View.TextMargin - Control.View.ClientAreaStart;
             int CharNo = 0;
             int TotWidth = 0;
             Word Word = null;
             int WordStart = 0;
-            foreach (Word w in xtr.FormattedWords)
-            {
+            foreach (Word w in xtr.FormattedWords) {
                 Word = w;
                 WordStart = TotWidth;
 
@@ -1757,14 +1543,12 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                 int tmpWidth =
                     GFX.StringBuffer.DrawTabbedString(w.Text, xpos + TotWidth, 0, taborig, Control.PixelTabSize).Width;
 
-                if (TotWidth + tmpWidth >= X)
-                {
+                if (TotWidth + tmpWidth >= X) {
                     break;
                 }
 
                 //dont do this for the last word
-                if (w != xtr.FormattedWords[xtr.FormattedWords.Count - 1])
-                {
+                if (w != xtr.FormattedWords[xtr.FormattedWords.Count - 1]) {
                     TotWidth += tmpWidth;
                     CharNo += w.Text.Length;
                 }
@@ -1784,13 +1568,11 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
 
             bool found = false;
             if (Word != null)
-                foreach (char c in Word.Text)
-                {
+                foreach (char c in Word.Text) {
                     int tmpWidth =
                         GFX.StringBuffer.DrawTabbedString(c + "", xpos + WordStart, 0, taborig, Control.PixelTabSize).
                             Width;
-                    if (WordStart + tmpWidth >= X)
-                    {
+                    if (WordStart + tmpWidth >= X) {
                         found = true;
                         break;
                     }
@@ -1798,10 +1580,9 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
                     WordStart += tmpWidth;
                 }
 
-            if (!found && Control.View.CharWidth > 0 && Control.VirtualWhitespace)
-            {
+            if (!found && Control.View.CharWidth > 0 && Control.VirtualWhitespace) {
                 int xx = X - WordStart;
-                int cn = xx/Control.View.CharWidth;
+                int cn = xx / Control.View.CharWidth;
                 CharNo += cn;
             }
 
@@ -1811,8 +1592,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             return new TextPoint(CharNo, RowIndex);
         }
 
-        public Point GetTextPointPixelPos(TextPoint tp)
-        {
+        public Point GetTextPointPixelPos(TextPoint tp) {
             Row xtr = Control.Document[tp.Y];
             if (xtr.RowState == RowState.SpanParsed)
                 Control.Document.Parser.ParseRow(xtr.Index, true);
@@ -1830,8 +1610,7 @@ namespace Keyrox.Windows.Forms.SyntaxBox.Painter
             int pos = MeasureRow(xtr, tp.X).Width + 1;
 
 
-            if (Collapsed)
-            {
+            if (Collapsed) {
                 pos += xtr.Expansion_PixelStart;
                 pos -= MeasureRow(xtr, xtr.Expansion_StartChar).Width;
             }

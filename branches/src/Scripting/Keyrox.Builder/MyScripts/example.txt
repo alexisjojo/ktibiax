@@ -17,14 +17,14 @@ killprior("Hydra", +5)
 killprior("Snake", -1)
 killspell("Scorpion", "exori vis", 2)
 killrune("Hydra", 7154, 2, 0)
-killrune("Hydra", {SD}, 2, 100)
+killrune("Hydra", {SUDDENDEATH}, 2, 100)
 ignore("Rabbit")
 avoidfront("Hydra")
 killonlymycreatures(true)
 #endsection
 
 #section LootConfiguration
-setloot({GP}) //gold coin
+setloot({GOLDCOIN}) //gold coin
 setloot(1234) //turtle shield
 setloot(1234) //small saphires
 #endsection
@@ -78,7 +78,7 @@ setparam("MoneyToSpears", getvalue(getparam("SpearToBuy") * getparam("SpearCost"
 checkvalue(getparam("SpearToBuy") < 1 = gotosection(DepotToHunt)) //or some down stairs section to before call back to hunt section.
 say("withdraw getparam("MoneyToSpears")", 1000)
 say("yes", 1)
-checkvalue(countitem({GP}) < getparam("MoneyToSpears") = error("You have no balance to buy spears!"))
+checkvalue(countitem({GOLDCOIN}) < getparam("MoneyToSpears") = error("You have no balance to buy spears!"))
 
 //Go to npc and buy spears
 goto(12345,12345,7)

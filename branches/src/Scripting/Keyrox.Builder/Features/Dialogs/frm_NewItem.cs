@@ -36,7 +36,7 @@ namespace Keyrox.Builder.Features.Dialogs {
                 return;
             }
             ItemKeywordCollection.Current.Add(item);
-            ItemKeywordCollection.Save();
+            ItemKeywordCollection.Current.Save();
             if (ItemListChanged != null) { ItemListChanged(this, EventArgs.Empty); }
             Close();
         }
