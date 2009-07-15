@@ -3,12 +3,10 @@ using System.Linq;
 using System.Windows.Forms;
 using Keyrox.Scripting;
 using Keyrox.Scripting.Controls;
-using Keyrox.Scripting.Events;
 using Keyrox.Scripting.Keywords;
 using Keyrox.Shared.Controls;
-using Keyrox.Windows.Forms.SyntaxBox;
-using System.Text.RegularExpressions;
 using Keyrox.SourceCode;
+using Keyrox.Windows.Forms.SyntaxBox;
 
 namespace Keyrox.Builder.Features.AutoList {
     public partial class AutoListBox : DevExpress.XtraEditors.XtraUserControl {
@@ -143,29 +141,27 @@ namespace Keyrox.Builder.Features.AutoList {
             else { (this.ParentForm as frm_Editor).ShowAutoListTip(SelectedKey, 3000); }
         }
         private void scriptBox_KeyDown(object sender, KeyEventArgs e) {
-            if (e.KeyCode == Keys.Enter) { if (this.Visible) { InsertSelectedKey(); SupressKeyDown(ref e); return; } }
+            if (e.KeyCode.GetHashCode() == 221 || e.KeyCode.GetHashCode() == 57) { return; }
+            else if (e.KeyCode == Keys.Enter) { if (this.Visible) { InsertSelectedKey(); SupressKeyDown(ref e); return; } }
             else if (e.KeyCode == Keys.Tab) { if (this.Visible) { InsertSelectedKey(); SupressKeyDown(ref e); return; } }
             else if (e.KeyCode == Keys.Escape) { this.Hide(); return; }
             else if (e.KeyCode == Keys.Space && e.Control) { SupressKeyDown(ref e); Document.ShowAutoList(); return; }
-            else if (e.KeyCode == Keys.Up) { if (this.Visible) { UpSelection(); SupressKeyDown(ref e); return; } }
-            else if (e.KeyCode == Keys.Down) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } }
-            else if (e.KeyCode == Keys.Left) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } }
-            else if (e.KeyCode == Keys.Right) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } }
+            else if (e.KeyCode == Keys.Up) { if (this.Visible) { UpSelection(); SupressKeyDown(ref e); return; } else { return; } }
+            else if (e.KeyCode == Keys.Down) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } else { return; } }
+            else if (e.KeyCode == Keys.Left) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } else { return; } }
+            else if (e.KeyCode == Keys.Right) { if (this.Visible) { DownSelection(); SupressKeyDown(ref e); return; } else { return; } }
             else if (e.KeyCode.GetHashCode() > 186 && e.KeyCode.GetHashCode() < 191) { Show(AutoListType.General); return; }
 
-            if (e.KeyCode.GetHashCode() == 221) { return; }
-            if (e.KeyCode.GetHashCode() == 57) { return; }
             if (this.Visible) { this.BeginInvoke(new Callback(delegate() { FilterListBox(); })); }
         }
         private void Editor_KeyUp(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.ControlKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Back) { return; }
             if (e.KeyCode == Keys.Escape) { Hide(); return; }
             if (e.KeyCode.GetHashCode() == 221) { if (e.Shift) { Show(AutoListType.Item); return; } else { Show(AutoListType.Player); return; } }
             if (e.KeyCode.GetHashCode() == 57 && e.Shift) { Document.ShowAutoList(); return; }
             if (e.KeyCode.GetHashCode() > 48 && e.KeyCode.GetHashCode() < 58 && !e.Shift) { this.Hide(); return; }
             if (e.KeyCode == Keys.Space && !e.Control) { Document.ShowAutoList(); return; }
-            if (Document.CurrentWord != null && Document.CurrentWord.Index == 0 && Document.CurrentRow.Count == 1) {
-                Show(AutoListType.General);
-            }
+            if (Document.CurrentWord != null && Document.CurrentWord.Index == 0 && Document.CurrentRow.Count == 1) { Show(AutoListType.General); }
             else if (e.KeyCode.GetHashCode() > 186 && e.KeyCode.GetHashCode() < 191) { AddSpace(); return; }
         }
         private void syntaxBox_RowClick(object sender, RowMouseEventArgs e) {
@@ -264,7 +260,6 @@ namespace Keyrox.Builder.Features.AutoList {
                 }));
             }
         }
-
 
         /// <summary>
         /// Checks the search and brackets.
