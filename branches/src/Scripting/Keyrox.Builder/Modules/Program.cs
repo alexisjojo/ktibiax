@@ -22,7 +22,7 @@ namespace Keyrox.Builder {
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.UserSkins.OfficeSkins.Register();
 
-            ItemKeywordCollection.Load();
+            ItemKeywordCollection.Current.Load();
             Application.Run(new frm_Agent(args.Length > 0 ? args[0] : string.Empty));
         }
 

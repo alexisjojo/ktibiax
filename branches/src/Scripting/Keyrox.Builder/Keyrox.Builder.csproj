@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,14 +45,6 @@
     <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v8.2, Version=8.2.6.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
-    <Reference Include="Keyrox.SyntaxBox, Version=1.0.0.41435, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\library\Keyrox\Keyrox.SyntaxBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Keyrox.Tibia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\library\Keyrox\Keyrox.Tibia.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -175,7 +168,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScriptConfig\Script.syn" />
     <Content Include="MyScripts\example.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +188,17 @@
       <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
       <Name>Keyrox.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
+      <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
+      <Name>Keyrox.Tibia</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Keyrox.Scripting\Keyrox.Scripting.csproj">
       <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
       <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keyrox.SyntaxBox\Keyrox.SyntaxBox.csproj">
+      <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>
+      <Name>Keyrox.SyntaxBox</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

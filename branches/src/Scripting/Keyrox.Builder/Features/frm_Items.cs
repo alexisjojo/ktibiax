@@ -35,7 +35,7 @@ namespace Keyrox.Builder.Features {
         /// <param name="e">The <see cref="System.Windows.Forms.FormClosingEventArgs"/> instance containing the event data.</param>
         private void frm_Items_FormClosing(object sender, FormClosingEventArgs e) {
             ItemKeywordCollection.Current = ItemSource;
-            ItemKeywordCollection.Save();
+            ItemKeywordCollection.Current.Save();
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Keyrox.Builder.Features {
             if (gridView1.FocusedRowHandle > -1) {
                 var res = MessageBox.Show("Are you shure?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes) {
-                    ItemKeywordCollection.Remove(gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "ID").ToInt32());
+                    ItemKeywordCollection.Current.Remove(gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "ID").ToInt32());
                     UpdateDataSource();
                 }
             }
