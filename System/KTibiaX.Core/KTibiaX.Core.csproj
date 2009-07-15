@@ -78,16 +78,6 @@
     <Compile Include="Repositories\PlayerFeatureRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Infra\Keyrox.Infra.csproj">
-      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
-      <Name>Keyrox.Infra</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Shared\src\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="DataBase\ktibiax.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -96,6 +86,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Infra\Keyrox.Infra.csproj">
+      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
+      <Name>Keyrox.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
