@@ -15,7 +15,7 @@ using Keyrox.Scripting.Actions;
 using Tibia.Client;
 
 namespace Keyrox.Scripting.Parser {
-    public class ScriptParser {
+    public class ScriptParser : IDisposable {
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ScriptParser"/> class.
@@ -48,7 +48,9 @@ namespace Keyrox.Scripting.Parser {
         public event EventHandler<LineErrorEventArgs> OnScriptError;
         public event EventHandler<TextEventArgs> OnOutputChange;
         public event EventHandler<NumberEventArgs> OnProgressReport;
-        public event EventHandler OnParseComplete;
+        public event EventHandler<ScriptFileEventArgs> OnParseComplete;
+
+        protected DateTime ParseStartTime { get; set; }
         #endregion
 
         #region "[rgn] Helper Methods "
@@ -201,6 +203,7 @@ namespace Keyrox.Scripting.Parser {
         /// </summary>
         /// <returns></returns>
         public void Parse() {
+            ParseStartTime = DateTime.Now;
             Callback parse = Parsing;
             parse.BeginInvoke(ParseComplete, parse);
         }
@@ -210,7 +213,7 @@ namespace Keyrox.Scripting.Parser {
         /// </summary>
         private void Parsing() {
             GetScriptActions();
-            
+
             ScriptSections = new List<string>();
             ScriptParams = new Dictionary<string, string>();
             PlayerProperties = ScriptKeywords.GetPlayer();
@@ -245,12 +248,14 @@ namespace Keyrox.Scripting.Parser {
             CheckScriptWarnings(file);
 
             AddOutputSeparatorLine();
-            AddOutput("Compilation complete!");
-            if (haserror) { AddOutput("This script contains error(s)..."); }
+            var elapsedTime = DateTime.Now.Subtract(ParseStartTime);
+            AddOutput(string.Format("Compilation complete in {0}:{1}:{2}.{3}!", elapsedTime.Hours, elapsedTime.Minutes, elapsedTime.Seconds, elapsedTime.Milliseconds));
 
+            if (haserror) { AddOutput("This script contains error(s)..."); }
             if (!haserror) {
                 file.ScriptInfo = new ScriptInfo(TibiaClient, file);
                 file.Text = Document.Text;
+
                 ParsedScript = file;
             }
             else { ParsedScript = null; }
@@ -261,7 +266,7 @@ namespace Keyrox.Scripting.Parser {
         /// </summary>
         /// <param name="resul">The resul.</param>
         private void ParseComplete(IAsyncResult resul) {
-            if (OnParseComplete != null) { OnParseComplete(this, EventArgs.Empty); }
+            if (OnParseComplete != null) { OnParseComplete(this, new ScriptFileEventArgs(ParsedScript)); }
         }
 
         /// <summary>
@@ -312,7 +317,7 @@ namespace Keyrox.Scripting.Parser {
                 //Function Validation
                 if (ScriptActions.ContainsKey(words.First().Text)) {
                     var action = ScriptActions[words.First().Text];
-                    var actionline = new ScriptLine(action, row.Index + 1, row.Text, file);
+                    var actionline = new ScriptLine(action, row.Index, row.Text, file);
                     var args = RemoveArgumentSpaces(GetFunctionArgument(row.Text).Split(new[] { ',' }));
 
                     //Argument Validation.
@@ -361,10 +366,9 @@ namespace Keyrox.Scripting.Parser {
 
                     //Parameter Validation
                     if (actionline.FunctionText.ToLower() == "setparam") {
-                        ScriptParams.Add(actionline.Args[0].ToString().Replace("\"", ""), actionline.Args[1].ToString());
-                        if (!SetParams.ContainsKey(actionline.Args[0].ToString().Replace("\"", ""))) {
-                            SetParams.Add(actionline.Args[0].ToString().Replace("\"", ""), row);
-                        }
+                        var paramkey = actionline.Args[0].ToString().TrimStart(new[] { '"' }).TrimEnd(new[] { '"' });
+                        var paramvalue = actionline.Args[1].ToString().TrimStart(new[] { '"' }).TrimEnd(new[] { '"' });
+                        if (!ScriptParams.ContainsKey(paramkey)) { ScriptParams.Add(paramkey, paramvalue); }
                     }
                     foreach (var word in words) {
                         if (word.Text == "getparam") {
@@ -403,7 +407,11 @@ namespace Keyrox.Scripting.Parser {
                 }
                 SetError(words.First(), string.Format("The function \"{0}\" does not exist.", words.First().Text)); return null;
             }
-            catch (Exception) { SetWarning(row, string.Format("Could not parse the row number \"{0}\"", row.Index + 1)); return null; }
+            catch (Exception ex) {
+                SetWarning(row, string.Format("Could not parse the row number \"{0}\"", row.Index + 1));
+                SetError(row, string.Format("Details: {0}", ex.Message));
+                return null;
+            }
         }
 
         /// <summary>
@@ -454,6 +462,25 @@ namespace Keyrox.Scripting.Parser {
                 }
             }
             else { SetWarning("This script does not contains waypoints."); }
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose() {
+            ParsedScript = null;
+            TibiaClient = null;
+            Editor = null;
+            PlayerProperties = null;
+            CustomItems = null;
+
+            ScriptWayPoints = null;
+            ScriptActions = null;
+            ScriptSections = null;
+
+            ScriptParams = null;
+            SetParams = null;
+            GetParams = null;
         }
     }
 }

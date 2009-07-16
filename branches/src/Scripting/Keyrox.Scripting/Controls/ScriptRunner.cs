@@ -16,6 +16,9 @@ namespace Keyrox.Scripting.Controls {
         public ScriptRunner(ScriptFile file, TibiaClient tibiaClient) {
             this.File = file;
             this.TibiaClient = tibiaClient;
+            foreach (var row in File.Rows) {
+                row.OnActionComplete += row_OnActionComplete;
+            }
         }
 
         #region "[rgn] Properties  "
@@ -61,10 +64,16 @@ namespace Keyrox.Scripting.Controls {
             try {
                 if (State == RunnerState.Running) {
                     var row = File.Rows[CurrentLineIndex];
-                    if (OnRowBeginExecute != null) { OnRowBeginExecute(this, new ScriptLineEventArgs(row)); }
+                    if (row.ScriptAction != null) {
 
-                    row.OnActionComplete += row_OnActionComplete;
-                    row.Execute(TibiaClient);
+                        if (OnRowBeginExecute != null) { OnRowBeginExecute(this, new ScriptLineEventArgs(row)); }
+                        row.Execute(TibiaClient);
+                    }
+                    else {
+                        row = File.GetNextLine(CurrentLineIndex);
+                        if (row != null) { CurrentLineIndex = row.LineIndex; ExecuteCurrentLine(); return; }
+                        else { Stop(); }
+                    }
                 }
             }
             catch (ScriptActionException ex) { if (OnScriptException != null) { OnScriptException(this, new ScriptExceptionEventArgs(ex, CurrentLineIndex)); Stop(); return; } }
@@ -77,29 +86,33 @@ namespace Keyrox.Scripting.Controls {
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Keyrox.Scripting.Events.ScriptLineEventArgs"/> instance containing the event data.</param>
         public void row_OnActionComplete(object sender, Keyrox.Scripting.Events.ScriptLineEventArgs e) {
-            if (e.Line.Result.MustReExecute) {
-                if (InDebugMode) { if (OnRowEndExecute != null) { OnRowEndExecute(this, new ScriptLineEventArgs(e.Line)); } return; }
-                else { ExecuteCurrentLine(); return; }
-            }
+            if (e.Line.Result.MustReExecute) { CheckExecutionContinue(e); }
             if (!e.Line.Result.Success) { Stop(); return; }
 
             if (e.Line.IsSection) { CurrentLineIndexToGoBack = 0; }
             if (e.Line.IsEndSection && CurrentLineIndexToGoBack > 0) {
                 CurrentLineIndex = CurrentLineIndexToGoBack;
                 CurrentLineIndexToGoBack = 0;
+                CheckExecutionContinue(e);
                 return;
             }
             if (e.Line.Result.MustPause) { Pause(); return; }
             if (e.Line.Result.MustStop) { Stop(); return; }
 
-            if (e.Line.Result.SectionToJump != null) { CurrentLineIndex = e.Line.Result.SectionToJump.StartLine.LineIndex; return; }
-            if (e.Line.Result.SectionToExecute != null) { CurrentLineIndexToGoBack = CurrentLineIndex; CurrentLineIndex = e.Line.Result.SectionToExecute.StartLine.LineIndex + 1; return; }
-            if (e.Line.Result.LineToJump != null) { CurrentLineIndex = e.Line.Result.LineToJump.LineIndex; return; }
+            if (e.Line.Result.SectionToJump != null) { CurrentLineIndex = e.Line.Result.SectionToJump.StartLine.LineIndex; CheckExecutionContinue(e); return; }
+            if (e.Line.Result.SectionToExecute != null) { CurrentLineIndexToGoBack = CurrentLineIndex; CurrentLineIndex = e.Line.Result.SectionToExecute.StartLine.LineIndex + 1; CheckExecutionContinue(e); return; }
+            if (e.Line.Result.LineToJump != null) { CurrentLineIndex = e.Line.Result.LineToJump.LineIndex; CheckExecutionContinue(e); return; }
 
             var row = File.GetNextLine(CurrentLineIndex);
-            if (row != null) { CurrentLineIndex = (row.LineIndex - 1); }
+            if (row != null) { CurrentLineIndex = row.LineIndex; CheckExecutionContinue(e); }
             else { Stop(); } //End of script.
+        }
 
+        /// <summary>
+        /// Checks the execution continue.
+        /// </summary>
+        /// <param name="e">The <see cref="Keyrox.Scripting.Events.ScriptLineEventArgs"/> instance containing the event data.</param>
+        private void CheckExecutionContinue(Keyrox.Scripting.Events.ScriptLineEventArgs e) {
             if (InDebugMode) { if (OnRowEndExecute != null) { OnRowEndExecute(this, new ScriptLineEventArgs(e.Line)); } return; }
             else { ExecuteCurrentLine(); return; }
         }

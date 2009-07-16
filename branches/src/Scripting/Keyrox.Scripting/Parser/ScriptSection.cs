@@ -11,8 +11,8 @@ namespace Keyrox.Scripting.Parser {
         /// </summary>
         public ScriptSection(string name, ScriptLine startLine, ScriptLine endLine) {
             this.Name = name;
-            this.StartLine = StartLine;
-            this.EndLine = EndLine;
+            this.StartLine = startLine;
+            this.EndLine = endLine;
         }
 
         #region "[rgn] Properties "

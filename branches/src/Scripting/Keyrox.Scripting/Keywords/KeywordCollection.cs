@@ -21,6 +21,16 @@ namespace Keyrox.Scripting.Keywords {
         }
 
         /// <summary>
+        /// Sort by the title.
+        /// </summary>
+        /// <returns>A sorted KeywordCollection.</returns>
+        public KeywordCollection SortbyTitle() {
+            var res = new KeywordCollection();
+            res.AddRange((from key in this orderby key.Title ascending select key).ToList());
+            return res;
+        }
+
+        /// <summary>
         /// Finds the by input text.
         /// </summary>
         /// <param name="text">The text.</param>

@@ -10,6 +10,15 @@ namespace Keyrox.Builder.Features.Controls {
         }
 
         /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        public void Clear() {
+            this.Invoke(new Callback(delegate() {
+                memoEdit1.Text = string.Empty;
+            }));
+        }
+
+        /// <summary>
         /// Adds the specified text.
         /// </summary>
         /// <param name="text">The text.</param>

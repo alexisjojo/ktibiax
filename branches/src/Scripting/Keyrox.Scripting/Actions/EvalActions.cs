@@ -32,11 +32,20 @@ namespace Keyrox.Scripting.Actions {
         [ActionConfig(ImageIndex = 11, InputText = "getvalue()", CarretPosition = -1)]
         [ActionParameter("Evaluable Expression", "The expression to be evaluated.", 0)]
         [ActionExamples("setparam(\"SpearToBuy\", getvalue([CAP] / getparam(\"SpearWeigth\")))", "setparam(\"MoneyToSpears\", getvalue(getparam(\"SpearToBuy\") * getparam(\"SpearCost\")))", "setparam(\"CustomValue\", getvalue((30 * 10) / 129 + 5))")]
-        
         public ScriptActionResult GetValue(string[] args) {
             var res = string.Empty;
             return new ScriptActionResult() { Success = true, ReturnValue = res };
         }
 
+        [ActionTitle("Format String Value", "Format the given parameters as string.")]
+        [ActionConfig(ImageIndex = 11, InputText = "format()", CarretPosition = -1)]
+        [ActionParameter("Arguments to format", "The arguments to be formated as string.", 0)]
+        [ActionExamples("saytonpc(format(\"deposit\" + countitem({GOLD})))", "saytonpc(format(\"withdraw\" + getparam(\"MoneyToSpears\")))")]
+        public ScriptActionResult Format(string[] args) {
+            var res = string.Empty;
+            var strings = args[0].Split(new[] { '+' }, System.StringSplitOptions.RemoveEmptyEntries);
+            foreach (var arg in strings) { res += arg; }
+            return new ScriptActionResult() { Success = true, ReturnValue = res };
+        }
     }
 }

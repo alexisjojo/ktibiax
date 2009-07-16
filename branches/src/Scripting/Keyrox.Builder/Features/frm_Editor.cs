@@ -4,16 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
-using Keyrox.Builder.Events;
 using Keyrox.Builder.Modules;
 using Keyrox.Scripting;
+using Keyrox.Scripting.Controls;
+using Keyrox.Scripting.Events;
 using Keyrox.Scripting.Keywords;
 using Keyrox.Scripting.Parser;
+using Keyrox.Scripting.Util;
 using Keyrox.Shared.Controls;
 using Keyrox.Shared.Enumerators;
 using Keyrox.Shared.Files;
 using Tibia.Client;
-using Keyrox.Scripting.Controls;
 
 namespace Keyrox.Builder.Features {
     public partial class frm_Editor : DevExpress.XtraEditors.XtraForm {
@@ -32,10 +33,10 @@ namespace Keyrox.Builder.Features {
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void frm_Editor_Load(object sender, EventArgs e) {
-            var fi = new FileInfo(Path.Combine(Environment.CurrentDirectory, "docklayout.xml"));
+            var fi = new FileInfo(Program.ExtractResource("Keyrox.Builder.ScriptConfig.DockLayout.xml", "DockLayout.xml", true));
             if (fi.Exists) { dockManager1.RestoreLayoutFromXml(fi.FullName); }
-            openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "MyScripts");
 
+            openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "MyScripts");
             ParseProgressBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             SetControlState(false);
 
@@ -87,12 +88,12 @@ namespace Keyrox.Builder.Features {
 
         public FileInfo CurrentScript { get; set; }
         public ScriptFile CompiledScript { get; set; }
-        public ScriptParser Compiler { get; set; }
         public ScriptRunner Runner { get; set; }
+        public ScriptParser Compiler { get; set; }
 
+        public bool CompilerSupressWarnings { get; set; }
         public bool IsLoading { get; private set; }
         private int dockPanelHeigth { get; set; }
-        private bool InDebugMode { get; set; }
         public string CurrentScriptPath { get; set; }
 
         public bool ScriptReadOnly {
@@ -108,6 +109,9 @@ namespace Keyrox.Builder.Features {
         private bool ShoulRestoreALState { get; set; }
         private bool CompileForRun { get; set; }
         private bool CompileForDebug { get; set; }
+        private bool InDebugMode { get; set; }
+
+        private StepTo StopDebuggerIn { get; set; }
 
         private ScriptState scriptState;
         public ScriptState ScriptState {
@@ -135,10 +139,14 @@ namespace Keyrox.Builder.Features {
             SetStatusText(fulltext);
         }
         public void HidePanels() {
-            dockOutput.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
-            dockErrors.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
-            dockOutput.HideSliding();
-            dockErrors.HideSliding();
+            if (dockOutput.IsTab) {
+                dockOutput.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
+                dockOutput.HideSliding();
+            }
+            if (dockErrors.IsTab) {
+                dockErrors.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
+                dockErrors.HideSliding();
+            }
         }
         public void NewScript() {
             var fi = new FileInfo(Path.Combine(Application.StartupPath, "ScriptConfig\\ScriptInfo.txt"));
@@ -193,7 +201,7 @@ namespace Keyrox.Builder.Features {
             autoListBox1.Setup(scriptBox1);
             scriptBox1.Editor.Document.SyntaxFile = string.Empty;
 
-            var synfile = Program.ExtractSyntaxFile();
+            var synfile = Program.ExtractResource("Keyrox.Builder.ScriptConfig.Script.syn", @"ScriptConfig\Script.syn");
             ItemKeywordCollection.Current.UpdateSynFile(synfile);
             UpdateEditor(synfile);
 
@@ -211,12 +219,6 @@ namespace Keyrox.Builder.Features {
             scriptBox1.Editor.RowMouseDown += Editor_RowMouseDown;
             scriptBox1.Editor.AutoListRequested += Editor_AutoListRequested;
             autoListBox1.VisibleChanged += autoListBox1_VisibleChanged;
-
-            Compiler = new ScriptParser(scriptBox1.Editor, TibiaClient);
-            Compiler.OnScriptError += Compiler_OnScriptError;
-            Compiler.OnOutputChange += Compiler_OnOutputChange;
-            Compiler.OnParseComplete += Compiler_OnParseComplete;
-            Compiler.OnProgressReport += Compiler_OnProgressReport;
         }
         private void UpdateEditor(string synfile) {
             scriptBox1.Editor.Document.SyntaxFile = synfile;
@@ -224,15 +226,9 @@ namespace Keyrox.Builder.Features {
             scriptBox1.Editor.Document.ParseAll(true);
         }
         public void GoToRow(Keyrox.SourceCode.Row row) {
-            //if (row.Count > 0) {
-            //    scriptBox1.Editor.Selection.LogicalBounds.SetBounds(row[0].Column, row.Index, row[0].Column, row.Index);
-            //    scriptBox1.Editor.Selection.MakeSelection();
-            //}
             scriptBox1.Editor.GotoLine(row.Index);
         }
         public void GoToWord(Keyrox.SourceCode.Word word) {
-            //scriptBox1.Editor.Selection.LogicalBounds.SetBounds(word.Column, word.Row.Index, word.Column, word.Index);
-            //scriptBox1.Editor.Selection.MakeSelection();
             scriptBox1.Editor.GotoLine(word.Row.Index);
         }
         private void AskToSave() {
@@ -255,11 +251,9 @@ namespace Keyrox.Builder.Features {
         }
         public void RestoreRows() {
             Document.Cast<Keyrox.SourceCode.Row>().ToList().ForEach(r => new Callback(delegate() {
-                if (!r.Breakpoint) {
-                    r.BackColor = Color.White;
-                    r.Images.Clear();
-                    Document.ParseRow(r);
-                }
+                r.BackColor = Color.White;
+                r.Images.Clear();
+                Document.ParseRow(r);
             }).Invoke());
         }
         #endregion
@@ -310,18 +304,6 @@ namespace Keyrox.Builder.Features {
             ScriptToolTipController.HideHint();
             autoListBox1.Hide();
         }
-        private void Compiler_OnScriptError(object sender, Keyrox.Scripting.Events.LineErrorEventArgs e) {
-            errorList1.Add(e.Error);
-        }
-        private void Compiler_OnProgressReport(object sender, Keyrox.Scripting.Events.NumberEventArgs e) {
-            this.BeginInvoke(new Callback(delegate() {
-                ParseProgressBar.BeginUpdate();
-                ParseProgressBar.EditValue = Convert.ToInt32(ParseProgressBar.EditValue) + 1;
-                ParseProgressBar.EndUpdate();
-                this.Invalidate(new Rectangle(ribbonStatusBar1.Location, ribbonStatusBar1.Size), true);
-                if (OnInvalidateRequired != null) { OnInvalidateRequired(this, EventArgs.Empty); }
-            }));
-        }
         private void ribbonControl1_MouseHover(object sender, EventArgs e) {
             HideSuperTip();
             autoListBox1.Hide();
@@ -366,7 +348,17 @@ namespace Keyrox.Builder.Features {
             scriptBox1.Editor.Document.ParseRow(e.Row);
         }
         private void Document_BreakPointAdded(object sender, Keyrox.SourceCode.RowEventArgs e) {
+            if (!e.Row.Text.Contains("(")) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
+            if (!e.Row.Text.EndsWith(")")) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
+            if (e.Row.Text.Trim().Length == 0) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
+            if (e.Row.Text.StartsWith(@"\")) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
+            if (e.Row.Text.StartsWith(" ")) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
+            if (e.Row.Text.StartsWith("#")) { Editor.Document[e.Row.Index].Breakpoint = false; ReparseRow(e.Row.Index); return; }
             e.Row.Images.Clear();
+        }
+        private void ReparseRow(int index) {
+            Editor.Document.ParseRow(Editor.Document[index], true);
+            Editor.Refresh();
         }
         private void Document_RowParsed(object sender, Keyrox.SourceCode.RowEventArgs e) {
             if (Runner == null || Runner.State == Keyrox.Scripting.Util.RunnerState.Stoped) {
@@ -437,11 +429,8 @@ namespace Keyrox.Builder.Features {
         private void btnBuild_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             CompileScript();
         }
-        private void Compiler_OnOutputChange(object sender, Keyrox.Scripting.Events.TextEventArgs e) {
-            SetStatusText(e.Text);
-        }
         private void btnWarnings_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            Compiler.SupressWarnings = !btnWarnings.Down;
+            CompilerSupressWarnings = !btnWarnings.Down;
             errorList1.Clear();
             errorList1.Add(new ScriptLineError() { Message = "You must compile the script to reflect the changes.", ErrorType = ScriptLineErrorType.Error });
             ShowIssuesWindow();
@@ -455,9 +444,11 @@ namespace Keyrox.Builder.Features {
             }
         }
         private void btnDebug_ItemClick(object sender, ItemClickEventArgs e) {
-            //if (Runner == null || Runner.State == Keyrox.Scripting.Util.RunnerState.Stoped) {
-            //    CompileForDebug = true; CompileScript();
-            //}
+            if (Runner == null || Runner.State == Keyrox.Scripting.Util.RunnerState.Stoped) {
+                CompileForDebug = true;
+                CompileForRun = false;
+                CompileScript();
+            }
             barDebugger.Visible = true;
         }
         #endregion
@@ -528,12 +519,17 @@ namespace Keyrox.Builder.Features {
         }
         #endregion
 
-        #region "[rng] Debugger ToolBar "
+        #region "[rng] Debug ToolBar  "
         private void btnBarRun_ItemClick(object sender, ItemClickEventArgs e) {
             if (Runner == null || Runner.State == Keyrox.Scripting.Util.RunnerState.Stoped) {
                 CompileForDebug = false;
                 CompileForRun = true;
                 CompileScript();
+            }
+            else if (Runner != null && Runner.State == RunnerState.Paused) {
+                RestoreRows();
+                Editor.Refresh();
+                Runner.ResumeExecution();
             }
         }
         private void btnBarDebug_ItemClick(object sender, ItemClickEventArgs e) {
@@ -547,6 +543,7 @@ namespace Keyrox.Builder.Features {
             if (Runner != null && Runner.State == Keyrox.Scripting.Util.RunnerState.Running && Runner.InDebugMode) {
                 RestoreRows();
                 Editor.Refresh();
+                StopDebuggerIn = StepTo.NextRow;
                 Runner.ResumeExecution();
             }
         }
@@ -554,12 +551,18 @@ namespace Keyrox.Builder.Features {
             if (Runner != null && Runner.State == Keyrox.Scripting.Util.RunnerState.Running && Runner.InDebugMode) {
                 RestoreRows();
                 Editor.Refresh();
-                Runner.InDebugMode = false;
+                StopDebuggerIn = StepTo.None;
+                Editor.Document.ClearBreakpoints();
                 Runner.ResumeExecution();
             }
         }
         private void btnBarNextBreakPoint_ItemClick(object sender, ItemClickEventArgs e) {
-
+            if (Runner != null && Runner.State == Keyrox.Scripting.Util.RunnerState.Running && Runner.InDebugMode) {
+                RestoreRows();
+                Editor.Refresh();
+                StopDebuggerIn = StepTo.NextBreakPoint;
+                Runner.ResumeExecution();
+            }
         }
         private void btnBarStop_ItemClick(object sender, ItemClickEventArgs e) {
             if (Runner != null || Runner.State == Keyrox.Scripting.Util.RunnerState.Running) {
@@ -608,6 +611,7 @@ namespace Keyrox.Builder.Features {
 
         #region "[rgn] Script Compile "
         public void CompileScript() {
+            outputView1.Clear();
             this.BeginInvoke(new Callback(Compilation));
         }
         private void Compilation() {
@@ -629,31 +633,61 @@ namespace Keyrox.Builder.Features {
             SetStatusText("Saving the script...");
 
             if (SaveScript()) {
+
+                Compiler = new ScriptParser(scriptBox1.Editor, TibiaClient);
+                Compiler.OnScriptError += Compiler_OnScriptError;
+                Compiler.OnOutputChange += Compiler_OnOutputChange;
+                Compiler.OnParseComplete += Compiler_OnParseComplete;
+                Compiler.OnProgressReport += Compiler_OnProgressReport;
+
+                Compiler.SupressWarnings = CompilerSupressWarnings;
                 System.Threading.Thread.Sleep(1000);
                 CompiledScript = null;
                 Compiler.Parse();
+
             }
         }
-        private void Compiler_OnParseComplete(object sender, EventArgs e) {
+        private void Compiler_OnParseComplete(object sender, ScriptFileEventArgs e) {
             this.Invoke(new Callback(delegate() {
-                CompiledScript = Compiler.ParsedScript;
-                ScriptState = CompiledScript == null ? ScriptState.HasErrors : ScriptState.ValidScript;
 
+                CompiledScript = e.Script;
+                Compiler.Dispose();
+                Compiler = null;
+
+                ScriptState = CompiledScript == null ? ScriptState.HasErrors : ScriptState.ValidScript;
                 MethodCall.ExecuteSafeThreadIn(new Callback(delegate() {
                     ParseProgressBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 }), 5000);
 
+                lblErrors.Caption = errorList1.CountError().ToString();
+                lblWarnings.Caption = errorList1.CountWarning().ToString();
                 if (errorList1.Count() > 0) {
-                    lblErrors.Caption = errorList1.CountError().ToString();
-                    lblWarnings.Caption = errorList1.CountWarning().ToString();
                     System.Threading.Thread.Sleep(500);
                     ShowIssuesWindow();
                 }
+
                 ScriptReadOnly = false;
                 if (OnCompileComplete != null) { OnCompileComplete(this, EventArgs.Empty); }
-
                 if (CompileForDebug) { CompileForDebug = false; RunScript(true); }
                 else if (CompileForRun) { CompileForRun = false; RunScript(false); }
+
+                SetStatusText("Ready!");
+                System.Threading.Thread.Sleep(1000);
+            }));
+        }
+        private void Compiler_OnOutputChange(object sender, Keyrox.Scripting.Events.TextEventArgs e) {
+            SetStatusText(e.Text);
+        }
+        private void Compiler_OnScriptError(object sender, Keyrox.Scripting.Events.LineErrorEventArgs e) {
+            errorList1.Add(e.Error);
+        }
+        private void Compiler_OnProgressReport(object sender, Keyrox.Scripting.Events.NumberEventArgs e) {
+            this.BeginInvoke(new Callback(delegate() {
+                ParseProgressBar.BeginUpdate();
+                ParseProgressBar.EditValue = Convert.ToInt32(ParseProgressBar.EditValue) + 1;
+                ParseProgressBar.EndUpdate();
+                this.Invalidate(new Rectangle(ribbonStatusBar1.Location, ribbonStatusBar1.Size), true);
+                if (OnInvalidateRequired != null) { OnInvalidateRequired(this, EventArgs.Empty); }
             }));
         }
         #endregion
@@ -687,7 +721,7 @@ namespace Keyrox.Builder.Features {
                 this.Invoke(new Callback(delegate() {
                     RestoreRows();
                     var row = Editor.Document[e.Line.LineIndex];
-                    row.BackColor = Color.MistyRose;
+                    row.BackColor = Color.LightBlue;
                     row.Images.Clear();
                     row.Images.Add(18);
                     btnBarNext.Enabled = false;
@@ -703,11 +737,16 @@ namespace Keyrox.Builder.Features {
                 this.Invoke(new Callback(delegate() {
                     RestoreRows();
                     var row = Editor.Document[e.Line.LineIndex];
-                    row.BackColor = Color.Yellow;
-                    row.Images.Clear();
-                    row.Images.Add(22);
-                    btnBarNext.Enabled = true;
-                    btnBarNextBreakPoint.Enabled = true;
+                    if (StopDebuggerIn == StepTo.NextRow || row.Breakpoint) {
+                        row.BackColor = Color.Yellow;
+                        row.Images.Clear();
+                        row.Images.Add(22);
+                        btnBarNext.Enabled = true;
+                        btnBarNextBreakPoint.Enabled = true;
+                    }
+                    else {
+                        Runner.ResumeExecution();
+                    }
                     row.EnsureVisible();
                     Document.ParseRow(row);
                     Editor.Refresh();
@@ -722,6 +761,11 @@ namespace Keyrox.Builder.Features {
                     RestoreRows();
                     Editor.Refresh();
                 }));
+                MethodCall.ExecuteSafeThreadIn(delegate() {
+                    RestoreRows();
+                    Editor.Refresh();
+                    Document.ParseAll(true);
+                }, 1000);
             }
         }
         private void Runner_OnScriptException(object sender, Keyrox.Scripting.Events.ScriptExceptionEventArgs e) {
@@ -770,7 +814,7 @@ namespace Keyrox.Builder.Features {
             btnDebug.Enabled = !running;
 
             btnBarDebug.Enabled = !running;
-            btnBarRun.Enabled = !running;
+            //btnBarRun.Enabled = !running;
             btnBarStop.Enabled = running;
 
             if (running) {
@@ -789,7 +833,6 @@ namespace Keyrox.Builder.Features {
             if (scriptBox1.Editor.Document.Modified) { AskToSave(); }
             dockManager1.SaveLayoutToXml(Path.Combine(Environment.CurrentDirectory, "docklayout.xml"));
         }
-
 
     }
 }

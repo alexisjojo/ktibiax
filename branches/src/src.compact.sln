@@ -21,9 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTibiaX.IPChanger.Data", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Tibia", "Library\Tibia\Keyrox.Tibia.csproj", "{607F8CC1-1677-41E0-9906-3F12579AC817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Shared", "..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj", "{E60D87B4-FF44-4411-8E31-27B22BB35AA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Shared", "Support\Keyrox.Shared\Keyrox.Shared.csproj", "{E60D87B4-FF44-4411-8E31-27B22BB35AA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Infra", "..\..\Keyrox\src\Keyrox.Infra\Keyrox.Infra.csproj", "{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Infra", "Support\Keyrox.Infra\Keyrox.Infra.csproj", "{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keyrox.Scripting", "Scripting\Keyrox.Scripting\Keyrox.Scripting.csproj", "{BE8ED4A2-7019-4283-9649-6A355B184010}"
 EndProject

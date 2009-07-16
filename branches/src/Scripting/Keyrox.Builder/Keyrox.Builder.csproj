@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\TextEventArgs.cs" />
     <Compile Include="Features\AutoList\AutoListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -179,18 +178,19 @@
     <Content Include="ScriptConfig\CustomItems.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="ScriptConfig\DockLayout.xml" />
     <Content Include="ScriptConfig\ScriptInfo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
       <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
       <Name>Keyrox.Tibia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Keyrox.Scripting\Keyrox.Scripting.csproj">
       <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
