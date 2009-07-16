@@ -73,7 +73,7 @@ namespace Keyrox.Scripting.Parser {
         /// <returns></returns>
         public ScriptLine GetNextLine(int currentLine) {
             if (Rows.Count > (currentLine + 1)) {
-                var row = Rows[currentLine + 1];
+                return Rows[currentLine + 1];
             }
             return null;
         }

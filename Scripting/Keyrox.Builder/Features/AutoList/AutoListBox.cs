@@ -213,6 +213,7 @@ namespace Keyrox.Builder.Features.AutoList {
                 }
                 this.Location = Document.GetCarretPosition();
                 this.Visible = true;
+                this.Parent.PerformLayout();
             }));
         }
 

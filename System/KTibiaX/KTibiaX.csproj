@@ -505,14 +505,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Infra\Keyrox.Infra.csproj">
-      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
-      <Name>Keyrox.Infra</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Launcher\KTibiaX.IPChanger.Data\KTibiaX.IPChanger.Data.csproj">
       <Project>{F33F16FF-9CD4-4906-AD7C-615C29DD2C31}</Project>
       <Name>KTibiaX.IPChanger.Data</Name>
@@ -532,6 +524,14 @@
     <ProjectReference Include="..\..\Scripting\Keyrox.Scripting\Keyrox.Scripting.csproj">
       <Project>{BE8ED4A2-7019-4283-9649-6A355B184010}</Project>
       <Name>Keyrox.Scripting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Infra\Keyrox.Infra.csproj">
+      <Project>{E77336AF-D1DA-4EA1-B876-BE1CEC328B13}</Project>
+      <Name>Keyrox.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>

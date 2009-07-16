@@ -48,7 +48,8 @@ namespace Keyrox.Scripting.Actions {
 
         [ActionTitle("Wait", "Pause the script ultil the end of the delay.\nBut it will continue attacking if a monster appears.")]
         [ActionConfig(ImageIndex = 14, InputText = "wait()", CarretPosition = -1)]
-        [ActionParameter("Delay", "The delay in seconds to resume the script.", 0)]
+        [ActionParameter("Delay", "The delay in seconds to resume the script.", 0, NeedQuotes = false)]
+        [ArgumentType(0, TypeCode.Int32)]
         [ActionExamples("wait(5)")]
         public ScriptActionResult Wait(string[] args) {
             System.Threading.Thread.Sleep(args[0].ToInt32());
@@ -66,6 +67,7 @@ namespace Keyrox.Scripting.Actions {
         [ActionTitle("Go to Line", "Move the execution to defined script line.")]
         [ActionConfig(ImageIndex = 5, InputText = "gotoline()", CarretPosition = -1)]
         [ActionParameter("Line Number", "The number of the line to jump for.", 0)]
+        [ArgumentType(0, TypeCode.Int32)]
         [ActionExamples("gotoline(35)")]
         public ScriptActionResult GoToLine(string[] args) {
             var line = Script.GetLine(args[0].ToInt32());
@@ -92,5 +94,6 @@ namespace Keyrox.Scripting.Actions {
             if (section != null) { return new ScriptActionResult() { Success = true, SectionToExecute = section }; }
             else { throw new ScriptActionException(Script, string.Format("Invalid script section: {0}", args[0])); }
         }
+
     }
 }

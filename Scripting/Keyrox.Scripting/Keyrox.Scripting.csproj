@@ -117,6 +117,7 @@
     <Compile Include="Events\LineErrorEventArgs.cs" />
     <Compile Include="Events\NumberEventArgs.cs" />
     <Compile Include="Events\ScriptExceptionEventArgs.cs" />
+    <Compile Include="Events\ScriptFileEventArgs.cs" />
     <Compile Include="Events\ScriptLineEventArgs.cs" />
     <Compile Include="Events\SelectedKeyChanged.cs" />
     <Compile Include="Events\TextEventArgs.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Attributes\ArgumentTypeAttribute.cs" />
     <Compile Include="Util\RunnerState.cs" />
     <Compile Include="Util\ScriptActionException.cs" />
+    <Compile Include="Util\StepTo.cs" />
     <Compile Include="Util\ValidationHandler.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\Context.cs" />
@@ -197,13 +199,13 @@
     <None Include="Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
       <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
       <Name>Keyrox.Tibia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Keyrox.SyntaxBox\Keyrox.SyntaxBox.csproj">
       <Project>{19EF75B2-B414-4EB0-9486-160FAF93E62C}</Project>

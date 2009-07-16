@@ -22,6 +22,15 @@ namespace Keyrox.Scripting.Actions {
         public Keyrox.Scripting.Parser.ScriptInfo Script { get; set; }
         #endregion
 
+        [ActionTitle("Kill", "Determines which monster will be attacked.\nYou can also use 'Kill Priority', 'Kill Spell' or 'Kill Rune' instead of.")]
+        [ActionConfig(ImageIndex = 0, InputText = "kill(\"\")", CarretPosition = -2)]
+        [ActionParameter("Creature", "The name of the creature.", 0, NeedQuotes = true)]
+        [ActionExamples("kill(\"Rat\")", "kill(\"Toad\")", "kill(\"Troll\")")]
+        public ScriptActionResult Kill(string[] args) {
+            Script.SetKillPriority(args[0], 0);
+            return new ScriptActionResult() { Success = true };
+        }
+
         [ActionTitle("Kill Priority", "Sets the priority attack of a creature.\nThis determines which monster will be attacked first.")]
         [ActionConfig(ImageIndex = 0, InputText = "killprior(\"\")", CarretPosition = -2)]
         [ActionParameter("Creature", "The name of the creature.", 0, NeedQuotes = true)]
