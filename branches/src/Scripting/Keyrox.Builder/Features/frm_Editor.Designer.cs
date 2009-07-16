@@ -96,6 +96,7 @@ namespace Keyrox.Builder.Features {
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.autoListBox1 = new Keyrox.Builder.Features.AutoList.AutoListBox();
             this.scriptBox1 = new Keyrox.Scripting.Controls.ScriptBox();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -135,15 +136,14 @@ namespace Keyrox.Builder.Features {
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.barAndDockingController1 = new DevExpress.XtraBars.BarAndDockingController(this.components);
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
-            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockOutput = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockErrors = new DevExpress.XtraBars.Docking.DockPanel();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
+            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
             ((System.ComponentModel.ISupportInitialize)(this.imgSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editorSaveMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editorNewMenu)).BeginInit();
@@ -153,6 +153,8 @@ namespace Keyrox.Builder.Features {
             ((System.ComponentModel.ISupportInitialize)(this.imgLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -162,11 +164,9 @@ namespace Keyrox.Builder.Features {
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
-            this.panelContainer1.SuspendLayout();
             this.dockOutput.SuspendLayout();
             this.dockErrors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
+            this.panelContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -241,7 +241,7 @@ namespace Keyrox.Builder.Features {
             this.repositoryItemProgressBar1});
             this.ribbonControl1.SelectedPage = this.ribbonPage1;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.ShowOnMultiplePages;
-            this.ribbonControl1.Size = new System.Drawing.Size(976, 95);
+            this.ribbonControl1.Size = new System.Drawing.Size(976, 96);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ribbonControl1_MouseMove);
@@ -825,35 +825,45 @@ namespace Keyrox.Builder.Features {
             this.ribbonStatusBar1.ItemLinks.Add(this.lblScriptState);
             this.ribbonStatusBar1.ItemLinks.Add(this.ParseProgressBar);
             this.ribbonStatusBar1.ItemLinks.Add(this.gpLocation);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 760);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 761);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(976, 24);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(976, 23);
             // 
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.panelControl3);
             this.panelControl1.Controls.Add(this.panelControl2);
-            this.panelControl1.Controls.Add(this.autoListBox1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 95);
+            this.panelControl1.Location = new System.Drawing.Point(0, 96);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Padding = new System.Windows.Forms.Padding(2);
             this.panelControl1.Size = new System.Drawing.Size(976, 527);
             this.ScriptToolTipController.SetSuperTip(this.panelControl1, null);
             this.panelControl1.TabIndex = 2;
             // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.autoListBox1);
+            this.panelControl3.Controls.Add(this.scriptBox1);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(31, 2);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(943, 523);
+            this.ScriptToolTipController.SetSuperTip(this.panelControl3, null);
+            this.panelControl3.TabIndex = 3;
+            // 
             // autoListBox1
             // 
             this.autoListBox1.Appearance.BackColor = System.Drawing.Color.White;
             this.autoListBox1.Appearance.Options.UseBackColor = true;
-            this.autoListBox1.Location = new System.Drawing.Point(59, 88);
+            this.autoListBox1.Location = new System.Drawing.Point(44, 4);
             this.autoListBox1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.autoListBox1.LookAndFeel.UseWindowsXPTheme = true;
             this.autoListBox1.Name = "autoListBox1";
             this.autoListBox1.ScriptBox = null;
-            this.autoListBox1.Size = new System.Drawing.Size(162, 127);
+            this.autoListBox1.Size = new System.Drawing.Size(161, 136);
             this.ScriptToolTipController.SetSuperTip(this.autoListBox1, null);
             this.autoListBox1.TabIndex = 1;
             // 
@@ -905,7 +915,7 @@ namespace Keyrox.Builder.Features {
             this.outputView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputView1.Location = new System.Drawing.Point(0, 0);
             this.outputView1.Name = "outputView1";
-            this.outputView1.Size = new System.Drawing.Size(482, 110);
+            this.outputView1.Size = new System.Drawing.Size(482, 111);
             this.ScriptToolTipController.SetSuperTip(this.outputView1, null);
             this.outputView1.TabIndex = 0;
             // 
@@ -914,7 +924,7 @@ namespace Keyrox.Builder.Features {
             this.errorList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorList1.Location = new System.Drawing.Point(0, 0);
             this.errorList1.Name = "errorList1";
-            this.errorList1.Size = new System.Drawing.Size(482, 110);
+            this.errorList1.Size = new System.Drawing.Size(482, 111);
             this.ScriptToolTipController.SetSuperTip(this.errorList1, null);
             this.errorList1.TabIndex = 0;
             // 
@@ -967,18 +977,18 @@ namespace Keyrox.Builder.Features {
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.outputView1);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(482, 110);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(482, 111);
             this.ScriptToolTipController.SetSuperTip(this.dockPanel1_Container, null);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // dockPanel2_Container
             // 
             this.dockPanel2_Container.Controls.Add(this.errorList1);
-            this.dockPanel2_Container.Location = new System.Drawing.Point(3, 25);
+            this.dockPanel2_Container.Location = new System.Drawing.Point(3, 24);
             this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(482, 110);
+            this.dockPanel2_Container.Size = new System.Drawing.Size(482, 111);
             this.ScriptToolTipController.SetSuperTip(this.dockPanel2_Container, null);
             this.dockPanel2_Container.TabIndex = 0;
             // 
@@ -1218,21 +1228,6 @@ namespace Keyrox.Builder.Features {
             this.barButtonItem13.ImageIndex = 63;
             this.barButtonItem13.Name = "barButtonItem13";
             // 
-            // barButtonItem16
-            // 
-            this.barButtonItem16.Caption = "addGotoMyLoc";
-            this.barButtonItem16.Id = 15;
-            this.barButtonItem16.ImageIndex = 64;
-            this.barButtonItem16.Name = "barButtonItem16";
-            // 
-            // barButtonItem17
-            // 
-            this.barButtonItem17.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
-            this.barButtonItem17.Caption = "ShowMyLocOnStatus";
-            this.barButtonItem17.Id = 16;
-            this.barButtonItem17.ImageIndex = 65;
-            this.barButtonItem17.Name = "barButtonItem17";
-            // 
             // dockManager1
             // 
             this.dockManager1.Controller = this.barAndDockingController1;
@@ -1261,23 +1256,10 @@ namespace Keyrox.Builder.Features {
             this.dockPanel1.Text = "dockPanel1";
             this.dockPanel1.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
             // 
-            // panelContainer1
-            // 
-            this.panelContainer1.Controls.Add(this.dockOutput);
-            this.panelContainer1.Controls.Add(this.dockErrors);
-            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-            this.panelContainer1.FloatVertical = true;
-            this.panelContainer1.ID = new System.Guid("8200b8aa-a426-415e-8ffc-456d6975bb20");
-            this.panelContainer1.Location = new System.Drawing.Point(0, 622);
-            this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.Size = new System.Drawing.Size(976, 138);
-            this.panelContainer1.Text = "panelContainer1";
-            // 
             // dockOutput
             // 
             this.dockOutput.Controls.Add(this.dockPanel1_Container);
             this.dockOutput.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
-            this.dockOutput.FloatVertical = true;
             this.dockOutput.ID = new System.Guid("aae5e4a7-17c2-4a3e-beb2-4e130b214eb1");
             this.dockOutput.Location = new System.Drawing.Point(0, 0);
             this.dockOutput.Name = "dockOutput";
@@ -1288,21 +1270,39 @@ namespace Keyrox.Builder.Features {
             // 
             this.dockErrors.Controls.Add(this.dockPanel2_Container);
             this.dockErrors.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
+            this.dockErrors.FloatVertical = true;
             this.dockErrors.ID = new System.Guid("6a28dca1-1be4-4e8e-86fb-9a12a57bf6d0");
             this.dockErrors.Location = new System.Drawing.Point(488, 0);
             this.dockErrors.Name = "dockErrors";
             this.dockErrors.Size = new System.Drawing.Size(488, 138);
             this.dockErrors.Text = "Code Issues";
             // 
-            // panelControl3
+            // barButtonItem16
             // 
-            this.panelControl3.Controls.Add(this.scriptBox1);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(31, 2);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(943, 523);
-            this.ScriptToolTipController.SetSuperTip(this.panelControl3, null);
-            this.panelControl3.TabIndex = 3;
+            this.barButtonItem16.Caption = "addGotoMyLoc";
+            this.barButtonItem16.Id = 15;
+            this.barButtonItem16.ImageIndex = 64;
+            this.barButtonItem16.Name = "barButtonItem16";
+            // 
+            // barButtonItem17
+            // 
+            this.barButtonItem17.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+            this.barButtonItem17.Caption = "ShowMyLocOnStatus";
+            this.barButtonItem17.Id = 16;
+            this.barButtonItem17.ImageIndex = 65;
+            this.barButtonItem17.Name = "barButtonItem17";
+            // 
+            // panelContainer1
+            // 
+            this.panelContainer1.Controls.Add(this.dockOutput);
+            this.panelContainer1.Controls.Add(this.dockErrors);
+            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+            this.panelContainer1.FloatVertical = true;
+            this.panelContainer1.ID = new System.Guid("bdba41ac-d1da-4f5c-8366-624e5723207a");
+            this.panelContainer1.Location = new System.Drawing.Point(0, 623);
+            this.panelContainer1.Name = "panelContainer1";
+            this.panelContainer1.Size = new System.Drawing.Size(976, 138);
+            this.panelContainer1.Text = "panelContainer1";
             // 
             // frm_Editor
             // 
@@ -1310,8 +1310,8 @@ namespace Keyrox.Builder.Features {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 784);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -1334,6 +1334,8 @@ namespace Keyrox.Builder.Features {
             ((System.ComponentModel.ISupportInitialize)(this.imgLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
@@ -1343,11 +1345,9 @@ namespace Keyrox.Builder.Features {
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockPanel1.ResumeLayout(false);
-            this.panelContainer1.ResumeLayout(false);
             this.dockOutput.ResumeLayout(false);
             this.dockErrors.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
+            this.panelContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1454,7 +1454,6 @@ namespace Keyrox.Builder.Features {
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private DevExpress.XtraBars.Docking.DockPanel dockErrors;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel2_Container;
-        private DevExpress.XtraBars.Docking.DockPanel panelContainer1;
         private DevExpress.XtraBars.BarAndDockingController barAndDockingController1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
@@ -1473,5 +1472,6 @@ namespace Keyrox.Builder.Features {
         private DevExpress.XtraBars.BarButtonItem barButtonItem16;
         private DevExpress.XtraBars.BarButtonItem barButtonItem17;
         private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraBars.Docking.DockPanel panelContainer1;
     }
 }

@@ -32,14 +32,42 @@ namespace Keyrox.Scripting.Actions {
             return new ScriptActionResult() { Success = true };
         }
 
-        [ActionTitle("Say After", "Say a defined message in default channel after some seconds.")]
+        [ActionTitle("Say to NPC", "Say a defined message in NPC channel.")]
+        [ActionConfig(ImageIndex = 4, InputText = "saytonpc(\"\")", CarretPosition = -2)]
+        [ActionParameter("Message", "The message to be said.", 0, NeedQuotes = true)]
+        [ActionExamples("saytonpc(\"trade\")", "saytonpc(\"mission\")")]
+        public ScriptActionResult SayToNPC(string[] args) {
+            //TODO: Client.Features.Player.SayOnNPCChannel(args[0]);
+            return new ScriptActionResult() { Success = true };
+        }
+
+        [ActionTitle("Say to NPC after", "Say a defined message in NPC channel after wait some seconds.")]
+        [ActionConfig(ImageIndex = 4, InputText = "saytonpcafter(\"\", 0)", CarretPosition = -5)]
+        [ActionParameter("Message", "The message to be said.", 0, NeedQuotes = true)]
+        [ActionParameter("Delay", "The delay in seconds to say the message.", 1)]
+        [ActionExamples("saytonpcafter(\"trade\", 1)", "saytonpcafter(\"deposit all\", 2)", "saytonpcafter(\"yes\", 1)")]
+        public ScriptActionResult SayToNPCAfter(string[] args) {
+            #region "[rgn] Argument Validation "
+            if (args[1].ToInt32() < 0) { throw new ArgumentException("Invalid delay! You must provide a valid number of seconds."); }
+            #endregion
+
+            //System.Threading.Thread.Sleep(args[1].ToInt32());
+            //TODO: Client.Features.Player.SayOnNPCChannel(args[0]);
+            return new ScriptActionResult() { Success = true };
+        }
+
+        [ActionTitle("Say After", "Say a defined message in default channel after wait some seconds.")]
         [ActionConfig(ImageIndex = 4, InputText = "sayafter(\"\", 0)", CarretPosition = -5)]
         [ActionParameter("Message", "The message to be said.", 0, NeedQuotes = true)]
-        [ActionParameter("Delay", "The delay in seconds to continue.", 1)]
+        [ActionParameter("Delay", "The delay in seconds to  the message.", 1)]
         [ActionExamples("sayafter(\"hi\", 1)", "sayafter(\"deposit all\", 2)", "sayafter(\"yes\", 2)")]
         public ScriptActionResult SayAfter(string[] args) {
-            Client.Features.Player.SayOnDefault(args[0]);
+            #region "[rgn] Argument Validation "
+            if (args[1].ToInt32() < 0) { throw new ArgumentException("Invalid delay! You must provide a valid number of seconds."); }
+            #endregion
+
             System.Threading.Thread.Sleep(args[1].ToInt32());
+            Client.Features.Player.SayOnDefault(args[0]);
             return new ScriptActionResult() { Success = true };
         }
 
@@ -60,7 +88,7 @@ namespace Keyrox.Scripting.Actions {
             return new ScriptActionResult() { Success = new eBuyAction(Client).Execute(itemID, quantity) };
         }
 
-        [ActionTitle("Go to", "Move the player to defined location.")]
+        [ActionTitle("Go to", "Make's the player walk to defined location.")]
         [ActionConfig(ImageIndex = 16, InputText = "goto()", CarretPosition = -1)]
         [ActionParameter("Location X", "The map coordinate X.", 0)]
         [ActionParameter("Location Y", "The map coordinate Y.", 1)]
@@ -75,6 +103,29 @@ namespace Keyrox.Scripting.Actions {
             var location = new Tibia.Features.Structures.Location(args[0].ToUInt32(), args[1].ToUInt32(), args[2].ToUInt32());
             var success = new eGotoAction(Client).Execute(location);
             return success ? new ScriptActionResult() { Success = success } : new ScriptActionResult() { MustReExecute = true };
+        }
+
+        [ActionTitle("Logout", "Logout the player and log the reason.")]
+        [ActionConfig(ImageIndex = 3, InputText = "logout(\"\")", CarretPosition = -2)]
+        [ActionParameter("Message", "The message that will be logged as reason to player logout.", 0, NeedQuotes = true)]
+        [ActionExamples("logout(\"PK in range!\")", "logout(\"No more mana potions\")")]
+        public ScriptActionResult Logout(string[] args) {
+        DoLogout:
+            if (Client.Features.Player.IsConnected) {
+                Client.Features.Player.Logout();
+                System.Threading.Thread.Sleep(2000);
+                goto DoLogout;
+            }
+            Keyrox.Shared.Controls.Output.Add(args[0]);
+            return new ScriptActionResult() { Success = true };
+        }
+
+        [ActionTitle("Stop", "Stops all actions of current player.")]
+        [ActionConfig(ImageIndex = 16, InputText = "stop()", CarretPosition = 0)]
+        [ActionExamples("stop()")]
+        public ScriptActionResult Stop(string[] args) {
+            Client.Features.Player.Stop();
+            return new ScriptActionResult() { Success = true };
         }
     }
 }

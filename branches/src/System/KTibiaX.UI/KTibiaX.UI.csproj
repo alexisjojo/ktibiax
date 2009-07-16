@@ -123,13 +123,13 @@
     <Compile Include="Util\State.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Keyrox\src\Keyrox.Shared\Keyrox.Shared.csproj">
-      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
-      <Name>Keyrox.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Library\Tibia\Keyrox.Tibia.csproj">
       <Project>{607F8CC1-1677-41E0-9906-3F12579AC817}</Project>
       <Name>Keyrox.Tibia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Support\Keyrox.Shared\Keyrox.Shared.csproj">
+      <Project>{E60D87B4-FF44-4411-8E31-27B22BB35AA4}</Project>
+      <Name>Keyrox.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTibiaX.Core\KTibiaX.Core.csproj">
       <Project>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</Project>

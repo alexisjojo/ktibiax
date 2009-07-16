@@ -27,15 +27,18 @@ namespace Keyrox.Builder {
         }
 
         /// <summary>
-        /// Extracts the syntax file.
+        /// Extracts the resource.
         /// </summary>
-        /// <returns></returns>
-        public static string ExtractSyntaxFile() {
-            var fileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ScriptConfig\Script.syn");
+        /// <param name="resource">The resource.</param>
+        /// <param name="path">The path.</param>
+        /// <param name="ignoreIfExists">if set to <c>true</c> [ignore if exists].</param>
+        /// <returns>The File Name.</returns>
+        public static string ExtractResource(string resource, string path, bool ignoreIfExists) {
+            var fileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), path);
             var assembly = Assembly.GetExecutingAssembly();
-            var IocNamespace = "Keyrox.Builder.ScriptConfig.Script.syn";
+            var IocNamespace = resource;
 
-            if (File.Exists(fileName)) { File.Delete(fileName); }
+            if (File.Exists(fileName)) { if (!ignoreIfExists) { File.Delete(fileName); } else { return fileName; } }
             using (var resourceStream = assembly.GetManifestResourceStream(IocNamespace)) {
                 if (resourceStream == null) { throw new Exception(IocNamespace + " Not Found!"); }
 
@@ -47,6 +50,16 @@ namespace Keyrox.Builder {
                 }
             }
             return fileName;
+        }
+
+        /// <summary>
+        /// Extracts the resource.
+        /// </summary>
+        /// <param name="resource">The resource.</param>
+        /// <param name="path">The path.</param>
+        /// <returns>The File Name.</returns>
+        public static string ExtractResource(string resource, string path) {
+            return ExtractResource(resource, path, false);
         }
     }
 }

@@ -1814,18 +1814,6 @@
         uaxhrZI/3Z/ToGIFQsi7ChqrtlktS61ErazK+M0Y72KZy5q6eP0fnn1siMUXTv4AAAAASUVORK5CYIIL
 </value>
   </data>
-  <metadata name="editorSaveMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>280, 54</value>
-  </metadata>
-  <metadata name="editorNewMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 54</value>
-  </metadata>
-  <metadata name="editorOpenMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>146, 54</value>
-  </metadata>
-  <metadata name="editorRunMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>612, 54</value>
-  </metadata>
   <metadata name="ScriptToolTipController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>468, 17</value>
   </metadata>

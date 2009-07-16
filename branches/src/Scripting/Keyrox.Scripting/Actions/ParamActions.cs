@@ -29,7 +29,9 @@ namespace Keyrox.Scripting.Actions {
         [ActionParameter("Value", "The value of the parameter.", 1)]
         [ActionExamples("setparam(\"SpearCost\", 10)", "setparam(\"SpearWeigth\", 20)")]
         public ScriptActionResult SetParam(string[] args) {
-            Script.SetParam(args[0], args[1]);
+            var paramKey = args[0].TrimStart(new[] { '"' }).TrimEnd(new[] { '"' });
+            var paramValue = args[1].TrimStart(new[] { '"' }).TrimEnd(new[] { '"' });
+            Script.SetParam(paramKey, paramValue);
             return new ScriptActionResult() { Success = true };
         }
 

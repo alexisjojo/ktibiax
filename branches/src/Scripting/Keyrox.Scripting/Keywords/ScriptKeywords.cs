@@ -7,7 +7,7 @@ using Keyrox.Scripting.Controls;
 using Keyrox.Scripting.Keywords;
 
 namespace Keyrox.Scripting {
-    public sealed class ScriptKeywords {
+    public static class ScriptKeywords {
 
         /// <summary>
         /// Gets the keywords.
@@ -89,24 +89,31 @@ namespace Keyrox.Scripting {
         }
         #endregion
 
+        #region "[rgn] Protected  "
+        private static KeywordCollection GeneralKeywords { get; set; }
+        #endregion
+
         /// <summary>
         /// Gets the general keywords.
         /// </summary>
         /// <returns></returns>
         public static KeywordCollection GetGeneral() {
-            var types = Assembly.GetExecutingAssembly().GetTypes();
-            var res = new KeywordCollection();
-            foreach (var type in types) {
-                if (type.GetCustomAttributes(typeof(ActionClass), true).Length > 0) {
-                    var methods = type.GetMethods();
-                    foreach (var method in methods) {
-                        var key = ParseMethodInfo(method);
-                        if (key != null) { res.Add(key); }
+            if (GeneralKeywords == null) {
+                var types = Assembly.GetExecutingAssembly().GetTypes();
+                var res = new KeywordCollection();
+                foreach (var type in types) {
+                    if (type.GetCustomAttributes(typeof(ActionClass), true).Length > 0) {
+                        var methods = type.GetMethods();
+                        foreach (var method in methods) {
+                            var key = ParseMethodInfo(method);
+                            if (key != null) { res.Add(key); }
+                        }
                     }
                 }
+                res.CurrentType = AutoListType.General;
+                GeneralKeywords = res.SortbyTitle();
             }
-            res.CurrentType = AutoListType.General;
-            return res;
+            return GeneralKeywords;
         }
 
         /// <summary>

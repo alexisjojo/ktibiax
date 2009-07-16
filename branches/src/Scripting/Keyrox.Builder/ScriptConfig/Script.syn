@@ -14,7 +14,8 @@
     <Keywords>
       <PatternGroup Name="Keywords" Style="CS Keyword" CaseSensitive="true">
         <Patterns>
-          true false
+          true false 
+          kill 
           killprior
           killspell
           killrune
@@ -25,7 +26,10 @@
           goto
           gotosection
           runsection
-          gotoline
+          gotoline 
+          wait 
+          pause 
+          resume 
         </Patterns>
       </PatternGroup>
       <PatternGroup Name="Numbers" Style="CS Number">
@@ -48,6 +52,7 @@
           checkvalue
           getvalue
           countitem 
+          format 
         </Patterns>
       </PatternGroup>
 
@@ -58,7 +63,10 @@
           depositloot
           say
           sayafter
-          buy 
+          buy
+          saytonpc
+          saytonpcafter
+          stop 
         </Patterns>
       </PatternGroup>
 
@@ -66,6 +74,7 @@
       <PatternGroup Name="ScriptActions" Style="Script Actions" CaseSensitive="true">
         <Patterns>
           error 
+          logout 
         </Patterns>
       </PatternGroup>
 

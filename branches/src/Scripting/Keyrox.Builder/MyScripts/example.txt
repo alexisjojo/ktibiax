@@ -7,10 +7,11 @@
  	 
 log("Starting script Name_of_Script by mynick@mail.com")
 log("enjoy!")
-
+gotoline("15")
 setparam("MinCap",50)
 setparam("SpearWeigth", 80)
 setparam("SpearCost", 15)
+setparam("ManaPotionID" , 3556)
 
 #section HuntConfiguration
 killprior("Hydra", +5)
@@ -39,6 +40,7 @@ goto(12345,12346,7)
 checkvalue(countitem({SPEAR}) < 5 = gotosection(HuntToDepot))
 checkvalue([CAP] < getparam("MinCap") = gotosection(HuntToDepot))
 checkvalue(countitem(3031) > 3000 = gotoline(53))
+checkvalue(countitem(getparam("ManaPotionID")) < 5  = logout("Out of mana potions."))
 
 log("Starting new round")
 goto(12345,12345,7)
@@ -68,21 +70,25 @@ depositloot()
 
 //Deposit all gold
 goto(12345,12345,7)
-say("hi", 2)
-say("deposit all", 1)
+say("hi")
+saytonpcafter("deposit all", 1)
 
 setparam("SpearToBuy", getvalue([CAP] / getparam("SpearWeigth")))
 setparam("MoneyToSpears", getvalue(getparam("SpearToBuy") * getparam("SpearCost")))
 
 //Withdraw gold to buy spears
 checkvalue(getparam("SpearToBuy") < 1 = gotosection(DepotToHunt)) //or some down stairs section to before call back to hunt section.
-say("withdraw getparam("MoneyToSpears")", 1000)
-say("yes", 1)
+saytonpcafter(format("withdraw " + getparam("MoneyToSpears")), 1000)
+saytonpcafter("yes", 1)
 checkvalue(countitem({GOLDCOIN}) < getparam("MoneyToSpears") = error("You have no balance to buy spears!"))
 
 //Go to npc and buy spears
 goto(12345,12345,7)
-say("hi", 2)
+sayafter("hi", 1)
+saytonpcafter("trade", 1)
+
+gotoline("15")
+wait(2)
 buy(1234, getparam("SpearToBuy"))
 checkvalue(countitem(1234) >= getparam("SpearToBuy") = error("Could not buy the spears!"))
 

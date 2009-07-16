@@ -39,7 +39,7 @@ namespace Keyrox.Scripting.Parser {
         private string functionText;
         public string FunctionText {
             get {
-                if (string.IsNullOrEmpty(functionText) && !string.IsNullOrEmpty(Text)) {
+                if (string.IsNullOrEmpty(functionText) && !string.IsNullOrEmpty(Text) && Text.IndexOf("(") > 0) {
                     functionText = Text.Substring(0, Text.IndexOf("("));
                 }
                 return functionText;
