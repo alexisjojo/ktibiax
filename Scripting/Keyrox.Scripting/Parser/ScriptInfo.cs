@@ -7,6 +7,7 @@ using Keyrox.Scripting.Keywords;
 using Keyrox.Scripting.Player;
 using Keyrox.Scripting.Util;
 using Tibia.Client;
+using System;
 
 namespace Keyrox.Scripting.Parser {
     public class ScriptInfo {
@@ -22,7 +23,7 @@ namespace Keyrox.Scripting.Parser {
         }
 
         #region "[rgn] Properties     "
-        public TibiaClient TibiaClient { get; private set; }
+        public TibiaClient TibiaClient { get; set; }
         public ScriptFile Script { get; private set; }
 
         public Dictionary<string, string> Parameters { get; private set; }
@@ -36,7 +37,18 @@ namespace Keyrox.Scripting.Parser {
         public StringCollection Ignore { get; private set; }
         public StringCollection AvoidFront { get; set; }
 
-        public PlayerProperties PlayerProperties { get; private set; }
+        private PlayerProperties playerProperties;
+        public PlayerProperties PlayerProperties {
+            get {
+                if (playerProperties == null) { playerProperties = new PlayerProperties(); }
+                if (TibiaClient == null) { throw new ArgumentException("Tibia Client of Script Info is Null!"); }
+
+                playerProperties.Client = this.TibiaClient;
+                playerProperties.Script = this;
+                return playerProperties;
+            }
+            set { playerProperties = value; }
+        }
         public ItemKeywordCollection CustomItems { get; private set; }
         #endregion
 
@@ -47,7 +59,7 @@ namespace Keyrox.Scripting.Parser {
         public string[] GetFunctionArguments(string text) {
             var sindex = text.IndexOf("(");
             if (sindex > -1) {
-                return text.TrimEnd(' ').Substring(sindex + 1, text.Length - 2 - sindex).Replace("\"", "").Split(new[]{ ',' });
+                return text.TrimEnd(' ').Substring(sindex + 1, text.Length - 2 - sindex).Replace("\"", "").Split(new[] { ',' });
             }
             return null;
         }
