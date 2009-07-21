@@ -89,7 +89,8 @@ namespace Keyrox.Scripting.Parser {
                     if (File == null) { throw new ScriptActionException(File.ScriptInfo, "Script File is null on line: " + this.NumberLine); }
                     if (TibiaClient == null) { throw new ScriptActionException(File.ScriptInfo, "Tibia client is null on line: " + this.NumberLine); }
 
-                    var actionclass = Context.GetAction(this.ScriptAction.ActionClass, TibiaClient, File.ScriptInfo);
+                    var actionclass = Context.GetAction(this.ScriptAction.ActionClass, client, File.ScriptInfo);
+                    File.ScriptInfo.TibiaClient = client;
                     Args = File.ScriptInfo.NormalizeActionArguments(Args);
                     Result = (ScriptActionResult)ScriptAction.Method.Invoke(actionclass, new object[] { Args });
                 }
