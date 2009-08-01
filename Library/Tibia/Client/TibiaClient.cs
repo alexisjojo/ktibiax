@@ -32,6 +32,8 @@ namespace Tibia.Client {
         protected IntPtr hprocess;
         protected IntPtr mainWindowHandle;
         private GraphicsProvider graphicProvider;
+        private FeatureProvider features;
+        private ActionProvider actions;
         #endregion
 
         #region "[rgn] Public Properties "
@@ -101,20 +103,28 @@ namespace Tibia.Client {
                 return memoryProvider;
             }
         }
+
         /// <summary>
         /// Get All Client Features.
         /// </summary>
         public FeatureProvider Features {
             get {
-                return new FeatureProvider(Connection);
+                if (features == null) { 
+                    features = new FeatureProvider(Connection); 
+                }
+                return features;
             }
         }
+
         /// <summary>
         /// Return All Client Actions.
         /// </summary>
         public ActionProvider Actions {
             get {
-                return new ActionProvider(Connection);
+                if (actions == null) {
+                    actions = new ActionProvider(Connection);
+                }
+                return actions;
             }
         }
         /// <summary>
@@ -186,6 +196,12 @@ namespace Tibia.Client {
         /// <param name="port">The port.</param>
         /// <param name="isOTServer">if set to <c>true</c> [is OT server].</param>
         public void Connect(string loginServer, int port, bool isOTServer) {
+
+            #region "[rgn] Properties Initialization "
+            features = null;
+            actions = null;
+            #endregion
+
             if (Connection != null) { Connection.Disconnect(); Connection.Dispose(); }
             if (ConnectionCalled != null) ConnectionCalled(this, EventArgs.Empty);
 

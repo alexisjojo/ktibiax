@@ -51,7 +51,7 @@ namespace Keyrox.Scripting.Actions.Components.Player {
 
             //Restart the process.
             Location = location;
-            Wait(1000);
+            Wait(200);
             return Execute(Location);
         }
 

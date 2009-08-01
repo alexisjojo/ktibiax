@@ -350,7 +350,7 @@ namespace Tibia.Connection.Core {
                 try {
                     if (StreamGame != null && StreamGame.CanRead && StreamGame.DataAvailable) {
                         //Byte to Store Server Packets.
-                        var data = new Byte[4096];
+                        var data = new Byte[8192];
 
                         //Get Game Server Packets.
                         var length = StreamGame.Read(data, 0, data.Length);
@@ -379,7 +379,7 @@ namespace Tibia.Connection.Core {
             try {
                 if (StreamLocal != null && StreamLocal.CanRead && StreamLocal.DataAvailable) {
                     //Byte to Store Client Packets.
-                    var data = new Byte[4096];
+                    var data = new Byte[8192];
 
                     //Get Client Local Packets.
                     var length = StreamLocal.Read(data, 0, data.Length);
