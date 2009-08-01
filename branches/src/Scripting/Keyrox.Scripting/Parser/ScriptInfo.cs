@@ -141,17 +141,6 @@ namespace Keyrox.Scripting.Parser {
                 }
             }
 
-            //var tmpSections = new List<ScriptSection>();
-            //foreach (var row in Script.Rows) {
-            //    if (row.IsSection && !Sections.ContainsKey(row.Section.Name)) {
-            //        tmpSections.Add(new ScriptSection(row.Section.Name, row, null));
-            //    }
-            //    if (row.IsEndSection) {
-            //        var sec = tmpSections[tmpSections.Count - 1];
-            //        sec.EndLine = row;
-            //        tmpSections[tmpSections.Count - 1] = sec; 
-            //    }
-            //}
         }
 
         /// <summary>

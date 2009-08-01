@@ -15,9 +15,11 @@ namespace Keyrox.Scripting.Controls {
         /// <param name="client">The client.</param>
         public ScriptRunner(ScriptFile file, TibiaClient tibiaClient) {
             this.File = file;
+            this.File.ScriptInfo.TibiaClient = tibiaClient;
             this.TibiaClient = tibiaClient;
             foreach (var row in File.Rows) {
                 row.OnActionComplete += row_OnActionComplete;
+                row.SetupRow(tibiaClient);
             }
         }
 
@@ -66,8 +68,8 @@ namespace Keyrox.Scripting.Controls {
                     var row = File.Rows[CurrentLineIndex];
                     if (row.ScriptAction != null) {
 
-                        if (OnRowBeginExecute != null) { OnRowBeginExecute(this, new ScriptLineEventArgs(row)); }
-                        row.Execute(TibiaClient);
+                        if (OnRowBeginExecute != null) { OnRowBeginExecute.BeginInvoke(this, new ScriptLineEventArgs(row), null, this); }
+                        row.Execute();
                     }
                     else {
                         row = File.GetNextLine(CurrentLineIndex);
@@ -113,7 +115,7 @@ namespace Keyrox.Scripting.Controls {
         /// </summary>
         /// <param name="e">The <see cref="Keyrox.Scripting.Events.ScriptLineEventArgs"/> instance containing the event data.</param>
         private void CheckExecutionContinue(Keyrox.Scripting.Events.ScriptLineEventArgs e) {
-            if (InDebugMode) { if (OnRowEndExecute != null) { OnRowEndExecute(this, new ScriptLineEventArgs(e.Line)); } return; }
+            if (InDebugMode) { if (OnRowEndExecute != null) { OnRowEndExecute.BeginInvoke(this, new ScriptLineEventArgs(e.Line), null, this); } return; }
             else { ExecuteCurrentLine(); return; }
         }
 

@@ -22,12 +22,28 @@ namespace Keyrox.Scripting.Parser {
             this.Text = text;
         }
 
+        /// <summary>
+        /// Setups the row.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        public void SetupRow(TibiaClient client) {
+            this.TibiaClient = client;
+            if (this.ScriptAction != null) {
+                this.ActionClass = Context.GetAction(this.ScriptAction.ActionClass, TibiaClient, File.ScriptInfo);
+            }
+            if (this.Args != null) {
+                this.NormalizedArgs = File.ScriptInfo.NormalizeActionArguments(this.Args);
+            }
+        }
+
         #region "[rgn] Properties     "
         public TibiaClient TibiaClient { get; set; }
 
         public ScriptFile File { get; set; }
         public ScriptAction ScriptAction { get; private set; }
         public ScriptActionResult Result { get; private set; }
+        
+        public ITibiaAction ActionClass { get; set; }
 
         public int LineIndex { get; private set; }
         public int NumberLine { get { return LineIndex + 1; } }
@@ -35,6 +51,7 @@ namespace Keyrox.Scripting.Parser {
         public string Text { get; private set; }
         public string ActionName { get; private set; }
         public string[] Args { get; set; }
+        public string[] NormalizedArgs { get; set; }
 
         private string functionText;
         public string FunctionText {
@@ -82,21 +99,14 @@ namespace Keyrox.Scripting.Parser {
         /// <summary>
         /// Executes this instance.
         /// </summary>
-        public void Execute(TibiaClient client) {
+        public void Execute() {
             try {
                 if (this.ScriptAction != null) {
-                    TibiaClient = client;
                     if (File == null) { throw new ScriptActionException(File.ScriptInfo, "Script File is null on line: " + this.NumberLine); }
                     if (TibiaClient == null) { throw new ScriptActionException(File.ScriptInfo, "Tibia client is null on line: " + this.NumberLine); }
-
-                    var actionclass = Context.GetAction(this.ScriptAction.ActionClass, client, File.ScriptInfo);
-                    File.ScriptInfo.TibiaClient = client;
-                    Args = File.ScriptInfo.NormalizeActionArguments(Args);
-                    Result = (ScriptActionResult)ScriptAction.Method.Invoke(actionclass, new object[] { Args });
+                    this.Result = (ScriptActionResult)ScriptAction.Method.Invoke(this.ActionClass, new object[] { this.NormalizedArgs });
                 }
-                else {
-                    Result = new ScriptActionResult() { Success = true };
-                }
+                else { this.Result = new ScriptActionResult() { Success = true }; }
                 ExecutionComplete(null);
             }
             catch (Exception ex) { throw new ExecutionEngineException("An error ocurred executing the line number: '" + NumberLine + "'\n\n" + ex.Message, ex); }
@@ -107,7 +117,7 @@ namespace Keyrox.Scripting.Parser {
         /// </summary>
         /// <param name="result">The result.</param>
         private void ExecutionComplete(IAsyncResult result) {
-            if (OnActionComplete != null) { OnActionComplete(this, new ScriptLineEventArgs(this)); }
+            if (OnActionComplete != null) { OnActionComplete.BeginInvoke(this, new ScriptLineEventArgs(this), null, this); }
         }
 
     }

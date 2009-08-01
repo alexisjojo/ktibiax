@@ -169,6 +169,7 @@ namespace Keyrox.Builder.Features {
             }
             else {
                 saveFileDialog1.FileName = string.Empty;
+                saveFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "MyScripts");
                 saveFileDialog1.ShowDialog();
                 if (saveFileDialog1.FileName != string.Empty) {
                     CurrentScript = new FileInfo(saveFileDialog1.FileName);
@@ -394,6 +395,7 @@ namespace Keyrox.Builder.Features {
         }
         private void btnOpenWindow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             openFileDialog1.FileName = string.Empty;
+            openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "MyScripts");
             openFileDialog1.ShowDialog();
             if (openFileDialog1.FileName != string.Empty) {
                 var frmEditor = new frm_Editor();
@@ -404,6 +406,7 @@ namespace Keyrox.Builder.Features {
         private void btnOpen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (scriptBox1.Editor.Document.Modified) { AskToSave(); }
             openFileDialog1.FileName = string.Empty;
+            openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "MyScripts");
             openFileDialog1.ShowDialog();
             if (openFileDialog1.FileName != string.Empty) {
                 LoadScript(openFileDialog1.FileName);
@@ -565,9 +568,9 @@ namespace Keyrox.Builder.Features {
             }
         }
         private void btnBarStop_ItemClick(object sender, ItemClickEventArgs e) {
-            if (Runner != null || Runner.State == Keyrox.Scripting.Util.RunnerState.Running) {
-                StopScript();
-            }
+            if (Runner == null) { return; }
+            if (Runner.State != Keyrox.Scripting.Util.RunnerState.Running) { return; }
+            StopScript();
         }
         #endregion
 
@@ -778,6 +781,15 @@ namespace Keyrox.Builder.Features {
         }
         private void Runner_OnScriptStop(object sender, EventArgs e) {
             SetControlState(false);
+            this.Invoke(new Callback(delegate() {
+                RestoreRows();
+                Editor.Refresh();
+            }));
+            MethodCall.ExecuteSafeThreadIn(delegate() {
+                RestoreRows();
+                Editor.Refresh();
+                Document.ParseAll(true);
+            }, 1000);
             SetStatusText("Script execution has stoped");
         }
         private void AddInnerExceptions(Keyrox.Scripting.Events.ScriptExceptionEventArgs e) {
