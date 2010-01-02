@@ -275,6 +275,11 @@ namespace KTibiaX.Windows {
         private void btnPacketListener_ItemClick(object sender, ItemClickEventArgs e) {
             FormManager.Show<frm_Packets>(TibiaClient);
         }
+        private void btnMapReader_ItemClick(object sender, ItemClickEventArgs e) {
+            var frmMap = new Features.Graphics.frm_Graphics();
+            frmMap.TibiaClient = this.TibiaClient;
+            frmMap.Show();
+        }
         #endregion
 
         /// <summary>
