@@ -256,6 +256,7 @@ namespace KTibiaX.Windows
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.outputView1 = new KTibiaX.Windows.Features.Controls.OutputView();
             this.TMFeatures = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSmallRibbon)).BeginInit();
@@ -273,7 +274,6 @@ namespace KTibiaX.Windows
             // ribbon
             // 
             this.ribbon.ApplicationButtonDropDownControl = this.applicationMenu1;
-            this.ribbon.ApplicationButtonKeyTip = "";
             this.ribbon.ApplicationCaption = "KTibiaX® Advanced 2009";
             this.ribbon.ApplicationIcon = ((System.Drawing.Bitmap)(resources.GetObject("ribbon.ApplicationIcon")));
             this.ribbon.Controller = this.DockController1;
@@ -364,7 +364,7 @@ namespace KTibiaX.Windows
             this.repositoryItemHyperLinkEdit1,
             this.repositoryItemZoomTrackBar1,
             this.repositoryItemHyperLinkEdit2});
-            this.ribbon.SelectedPage = this.ribbonPage3;
+            this.ribbon.SelectedPage = this.rbDev;
             this.ribbon.ShowCategoryInCaption = false;
             this.ribbon.Size = new System.Drawing.Size(816, 148);
             this.ribbon.StatusBar = this.ribbonStatusBar1;
@@ -391,7 +391,6 @@ namespace KTibiaX.Windows
             this.applicationMenu1.Name = "applicationMenu1";
             this.applicationMenu1.Ribbon = this.ribbon;
             this.applicationMenu1.RightPaneControlContainer = null;
-            this.applicationMenu1.RightPaneWidth = 240;
             // 
             // btnStartClient
             // 
@@ -901,6 +900,7 @@ namespace KTibiaX.Windows
             this.btnMapReader.Id = 64;
             this.btnMapReader.LargeImageIndex = 85;
             this.btnMapReader.Name = "btnMapReader";
+            this.btnMapReader.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMapReader_ItemClick);
             // 
             // btnPacketListener
             // 
@@ -981,7 +981,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup4,
             this.ribbonPageGroup3,
             this.ribbonPageGroup5});
-            this.ribbonPage1.KeyTip = "";
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Player Cheats";
             // 
@@ -990,7 +989,6 @@ namespace KTibiaX.Windows
             this.GroupPlayer.AllowMinimize = false;
             this.GroupPlayer.ItemLinks.Add(this.btnLight);
             this.GroupPlayer.ItemLinks.Add(this.btnSpeed, true);
-            this.GroupPlayer.KeyTip = "";
             this.GroupPlayer.Name = "GroupPlayer";
             this.GroupPlayer.Text = "Player";
             // 
@@ -998,7 +996,6 @@ namespace KTibiaX.Windows
             // 
             this.GroupBattleList.ItemLinks.Add(this.btnBattleList);
             this.GroupBattleList.ItemLinks.Add(this.btnOutfit, true);
-            this.GroupBattleList.KeyTip = "";
             this.GroupBattleList.Name = "GroupBattleList";
             this.GroupBattleList.Text = "Battle List";
             // 
@@ -1006,7 +1003,6 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.btnAlerts);
             this.ribbonPageGroup4.ItemLinks.Add(this.btnTrade, true);
-            this.ribbonPageGroup4.KeyTip = "";
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = " Watcher ";
             // 
@@ -1014,14 +1010,12 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnMapSpy);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem6, true);
-            this.ribbonPageGroup3.KeyTip = "";
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Map";
             // 
             // ribbonPageGroup5
             // 
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem8);
-            this.ribbonPageGroup5.KeyTip = "";
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Web";
             // 
@@ -1033,7 +1027,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup8,
             this.ribbonPageGroup9,
             this.ribbonPageGroup10});
-            this.ribbonPage2.KeyTip = "";
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Trainner Tools";
             // 
@@ -1042,14 +1035,12 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup6.ItemLinks.Add(this.btnEater);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnSpellCaster, true);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnFisher, true);
-            this.ribbonPageGroup6.KeyTip = "";
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "Mana Tools";
             // 
             // ribbonPageGroup7
             // 
             this.ribbonPageGroup7.ItemLinks.Add(this.btnHealer);
-            this.ribbonPageGroup7.KeyTip = "";
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "Healer";
             // 
@@ -1057,7 +1048,6 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup8.ItemLinks.Add(this.btnRuneMaker);
             this.ribbonPageGroup8.ItemLinks.Add(this.btnAmmoMaker, true);
-            this.ribbonPageGroup8.KeyTip = "";
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "Makers";
             // 
@@ -1065,14 +1055,12 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup9.ItemLinks.Add(this.barButtonItem14);
             this.ribbonPageGroup9.ItemLinks.Add(this.btnAntiMove, true);
-            this.ribbonPageGroup9.KeyTip = "";
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             this.ribbonPageGroup9.Text = "AFK";
             // 
             // ribbonPageGroup10
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btnTrainer);
-            this.ribbonPageGroup10.KeyTip = "";
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
             this.ribbonPageGroup10.Text = "Helpers";
             // 
@@ -1084,7 +1072,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup15,
             this.ribbonPageGroup13,
             this.ribbonPageGroup14});
-            this.ribbonPage3.KeyTip = "";
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Hunt Options";
             // 
@@ -1092,14 +1079,12 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup11.ItemLinks.Add(this.btnCavebot);
             this.ribbonPageGroup11.ItemLinks.Add(this.barButtonItem19, true);
-            this.ribbonPageGroup11.KeyTip = "";
             this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             this.ribbonPageGroup11.Text = "Bots";
             // 
             // ribbonPageGroup12
             // 
             this.ribbonPageGroup12.ItemLinks.Add(this.btnScript);
-            this.ribbonPageGroup12.KeyTip = "";
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "Scripts";
             // 
@@ -1108,7 +1093,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup15.ItemLinks.Add(this.btnAutoLooter, true);
             this.ribbonPageGroup15.ItemLinks.Add(this.btnFluidDrinker, true);
             this.ribbonPageGroup15.ItemLinks.Add(this.btnRestaker, true);
-            this.ribbonPageGroup15.KeyTip = "";
             this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             this.ribbonPageGroup15.Text = "Runes";
             // 
@@ -1116,14 +1100,12 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup13.ItemLinks.Add(this.btnHuntTools);
             this.ribbonPageGroup13.ItemLinks.Add(this.btnRuneShooter, true);
-            this.ribbonPageGroup13.KeyTip = "";
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "Tools";
             // 
             // ribbonPageGroup14
             // 
             this.ribbonPageGroup14.ItemLinks.Add(this.btnStatistics);
-            this.ribbonPageGroup14.KeyTip = "";
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = " Loot";
             // 
@@ -1133,7 +1115,6 @@ namespace KTibiaX.Windows
             this.pnConfigGroup,
             this.ribbonPageGroup18,
             this.ribbonPageGroup19});
-            this.rbConfig.KeyTip = "";
             this.rbConfig.Name = "rbConfig";
             this.rbConfig.Text = "Configuration";
             // 
@@ -1142,14 +1123,12 @@ namespace KTibiaX.Windows
             this.pnConfigGroup.ItemLinks.Add(this.barButtonItem26);
             this.pnConfigGroup.ItemLinks.Add(this.btnAddress, true);
             this.pnConfigGroup.ItemLinks.Add(this.btnOutput, true);
-            this.pnConfigGroup.KeyTip = "";
             this.pnConfigGroup.Name = "pnConfigGroup";
             this.pnConfigGroup.Text = "Config";
             // 
             // ribbonPageGroup18
             // 
             this.ribbonPageGroup18.ItemLinks.Add(this.barButtonItem28);
-            this.ribbonPageGroup18.KeyTip = "";
             this.ribbonPageGroup18.Name = "ribbonPageGroup18";
             this.ribbonPageGroup18.Text = "Auto";
             // 
@@ -1158,7 +1137,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup19.ItemLinks.Add(this.ribbonGalleryBarItem1);
             this.ribbonPageGroup19.ItemLinks.Add(this.lstFormSkin, true);
             this.ribbonPageGroup19.ItemLinks.Add(this.lstMenuSkin);
-            this.ribbonPageGroup19.KeyTip = "";
             this.ribbonPageGroup19.Name = "ribbonPageGroup19";
             this.ribbonPageGroup19.Text = " Customization ";
             // 
@@ -1168,7 +1146,6 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup21,
             this.ribbonPageGroup22,
             this.ribbonPageGroup23});
-            this.rbDev.KeyTip = "";
             this.rbDev.Name = "rbDev";
             this.rbDev.Text = "Development";
             // 
@@ -1176,7 +1153,6 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup21.ItemLinks.Add(this.btnMapReader);
             this.ribbonPageGroup21.ItemLinks.Add(this.btnBPReader, true);
-            this.ribbonPageGroup21.KeyTip = "";
             this.ribbonPageGroup21.Name = "ribbonPageGroup21";
             this.ribbonPageGroup21.Text = "Map";
             // 
@@ -1184,14 +1160,12 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup22.ItemLinks.Add(this.btnPacketListener);
             this.ribbonPageGroup22.ItemLinks.Add(this.btnCripto, true);
-            this.ribbonPageGroup22.KeyTip = "";
             this.ribbonPageGroup22.Name = "ribbonPageGroup22";
             this.ribbonPageGroup22.Text = "Connection";
             // 
             // ribbonPageGroup23
             // 
             this.ribbonPageGroup23.ItemLinks.Add(this.btnTestes);
-            this.ribbonPageGroup23.KeyTip = "";
             this.ribbonPageGroup23.Name = "ribbonPageGroup23";
             this.ribbonPageGroup23.Text = "Testes";
             // 
@@ -1202,14 +1176,12 @@ namespace KTibiaX.Windows
             this.ribbonPageGroup2,
             this.ribbonPageGroup17,
             this.ribbonPageGroup20});
-            this.rbHelp.KeyTip = "";
             this.rbHelp.Name = "rbHelp";
             this.rbHelp.Text = "Help";
             // 
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup1.KeyTip = "";
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Information";
             // 
@@ -1217,21 +1189,18 @@ namespace KTibiaX.Windows
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3);
             this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4, true);
-            this.ribbonPageGroup2.KeyTip = "";
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // ribbonPageGroup17
             // 
             this.ribbonPageGroup17.ItemLinks.Add(this.barButtonItem9);
-            this.ribbonPageGroup17.KeyTip = "";
             this.ribbonPageGroup17.Name = "ribbonPageGroup17";
             this.ribbonPageGroup17.Text = "Beta";
             // 
             // ribbonPageGroup20
             // 
             this.ribbonPageGroup20.ItemLinks.Add(this.barButtonItem29);
-            this.ribbonPageGroup20.KeyTip = "";
             this.ribbonPageGroup20.Name = "ribbonPageGroup20";
             this.ribbonPageGroup20.Text = " Help";
             // 
@@ -1263,7 +1232,6 @@ namespace KTibiaX.Windows
             // 
             // ribbonPageGroup16
             // 
-            this.ribbonPageGroup16.KeyTip = "";
             this.ribbonPageGroup16.Name = "ribbonPageGroup16";
             this.ribbonPageGroup16.Text = "Web";
             // 
@@ -1368,6 +1336,7 @@ namespace KTibiaX.Windows
             this.Load += new System.EventHandler(this.frm_RibbonMenu_Load);
             this.SizeChanged += new System.EventHandler(this.frm_RibbonMenu_SizeChanged);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Main_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DockController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSmallRibbon)).EndInit();
