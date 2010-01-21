@@ -937,6 +937,7 @@ namespace KTibiaX.Windows
             this.btnBPReader.Id = 70;
             this.btnBPReader.LargeImageIndex = 81;
             this.btnBPReader.Name = "btnBPReader";
+            this.btnBPReader.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBPReader_ItemClick);
             // 
             // barButtonItem6
             // 
@@ -1294,6 +1295,7 @@ namespace KTibiaX.Windows
             this.dockOutputPanel.ID = new System.Guid("2d5d370b-e8b6-466b-b344-d6abba8f7c8c");
             this.dockOutputPanel.Location = new System.Drawing.Point(-32768, -32768);
             this.dockOutputPanel.Name = "dockOutputPanel";
+            this.dockOutputPanel.OriginalSize = new System.Drawing.Size(0, 0);
             this.dockOutputPanel.SavedIndex = 0;
             this.dockOutputPanel.Size = new System.Drawing.Size(260, 134);
             this.dockOutputPanel.Text = "Output";

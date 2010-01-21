@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2B0C0770-CB5B-4BEA-B610-FE738F1D0A59}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -31,16 +31,46 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v9.1.Linq, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v9.1.Providers, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v9.1, Version=9.1.5.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.Data.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.Utils.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.Xpo.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v9.3.Linq, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.Xpo.v9.3.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v9.3.Providers, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.Xpo.v9.3.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.XtraBars.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.XtraEditors.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.XtraGrid.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.XtraTreeList.v9.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v9.3, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8d332da86fe888ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\library\DevExpress\DevExpress.XtraVerticalGrid.v9.3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -67,6 +97,7 @@
     <Compile Include="FormStorage\StorageManager.cs" />
     <Compile Include="Model\DTO\CustomListItem.cs" />
     <Compile Include="Model\FeatureData.cs" />
+    <Compile Include="Model\ItemData.cs" />
     <Compile Include="Model\PlayerFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -75,8 +106,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repositories\Contracts\IFeatureDataRepository.cs" />
+    <Compile Include="Repositories\Contracts\IItemDataRepository.cs" />
     <Compile Include="Repositories\Contracts\IPlayerFeatureRepository.cs" />
     <Compile Include="Repositories\FeatureDataRepository.cs" />
+    <Compile Include="Repositories\ItemDataRepository.cs" />
     <Compile Include="Repositories\PlayerFeatureRepository.cs" />
   </ItemGroup>
   <ItemGroup>
