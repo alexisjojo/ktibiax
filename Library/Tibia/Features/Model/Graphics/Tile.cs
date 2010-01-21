@@ -39,8 +39,8 @@ namespace Tibia.Features.Model.Graphics {
         }
 
         public bool IsGround { get { return Item.DatItem.GetFlag(DatItemFlag.IsGround); } }
-        public bool GoUp { get { return Item.DatItem.LensHelp == DatItemDefination.IsLadder || Item.DatItem.LensHelp == DatItemDefination.IsRopeSpot || Item.DatItem.LensHelp == DatItemDefination.IsStairs; } }
-        public bool GoDown { get { return Item.DatItem.LensHelp == DatItemDefination.IsHole || Item.DatItem.LensHelp == DatItemDefination.IsSewer; ; } }
+        public bool GoUp { get { return DatItemTypes.UP.Contains(TileId) || DatItemTypes.UPUse.Contains(TileId) || DatItemTypes.Rope.Contains(TileId); } }
+        public bool GoDown { get { return DatItemTypes.Down.Contains(TileId) || DatItemTypes.DownUse.Contains(TileId) || DatItemTypes.Shovel.Contains(TileId); } }
         public bool IsDepot { get { return Item.DatItem.LensHelp == DatItemDefination.IsDepot; } }
         public bool IsContainer { get { return Item.DatItem.GetFlag(DatItemFlag.IsContainer); ; } }
         public bool IsBlocking { get { return Item.DatItem.GetFlag(DatItemFlag.Blocking); } }

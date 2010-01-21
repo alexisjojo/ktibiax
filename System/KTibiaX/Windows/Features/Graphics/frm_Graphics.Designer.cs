@@ -27,6 +27,8 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnLoad = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.lblLocation = new DevExpress.XtraEditors.LabelControl();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
@@ -56,6 +58,8 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -69,40 +73,40 @@ namespace KTibiaX.Windows.Features.Graphics {
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Appearance.DisabledLayoutGroupCaption.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.layoutControl1.Appearance.DisabledLayoutGroupCaption.Options.UseForeColor = true;
-            this.layoutControl1.Appearance.DisabledLayoutItem.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.layoutControl1.Appearance.DisabledLayoutItem.Options.UseForeColor = true;
             this.layoutControl1.Controls.Add(this.groupControl2);
             this.layoutControl1.Controls.Add(this.groupControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(321, 288);
+            this.layoutControl1.Size = new System.Drawing.Size(145, 418);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.btnLoad);
-            this.groupControl2.Location = new System.Drawing.Point(7, 222);
+            this.groupControl2.Location = new System.Drawing.Point(12, 344);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(308, 60);
+            this.groupControl2.Size = new System.Drawing.Size(121, 62);
             this.groupControl2.TabIndex = 5;
-            this.groupControl2.Text = "groupControl2";
+            this.groupControl2.Text = "Options";
             // 
             // btnLoad
             // 
             this.btnLoad.Location = new System.Drawing.Point(6, 24);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(88, 31);
+            this.btnLoad.Size = new System.Drawing.Size(110, 31);
             this.btnLoad.TabIndex = 0;
             this.btnLoad.Text = "Load";
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.label2);
+            this.groupControl1.Controls.Add(this.label1);
+            this.groupControl1.Controls.Add(this.listBox2);
+            this.groupControl1.Controls.Add(this.listBox1);
             this.groupControl1.Controls.Add(this.lblLocation);
             this.groupControl1.Controls.Add(this.labelControl21);
             this.groupControl1.Controls.Add(this.labelControl22);
@@ -129,18 +133,34 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
-            this.groupControl1.Location = new System.Drawing.Point(7, 7);
+            this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(308, 204);
+            this.groupControl1.Size = new System.Drawing.Size(121, 328);
             this.groupControl1.TabIndex = 4;
-            this.groupControl1.Text = "groupControl1";
+            this.groupControl1.Text = "SQM\'s";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(6, 261);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(108, 56);
+            this.listBox2.TabIndex = 27;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 184);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(108, 56);
+            this.listBox1.TabIndex = 26;
             // 
             // lblLocation
             // 
             this.lblLocation.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblLocation.Location = new System.Drawing.Point(164, 181);
+            this.lblLocation.Location = new System.Drawing.Point(6, 140);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(138, 19);
+            this.lblLocation.Size = new System.Drawing.Size(108, 19);
             this.lblLocation.TabIndex = 25;
             this.lblLocation.Text = "x, y, z";
             // 
@@ -158,7 +178,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl21.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl21.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl21.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl21.Location = new System.Drawing.Point(87, 148);
+            this.labelControl21.Location = new System.Drawing.Point(6, 114);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(20, 20);
             this.labelControl21.TabIndex = 24;
@@ -177,7 +197,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl22.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl22.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl22.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl22.Location = new System.Drawing.Point(109, 148);
+            this.labelControl22.Location = new System.Drawing.Point(28, 114);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(20, 20);
             this.labelControl22.TabIndex = 23;
@@ -196,7 +216,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl23.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl23.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl23.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl23.Location = new System.Drawing.Point(131, 148);
+            this.labelControl23.Location = new System.Drawing.Point(50, 114);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(20, 20);
             this.labelControl23.TabIndex = 22;
@@ -215,7 +235,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl24.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl24.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl24.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl24.Location = new System.Drawing.Point(153, 148);
+            this.labelControl24.Location = new System.Drawing.Point(72, 114);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(20, 20);
             this.labelControl24.TabIndex = 21;
@@ -234,7 +254,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl25.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl25.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl25.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl25.Location = new System.Drawing.Point(175, 148);
+            this.labelControl25.Location = new System.Drawing.Point(94, 114);
             this.labelControl25.Name = "labelControl25";
             this.labelControl25.Size = new System.Drawing.Size(20, 20);
             this.labelControl25.TabIndex = 20;
@@ -253,7 +273,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl16.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl16.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl16.Location = new System.Drawing.Point(87, 126);
+            this.labelControl16.Location = new System.Drawing.Point(6, 92);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(20, 20);
             this.labelControl16.TabIndex = 19;
@@ -272,7 +292,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl17.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl17.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl17.Location = new System.Drawing.Point(109, 126);
+            this.labelControl17.Location = new System.Drawing.Point(28, 92);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(20, 20);
             this.labelControl17.TabIndex = 18;
@@ -291,7 +311,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl18.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl18.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl18.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl18.Location = new System.Drawing.Point(131, 126);
+            this.labelControl18.Location = new System.Drawing.Point(50, 92);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(20, 20);
             this.labelControl18.TabIndex = 17;
@@ -310,7 +330,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl19.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl19.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl19.Location = new System.Drawing.Point(153, 126);
+            this.labelControl19.Location = new System.Drawing.Point(72, 92);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(20, 20);
             this.labelControl19.TabIndex = 16;
@@ -329,7 +349,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl20.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl20.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl20.Location = new System.Drawing.Point(175, 126);
+            this.labelControl20.Location = new System.Drawing.Point(94, 92);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(20, 20);
             this.labelControl20.TabIndex = 15;
@@ -348,7 +368,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl11.Location = new System.Drawing.Point(87, 104);
+            this.labelControl11.Location = new System.Drawing.Point(6, 70);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(20, 20);
             this.labelControl11.TabIndex = 14;
@@ -367,7 +387,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl12.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl12.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl12.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl12.Location = new System.Drawing.Point(109, 104);
+            this.labelControl12.Location = new System.Drawing.Point(28, 70);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(20, 20);
             this.labelControl12.TabIndex = 13;
@@ -386,7 +406,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl13.Location = new System.Drawing.Point(131, 104);
+            this.labelControl13.Location = new System.Drawing.Point(50, 70);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(20, 20);
             this.labelControl13.TabIndex = 12;
@@ -405,7 +425,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl14.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl14.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl14.Location = new System.Drawing.Point(153, 104);
+            this.labelControl14.Location = new System.Drawing.Point(72, 70);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(20, 20);
             this.labelControl14.TabIndex = 11;
@@ -424,7 +444,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl15.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl15.Location = new System.Drawing.Point(175, 104);
+            this.labelControl15.Location = new System.Drawing.Point(94, 70);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(20, 20);
             this.labelControl15.TabIndex = 10;
@@ -443,7 +463,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl6.Location = new System.Drawing.Point(87, 82);
+            this.labelControl6.Location = new System.Drawing.Point(6, 48);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(20, 20);
             this.labelControl6.TabIndex = 9;
@@ -462,7 +482,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl7.Location = new System.Drawing.Point(109, 82);
+            this.labelControl7.Location = new System.Drawing.Point(28, 48);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(20, 20);
             this.labelControl7.TabIndex = 8;
@@ -481,7 +501,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl8.Location = new System.Drawing.Point(131, 82);
+            this.labelControl8.Location = new System.Drawing.Point(50, 48);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(20, 20);
             this.labelControl8.TabIndex = 7;
@@ -500,7 +520,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl9.Location = new System.Drawing.Point(153, 82);
+            this.labelControl9.Location = new System.Drawing.Point(72, 48);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(20, 20);
             this.labelControl9.TabIndex = 6;
@@ -519,7 +539,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl10.Location = new System.Drawing.Point(175, 82);
+            this.labelControl10.Location = new System.Drawing.Point(94, 48);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(20, 20);
             this.labelControl10.TabIndex = 5;
@@ -538,7 +558,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl5.Location = new System.Drawing.Point(175, 60);
+            this.labelControl5.Location = new System.Drawing.Point(94, 26);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(20, 20);
             this.labelControl5.TabIndex = 4;
@@ -557,7 +577,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl4.Location = new System.Drawing.Point(153, 60);
+            this.labelControl4.Location = new System.Drawing.Point(72, 26);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(20, 20);
             this.labelControl4.TabIndex = 3;
@@ -576,7 +596,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl3.Location = new System.Drawing.Point(131, 60);
+            this.labelControl3.Location = new System.Drawing.Point(50, 26);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(20, 20);
             this.labelControl3.TabIndex = 2;
@@ -595,7 +615,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl2.Location = new System.Drawing.Point(109, 60);
+            this.labelControl2.Location = new System.Drawing.Point(28, 26);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(20, 20);
             this.labelControl2.TabIndex = 1;
@@ -614,7 +634,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.labelControl1.Location = new System.Drawing.Point(87, 60);
+            this.labelControl1.Location = new System.Drawing.Point(6, 26);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(20, 20);
             this.labelControl1.TabIndex = 0;
@@ -627,8 +647,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.layoutControlItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(321, 288);
-            this.layoutControlGroup1.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(145, 418);
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
@@ -638,9 +657,8 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(319, 215);
+            this.layoutControlItem1.Size = new System.Drawing.Size(125, 332);
             this.layoutControlItem1.Text = "layoutControlItem1";
-            this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
@@ -649,23 +667,43 @@ namespace KTibiaX.Windows.Features.Graphics {
             // 
             this.layoutControlItem2.Control = this.groupControl2;
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 215);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 332);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(319, 71);
+            this.layoutControlItem2.Size = new System.Drawing.Size(125, 66);
             this.layoutControlItem2.Text = "layoutControlItem2";
-            this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextToControlDistance = 0;
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(62, 166);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Tile Data";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(77, 243);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Tile ID";
             // 
             // frm_Graphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 288);
+            this.ClientSize = new System.Drawing.Size(145, 418);
             this.Controls.Add(this.layoutControl1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_Graphics";
-            this.Text = "frm_Graphics";
+            this.ShowIcon = false;
+            this.Text = "Graphics";
             this.Load += new System.EventHandler(this.frm_Graphics_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -673,6 +711,7 @@ namespace KTibiaX.Windows.Features.Graphics {
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -715,6 +754,10 @@ namespace KTibiaX.Windows.Features.Graphics {
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btnLoad;
         private DevExpress.XtraEditors.LabelControl lblLocation;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
 
     }
 }
