@@ -52,6 +52,7 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.barAndDockingController2 = new DevExpress.XtraBars.BarAndDockingController(this.components);
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.openScriptDialog = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuRunScript)).BeginInit();
@@ -65,7 +66,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.ApplicationButtonKeyTip = "";
             this.ribbonControl1.ApplicationIcon = null;
             this.ribbonControl1.Controller = this.barAndDockingController1;
             this.ribbonControl1.Images = this.imgSmall;
@@ -114,7 +114,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.menuRunScript.Name = "menuRunScript";
             this.menuRunScript.Ribbon = this.ribbonControl1;
             this.menuRunScript.RightPaneControlContainer = null;
-            this.menuRunScript.RightPaneWidth = 240;
             // 
             // barButtonItem10
             // 
@@ -205,7 +204,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.ribbonPageGroup1,
             this.rgFile,
             this.rgCode});
-            this.ribbonPage1.KeyTip = "";
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "ribbonPage1";
             // 
@@ -214,7 +212,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.ribbonPageGroup1.ItemLinks.Add(this.btnRun);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnPause, true);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnStop);
-            this.ribbonPageGroup1.KeyTip = "";
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Execution";
             // 
@@ -223,7 +220,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.rgFile.ItemLinks.Add(this.btnOpen);
             this.rgFile.ItemLinks.Add(this.btnNew, true);
             this.rgFile.ItemLinks.Add(this.btnEdit);
-            this.rgFile.KeyTip = "";
             this.rgFile.Name = "rgFile";
             this.rgFile.Text = "File";
             // 
@@ -232,7 +228,6 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.rgCode.ItemLinks.Add(this.btnCompile);
             this.rgCode.ItemLinks.Add(this.btnOutput, true);
             this.rgCode.ItemLinks.Add(this.btnIssues);
-            this.rgCode.KeyTip = "";
             this.rgCode.Name = "rgCode";
             this.rgCode.Text = "Code";
             // 
@@ -312,6 +307,7 @@ namespace KTibiaX.Windows.Features.Hunt {
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cavebot";
             this.Load += new System.EventHandler(this.frm_Cavebot_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuRunScript)).EndInit();

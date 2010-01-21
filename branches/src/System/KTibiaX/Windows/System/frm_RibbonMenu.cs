@@ -280,6 +280,9 @@ namespace KTibiaX.Windows {
             frmMap.TibiaClient = this.TibiaClient;
             frmMap.Show();
         }
+        private void btnBPReader_ItemClick(object sender, ItemClickEventArgs e) {
+            FormManager.Show<frm_BPReader>(TibiaClient);
+        }
         #endregion
 
         /// <summary>

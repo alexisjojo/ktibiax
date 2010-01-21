@@ -13,5 +13,9 @@ namespace KTibiaX.Core {
             get { return new ManagerBase<IPlayerFeatureRepository>(); }
         }
 
+        public static ManagerBase<IItemDataRepository> ItemData {
+            get { return new ManagerBase<IItemDataRepository>(); }
+        }
+
     }
 }
